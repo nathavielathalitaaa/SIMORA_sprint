@@ -5,19 +5,19 @@
     {{-- Header --}}
     <div class="flex items-center justify-between mb-8">
         <div>
-            <h1 class="text-3xl font-playfair font-bold text-[#1A2B24]">Laporan Pertanggungjawaban (LPJ)</h1>
+            <h1 class="text-3xl font-sans font-bold text-[#111111]">Laporan Pertanggungjawaban (LPJ)</h1>
             <p class="text-[13px] font-light text-[#6B7280] mt-1">
                 Laporan pertanggungjawaban kegiatan yang telah disahkan dan diarsipkan di database SIMORA.
             </p>
         </div>
         <a href="{{ route('pelaksanaan.index') }}"
-           class="px-5 py-2.5 rounded-xl border border-gray-200 bg-white hover:bg-gray-50 text-sm font-medium text-gray-600 transition shadow-sm">
+           class="px-5 py-2.5 rounded-2xl border border-gray-200 bg-white hover:bg-gray-50 text-sm font-medium text-gray-600 transition shadow-sm">
             Kembali
         </a>
     </div>
 
     {{-- LPJ Card --}}
-    <div class="bg-white rounded-[24px] border border-gray-100 shadow-[0_2px_12px_rgba(0,0,0,0.03)] p-6 md:p-8 space-y-8">
+    <div class="bg-white rounded-[28px] border border-gray-100 shadow-[0_10px_40px_rgba(0,0,0,0.06)] p-6 md:p-8 space-y-8">
         
         {{-- Header Status --}}
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-gray-50 pb-6">
@@ -26,7 +26,7 @@
                     <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
                     LPJ Valid & Sah
                 </span>
-                <h2 class="text-2xl font-playfair font-bold text-[#1A2B24] mt-2">{{ $surat->kegiatanDetail->nama_kegiatan ?? $surat->perihal }}</h2>
+                <h2 class="text-2xl font-sans font-bold text-[#1A2B24] mt-2">{{ $surat->kegiatanDetail->nama_kegiatan ?? $surat->perihal }}</h2>
                 <p class="text-xs text-gray-500 mt-1">
                     Organisasi: <span class="font-bold text-gray-700">{{ $surat->organisasi->nama ?? '-' }}</span> &bull; 
                     PIC: <span class="font-medium text-gray-700">{{ $surat->picUser->name }}</span>
@@ -49,7 +49,7 @@
             <div class="space-y-6">
                 <div>
                     <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest block mb-2">Laporan Ringkasan Kegiatan</span>
-                    <div class="bg-gray-50 rounded-2xl p-5 text-xs text-gray-600 leading-relaxed whitespace-pre-line border border-gray-100">
+                    <div class="bg-gray-50 rounded-[28px] p-5 text-xs text-gray-600 leading-relaxed whitespace-pre-line border border-gray-100">
                         {{ $lpj->ringkasan_kegiatan }}
                     </div>
                 </div>
@@ -57,7 +57,7 @@
                 {{-- Anggaran --}}
                 <div>
                     <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest block mb-2">Realisasi Anggaran</span>
-                    <div class="bg-white border border-gray-100 rounded-2xl overflow-hidden">
+                    <div class="bg-white border border-gray-100 rounded-[28px] overflow-hidden">
                         <table class="w-full text-left border-collapse text-xs">
                             <thead>
                                 <tr class="bg-gray-50 text-gray-500 font-bold border-b border-gray-100">
@@ -96,9 +96,9 @@
                     <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest block mb-2">Berkas Lampiran Pendukung</span>
                     <div class="grid grid-cols-1 gap-3">
                         @forelse($lpj->lpjLampirans as $lampiran)
-                            <div class="bg-gray-50 border border-gray-100 rounded-2xl p-4 flex items-center justify-between gap-3 text-xs">
+                            <div class="bg-gray-50 border border-gray-100 rounded-[28px] p-4 flex items-center justify-between gap-3 text-xs">
                                 <div class="flex items-center gap-3">
-                                    <div class="p-2 rounded-xl bg-white border border-gray-150 text-gray-500 shrink-0">
+                                    <div class="p-2 rounded-2xl bg-white border border-gray-150 text-gray-500 shrink-0">
                                         @if($lampiran->tipe === 'foto')
                                             <i data-lucide="image" class="w-4 h-4 text-blue-500"></i>
                                         @elseif($lampiran->tipe === 'video')
@@ -115,12 +115,12 @@
                                     </div>
                                 </div>
                                 <a href="{{ asset('storage/' . $lampiran->file_path) }}" download
-                                   class="px-4 py-2 bg-[#4F6560] hover:bg-[#3d504c] text-white rounded-lg font-bold text-[10px] transition">
+                                   class="px-4 py-2 bg-[var(--color-primary)] hover:bg-[var(--color-primary-dark)] text-white rounded-lg font-bold text-[10px] transition">
                                     Unduh File
                                 </a>
                             </div>
                         @empty
-                            <div class="py-8 text-center text-xs text-gray-400 bg-gray-50/50 border border-dashed border-gray-200 rounded-2xl">
+                            <div class="py-8 text-center text-xs text-gray-400 bg-gray-50/50 border border-dashed border-gray-200 rounded-[28px]">
                                 Tidak ada berkas pendukung terlampir.
                             </div>
                         @endforelse
@@ -130,9 +130,9 @@
                 {{-- Sign & Verified By Info --}}
                 <div class="pt-6 border-t border-gray-100">
                     <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest block mb-3">Pengesahan Dokumen</span>
-                    <div class="p-4 bg-emerald-50/30 border border-emerald-100 rounded-2xl flex items-center justify-between gap-4">
+                    <div class="p-4 bg-emerald-50/30 border border-emerald-100 rounded-[28px] flex items-center justify-between gap-4">
                         <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-xl bg-white border border-emerald-200 flex items-center justify-center font-bold text-[#2E7D5E] shrink-0">
+                            <div class="w-10 h-10 rounded-2xl bg-white border border-emerald-200 flex items-center justify-center font-bold text-[#2E7D5E] shrink-0">
                                 <i data-lucide="check-check" class="w-5 h-5"></i>
                             </div>
                             <div class="text-xs">
@@ -145,7 +145,7 @@
                             <div class="text-center">
                                 <img src="{{ route('ttd.preview.user', $lpj->verified_by) }}" alt="Tanda Tangan" 
                                      class="h-12 w-auto mx-auto object-contain border border-gray-100 rounded-lg p-1 bg-white">
-                                <span class="text-[9px] text-gray-400 block mt-1">Digital Signature</span>
+                                <span class="text-[9px] text-gray-400 block mt-1">Tanda Tangan Digital</span>
                             </div>
                         @endif
                     </div>
@@ -157,3 +157,5 @@
     </div>
 </div>
 @endsection
+
+

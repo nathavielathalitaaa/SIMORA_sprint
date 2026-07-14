@@ -130,33 +130,33 @@ Route::middleware('auth')->group(function () {
         Route::prefix('admin')->middleware('role:admin|super-admin')->group(function () {
 
             // system monitor
-            Route::get('system/monitor', [\App\Http\Controllers\SystemMonitorController::class, 'index'])->name('hr/system/monitor');
-            Route::get('system/monitor/archive-manager', [\App\Http\Controllers\SystemMonitorController::class, 'archiveManager'])->name('hr/system/monitor/archive-manager');
-            Route::post('system/monitor/archive', [\App\Http\Controllers\SystemMonitorController::class, 'archiveDocuments'])->name('hr/system/monitor/archive');
+            Route::get('system/monitor', [\App\Http\Controllers\SystemMonitorController::class, 'index'])->name('system/monitor');
+            Route::get('system/monitor/archive-manager', [\App\Http\Controllers\SystemMonitorController::class, 'archiveManager'])->name('system/monitor/archive-manager');
+            Route::post('system/monitor/archive', [\App\Http\Controllers\SystemMonitorController::class, 'archiveDocuments'])->name('system/monitor/archive');
 
             // ── settings dokumen ───────────────────────────
             Route::controller(\App\Http\Controllers\DocumentSettingController::class)
                 ->prefix('settings')
                 ->group(function () {
-                    Route::get('document', 'index')->name('hr.settings.document');
-                    Route::post('document', 'update')->name('hr.settings.document.update');
-                    Route::post('document/logo', 'uploadLogo')->name('hr.settings.document.logo');
+                    Route::get('document', 'index')->name('users.settings.document');
+                    Route::post('document', 'update')->name('users.settings.document.update');
+                    Route::post('document/logo', 'uploadLogo')->name('users.settings.document.logo');
                 });
 
             // ── Master Data ────────────────────────────────
             Route::controller(\App\Http\Controllers\MasterDataController::class)
                 ->prefix('settings')
                 ->group(function () {
-                    Route::get('master', 'index')->name('hr.settings.master');
-                    Route::post('position', 'storePosition')->name('hr.settings.position.store');
-                    Route::put('position/{id}', 'updatePosition')->name('hr.settings.position.update');
-                    Route::delete('position/{id}', 'destroyPosition')->name('hr.settings.position.destroy');
-                    Route::post('user-type', 'storeUserType')->name('hr.settings.usertype.store');
-                    Route::put('user-type/{id}', 'updateUserType')->name('hr.settings.usertype.update');
-                    Route::delete('user-type/{id}', 'destroyUserType')->name('hr.settings.usertype.destroy');
-                    Route::post('role-type', 'storeRoleType')->name('hr.settings.roletype.store');
-                    Route::put('role-type/{id}', 'updateRoleType')->name('hr.settings.roletype.update');
-                    Route::delete('role-type/{id}', 'destroyRoleType')->name('hr.settings.roletype.destroy');
+                    Route::get('master', 'index')->name('users.settings.master');
+                    Route::post('position', 'storePosition')->name('users.settings.position.store');
+                    Route::put('position/{id}', 'updatePosition')->name('users.settings.position.update');
+                    Route::delete('position/{id}', 'destroyPosition')->name('users.settings.position.destroy');
+                    Route::post('user-type', 'storeUserType')->name('users.settings.usertype.store');
+                    Route::put('user-type/{id}', 'updateUserType')->name('users.settings.usertype.update');
+                    Route::delete('user-type/{id}', 'destroyUserType')->name('users.settings.usertype.destroy');
+                    Route::post('role-type', 'storeRoleType')->name('users.settings.roletype.store');
+                    Route::put('role-type/{id}', 'updateRoleType')->name('users.settings.roletype.update');
+                    Route::delete('role-type/{id}', 'destroyRoleType')->name('users.settings.roletype.destroy');
                 });
         });
 

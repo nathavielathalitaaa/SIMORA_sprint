@@ -2,6 +2,10 @@
      SIMORA — Sidebar navigasi utama
      ═══════════════════════════════════════════════ --}}
 <div class="hv-sidebar" id="hv-sidebar">
+    {{-- ── Logo Area ── --}}
+    <div class="px-[30px] pb-8 pt-2">
+        <h2 class="text-white text-3xl font-bold tracking-widest">SIMORA</h2>
+    </div>
 
     {{-- ── top nav icons ── --}}
     <div class="hv-sidebar-nav">
@@ -88,8 +92,8 @@
 
         {{-- system monitor (admin only) --}}
         @if(auth()->user()->hasAnyRole(['admin', 'super-admin']))
-        <a href="{{ route('hr/system/monitor') }}"
-           class="{{ request()->routeIs('hr/system/monitor') ? 'active' : '' }}"
+        <a href="{{ route('system/monitor') }}"
+           class="{{ request()->routeIs('system/monitor') ? 'active' : '' }}"
            title="Monitor Sistem">
             <i data-lucide="activity"></i>
             <span>Sistem</span>
@@ -98,8 +102,8 @@
 
         {{-- pengaturan (admin only) --}}
         @if(auth()->user()->hasAnyRole(['admin', 'super-admin']))
-        <a href="{{ route('hr.settings.document') }}"
-           class="{{ request()->routeIs('hr.settings.*') ? 'active' : '' }}"
+        <a href="{{ route('users.settings.document') }}"
+           class="{{ request()->routeIs('users.settings.*') ? 'active' : '' }}"
            title="Pengaturan">
             <i data-lucide="settings"></i>
             <span>Pengaturan</span>
@@ -110,9 +114,9 @@
 
     {{-- ── logout at bottom ── --}}
     <div class="hv-sidebar-bottom">
-        <a href="{{ route('logout') }}" class="hv-sidebar-logout" title="Logout">
+        <a href="{{ route('logout') }}" class="hv-sidebar-logout" title="Keluar">
             <i data-lucide="log-out"></i>
-            <span>Logout</span>
+            <span>Keluar</span>
         </a>
     </div>
 

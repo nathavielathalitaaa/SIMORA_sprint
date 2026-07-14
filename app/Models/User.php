@@ -43,7 +43,7 @@ class User extends Authenticatable
 
     public function profile()
     {
-        return $this->hasOne(EmployeeProfile::class, 'user_id');
+        return $this->hasOne(UserProfile::class, 'user_id');
     }
 
     public function organisasiMembers()

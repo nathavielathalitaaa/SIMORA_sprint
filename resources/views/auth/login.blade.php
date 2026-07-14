@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login — SIMORA</title>
+    <title>Masuk — SIMORA</title>
 
     {{-- Fonts --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
     {{-- Lucide Icons --}}
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
@@ -21,228 +21,206 @@
             height: 100vh;
             display: flex;
             overflow: hidden;
-            background: #E8EDEA;
+            background: #F5F5F7;
         }
 
         /* ── KIRI ── */
         .left-panel {
-            flex: 1.4;
+            flex: 1.2;
             background: #E62129;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 60px;
             position: relative;
             overflow: hidden;
+            padding: 60px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
-        /* Decorative circles */
-        .left-panel::before {
-            content: '';
+        .left-panel .brand {
             position: absolute;
-            width: 500px;
-            height: 500px;
-            border-radius: 50%;
-            border: 1px solid rgba(255,255,255,0.15);
-            top: -100px;
-            right: -150px;
-        }
-        .left-panel::after {
-            content: '';
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            border: 1px solid rgba(255,255,255,0.1);
-            bottom: -80px;
-            left: -80px;
+            top: 40px;
+            left: 40px;
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: 1px;
         }
 
-        .left-brand {
-            text-align: center;
+        .left-panel .title {
+            font-size: 64px;
+            font-weight: 700;
+            line-height: 1.1;
             position: relative;
-            z-index: 1;
+            z-index: 10;
         }
 
-        .left-brand .logo-circle {
-            width: 72px;
-            height: 72px;
-            background: rgba(255,255,255,0.2);
-            backdrop-filter: blur(8px);
+        /* Floating Logos Container */
+        .floating-logos {
+            position: absolute;
+            top: 50%;
+            left: 55%;
+            transform: translateY(-20%);
+            width: 350px;
+            height: 350px;
+            z-index: 5;
+        }
+
+        .logo-circle {
+            position: absolute;
+            background: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 28px;
-            border: 1px solid rgba(255,255,255,0.3);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .logo-circle img {
+            width: 75%;
+            height: 75%;
+            object-fit: contain;
         }
 
-        .left-brand h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 52px;
-            font-weight: 700;
-            color: white;
-            line-height: 1.1;
-            margin-bottom: 16px;
-            letter-spacing: -0.5px;
+        .logo-mpk {
+            width: 120px;
+            height: 120px;
+            top: 0;
+            right: 20px;
         }
 
-        .left-brand h1 em {
-            font-style: italic;
-            font-weight: 400;
+        .logo-osis {
+            width: 120px;
+            height: 120px;
+            bottom: 40px;
+            left: -20px;
         }
 
-        .left-brand p {
-            font-size: 15px;
-            color: rgba(255,255,255,0.75);
-            font-weight: 300;
-            letter-spacing: 0.02em;
-            max-width: 340px;
-            line-height: 1.7;
-            margin: 0 auto;
+        .logo-ambalan {
+            width: 80px;
+            height: 80px;
+            bottom: -20px;
+            right: 60px;
         }
 
-        /* Floating card dekoratif */
-        .deco-card {
+        /* Decorative dots and arcs */
+        .dot-1 {
             position: absolute;
-            bottom: 48px;
-            left: 48px;
-            background: rgba(255,255,255,0.15);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255,255,255,0.25);
-            border-radius: 16px;
-            padding: 16px 20px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            z-index: 1;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            top: 40%;
+            right: -10px;
         }
-        .deco-card .deco-icon {
+
+        .dot-2 {
+            position: absolute;
             width: 40px;
             height: 40px;
-            background: rgba(255,255,255,0.2);
+            background: white;
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
+            bottom: -80px;
+            left: 80px;
         }
-        .deco-card .deco-text p {
-            font-size: 13px;
-            color: white;
-            font-weight: 500;
-            margin: 0;
-        }
-        .deco-card .deco-text span {
-            font-size: 11px;
-            color: rgba(255,255,255,0.65);
+
+        .bottom-arc {
+            position: absolute;
+            bottom: -80px;
+            left: -80px;
+            width: 240px;
+            height: 240px;
+            border-radius: 50%;
+            border: 45px solid white;
+            box-sizing: border-box;
         }
 
         /* ── KANAN ── */
         .right-panel {
             flex: 1;
+            position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 40px;
-            background: #F5F5F5;
+            background: #F5F5F7;
+            overflow: hidden;
+        }
+
+        .top-arc {
+            position: absolute;
+            top: -120px;
+            right: -120px;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            border: 60px solid #E62129;
+            box-sizing: border-box;
+            z-index: 0;
         }
 
         .login-card {
             background: #FFFFFF;
             border-radius: 28px;
-            padding: 48px 44px;
+            padding: 50px;
             width: 100%;
-            max-width: 420px;
-            box-shadow: 0 4px 32px rgba(79,101,96,0.1);
-        }
-
-        .login-card .card-logo {
-            width: 44px;
-            height: 44px;
-            background: #E62129;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 32px;
+            max-width: 380px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+            position: relative;
+            z-index: 10;
         }
 
         .login-card h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 32px;
+            text-align: center;
+            font-size: 28px;
             font-weight: 700;
-            color: #111111;
-            margin-bottom: 6px;
-            line-height: 1.2;
+            color: #000;
+            margin-bottom: 40px;
         }
 
-        .login-card .subtitle {
-            font-size: 14px;
-            color: #6B7280;
-            margin-bottom: 36px;
-            font-weight: 300;
-        }
-
-        /* Form */
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 24px;
         }
 
         .form-group label {
             display: block;
-            font-size: 12px;
+            font-size: 13px;
             font-weight: 500;
-            color: #374151;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
+            color: #111;
             margin-bottom: 8px;
-        }
-
-        .input-wrap {
-            position: relative;
-        }
-
-        .input-wrap .input-icon {
-            position: absolute;
-            left: 18px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #9CA3AF;
-            pointer-events: none;
         }
 
         .hv-input {
             width: 100%;
-            background: #F5F5F5;
-            border: 1px solid transparent;
-            border-radius: 12px;
-            padding: 13px 18px 13px 46px;
+            background: #E5E7EB;
+            border: none;
+            border-radius: 9999px;
+            padding: 14px 20px;
             font-family: 'Poppins', sans-serif;
             font-size: 14px;
-            color: #111111;
+            color: #111;
             outline: none;
-            transition: border-color 0.2s;
+            transition: box-shadow 0.2s;
         }
         .hv-input:focus {
-            border-color: #E62129;
+            box-shadow: 0 0 0 2px #E62129;
         }
-        .hv-input::placeholder { color: #9CA3AF; }
 
-        /* Toggle password */
-        .toggle-pass {
-            position: absolute;
-            right: 18px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: none;
+        .btn-login {
+            width: 100%;
+            background: #E62129;
+            color: white;
             border: none;
+            border-radius: 9999px;
+            padding: 14px 24px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
             cursor: pointer;
-            color: #9CA3AF;
-            padding: 0;
-            line-height: 1;
+            transition: background 0.2s, transform 0.1s;
+            margin-top: 12px;
         }
+        .btn-login:hover { background: #C91A20; }
+        .btn-login:active { transform: scale(0.99); }
 
         /* Error */
         .error-msg {
@@ -257,143 +235,69 @@
             gap: 8px;
         }
 
-        /* Submit button */
-        .btn-login {
-            width: 100%;
-            background: #E62129;
-            color: white;
-            border: none;
-            border-radius: 9999px;
-            padding: 14px 24px;
-            font-family: 'Poppins', sans-serif;
-            font-size: 15px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.2s, transform 0.1s;
-            margin-top: 8px;
-            letter-spacing: 0.01em;
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+                height: auto;
+                min-height: 100vh;
+                overflow: auto;
+            }
+            .left-panel {
+                flex: none;
+                min-height: 350px;
+                padding: 40px 32px;
+            }
+            .left-panel .title { font-size: 48px; }
+            .floating-logos { transform: scale(0.7) translateY(-30%); left: 40%; }
+            .right-panel {
+                flex: none;
+                padding: 40px 20px;
+            }
+            .top-arc { display: none; }
         }
-        .btn-login:hover { background: #C91A20; }
-        .btn-login:active { transform: scale(0.99); }
-
-        .login-footer {
-            text-align: center;
-            margin-top: 28px;
-            font-size: 12px;
-            color: #9CA3AF;
-        }
-        .login-footer a {
-            color: #E62129;
-            text-decoration: none;
-            font-weight: 500;
-        }
-        /* ── RESPONSIVE MOBILE ── */
-@media (max-width: 768px) {
-    body {
-        flex-direction: column;
-        height: auto;
-        min-height: 100vh;
-        overflow: auto;
-    }
-
-    .left-panel {
-        flex: none;
-        min-height: 280px;
-        padding: 40px 32px;
-        border-radius: 0 0 32px 32px;
-    }
-
-    .left-brand h1 {
-        font-size: 36px;
-    }
-
-    .left-brand p {
-        font-size: 13px;
-    }
-
-    .deco-card {
-        display: none;
-    }
-
-    .left-panel::before,
-    .left-panel::after {
-        display: none;
-    }
-
-    .right-panel {
-        flex: none;
-        padding: 32px 20px 40px;
-    }
-
-    .login-card {
-        padding: 36px 28px;
-        border-radius: 24px;
-        max-width: 100%;
-    }
-
-    .login-card h2 {
-        font-size: 26px;
-    }
-    .left-brand img {
-    width: 180px;
-    height: auto;
-    display: block;
-    margin: 0 auto 24px;
-    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.15));
-}
-}
     </style>
 </head>
 <body>
 
     {{-- PANEL KIRI --}}
-    <div class="left-panel hidden md:flex">
-        <div class="left-brand">
-            <h1>SIMORA</h1>
-            <p>Sistem Informasi Manajemen Organisasi SMK Telkom Sidoarjo terpadu untuk pengajuan dan persetujuan secara digital.</p>
-        </div>
+    <div class="left-panel">
+        <div class="brand">SIMORA</div>
         
-        <div class="deco-card">
-            <div class="deco-icon">
-                <i data-lucide="shield-check" style="width:20px;height:20px;stroke-width:2;"></i>
-            </div>
-            <div class="deco-text">
-                <p>Secure System</p>
-                <span>Dilengkapi Multi-Level Approval</span>
-            </div>
+        <div class="title">
+            Selamat<br>Datang
         </div>
+
+        <div class="floating-logos">
+            <div class="logo-circle logo-mpk">
+                <img src="{{ asset('assets/images/MPK.jpg') }}" alt="MPK">
+            </div>
+            <div class="logo-circle logo-osis">
+                <img src="{{ asset('assets/images/OSIS.jpg') }}" alt="OSIS">
+            </div>
+            <div class="logo-circle logo-ambalan">
+                <img src="{{ asset('assets/images/ambalan.jpg') }}" alt="Ambalan">
+            </div>
+            <div class="dot-1"></div>
+            <div class="dot-2"></div>
+        </div>
+
+        <div class="bottom-arc"></div>
     </div>
 
     {{-- PANEL KANAN --}}
     <div class="right-panel">
-        <div class="login-card">
+        <div class="top-arc"></div>
 
-            <h2>Welcome back</h2>
-            <p class="subtitle">Masuk ke akun Anda untuk melanjutkan</p>
+        <div class="login-card">
+            <h2>Masuk</h2>
 
             @if(session('session_expired'))
-            <div style="
-                background: #FEF3C7;
-                border-left: 3px solid #F59E0B;
-                border-radius: 0 12px 12px 0;
-                padding: 12px 16px;
-                margin-bottom: 20px;
-                display: flex;
-                align-items: center;
-                gap: 10px;
-            ">
-                <i data-lucide="clock" 
-                   style="width:16px;height:16px;color:#92400E;flex-shrink:0;"></i>
-                <p style="
-                    font-family:'Poppins',sans-serif;
-                    font-size:12px;
-                    color:#92400E;
-                    margin:0;
-                ">{{ session('session_expired') }}</p>
+            <div style="background: #FEF3C7; border-left: 3px solid #F59E0B; border-radius: 0 12px 12px 0; padding: 12px 16px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
+                <i data-lucide="clock" style="width:16px;height:16px;color:#92400E;flex-shrink:0;"></i>
+                <p style="font-family:'Poppins',sans-serif; font-size:12px; color:#92400E; margin:0;">{{ session('session_expired') }}</p>
             </div>
             @endif
 
-            {{-- Error message --}}
             @if($errors->any())
             <div class="error-msg">
                 <i data-lucide="alert-circle" style="width:16px;height:16px;flex-shrink:0;"></i>
@@ -408,70 +312,29 @@
             </div>
             @endif
 
-            {{-- Form Login — JANGAN ubah action dan method --}}
             <form method="POST" action="{{ route('login') }}">
                 @csrf
 
-                {{-- Email --}}
                 <div class="form-group">
-                    <label for="email">Email</label>
-                    <div class="input-wrap">
-                        <i data-lucide="mail" class="input-icon" style="width:16px;height:16px;"></i>
-                        <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            class="hv-input"
-                            placeholder="nama@sinergi.com"
-                            value="{{ old('email') }}"
-                            required
-                            autocomplete="email">
-                    </div>
+                    <label for="email">Username</label>
+                    <input type="email" id="email" name="email" class="hv-input" value="{{ old('email') }}" required autocomplete="email">
                 </div>
 
-                {{-- Password --}}
                 <div class="form-group">
-                    <label for="password">Password</label>
-                    <div class="input-wrap">
-                        <i data-lucide="lock" class="input-icon" style="width:16px;height:16px;"></i>
-                        <input
-                            type="password"
-                            id="password"
-                            name="password"
-                            class="hv-input"
-                            placeholder="••••••••"
-                            required
-                            autocomplete="current-password">
-                        <button type="button" class="toggle-pass" onclick="togglePassword()">
-                            <i data-lucide="eye" id="eyeIcon" style="width:16px;height:16px;"></i>
-                        </button>
-                    </div>
+                    <label for="password">Kata Sandi</label>
+                    <input type="password" id="password" name="password" class="hv-input" required autocomplete="current-password">
                 </div>
 
                 <button type="submit" class="btn-login">
-                    Login
+                    Masuk
                 </button>
             </form>
-
         </div>
     </div>
 
     <script>
         lucide.createIcons();
-
-        function togglePassword() {
-            const input = document.getElementById('password');
-            const icon  = document.getElementById('eyeIcon');
-            if (input.type === 'password') {
-                input.type = 'text';
-                icon.setAttribute('data-lucide', 'eye-off');
-            } else {
-                input.type = 'password';
-                icon.setAttribute('data-lucide', 'eye');
-            }
-            lucide.createIcons();
-        }
     </script>
-
 </body>
 </html>
+

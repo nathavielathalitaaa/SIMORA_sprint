@@ -191,15 +191,15 @@
     font-weight: 500;
     transition: color .2s;
 }
-.breadcrumb-back:hover { color: #1A2B24; }
+.breadcrumb-back:hover { color: #111111; }
 
 /* ── Page Header ── */
 .content-header { margin-bottom: 2rem; }
 .page-title {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 28px;
     font-weight: 700;
-    color: #1A2B24;
+    color: #111111;
     display: flex;
     align-items: center;
     gap: 12px;
@@ -233,7 +233,7 @@
 .show-card-title {
     font-size: 15px;
     font-weight: 600;
-    color: #1A2B24;
+    color: #111111;
     display: flex;
     align-items: center;
     gap: 8px;
@@ -253,9 +253,9 @@
     letter-spacing: .05em;
     border-bottom: 1px solid rgba(0,0,0,0.06);
 }
-.data-table td { padding: 10px 12px; border-bottom: 1px solid rgba(0,0,0,0.04); color: #1A2B24; }
+.data-table td { padding: 10px 12px; border-bottom: 1px solid rgba(0,0,0,0.04); color: #111111; }
 .data-table tr:last-child td { border-bottom: none; }
-.data-table tr:hover td { background: rgba(79,101,96,0.04); }
+.data-table tr:hover td { background: rgba(230,33,41,0.04); }
 
 /* ── Member Cell ── */
 .member-cell { display: flex; align-items: center; gap: 10px; }
@@ -263,8 +263,8 @@
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    background: rgba(79, 101, 96, 0.12);
-    color: #4F6560;
+    background: rgba(230, 33, 41, 0.1);
+    color: var(--color-text);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -276,14 +276,14 @@
 
 /* ── Org Badges ── */
 .org-badge { display:inline-block; padding: 4px 12px; border-radius: 999px; font-size: 11px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; }
-.org-badge--osis     { background: #E8F5EE; color: #2E7D5E; }
+.org-badge--osis     { background: bg-emerald-50; color: #059669; }
 .org-badge--mpk      { background: #E0F2FE; color: #0369A1; }
 .org-badge--sub_organ{ background: #FEF3C7; color: #B45309; }
 
 /* ── Jabatan Badges ── */
 .badge-jabatan { display: inline-block; padding: 3px 10px; border-radius: 6px; font-size: 11px; font-weight: 600; }
 .jabatan-bph        { background: #FEF3C7; color: #B45309; }
-.jabatan-ketua      { background: #E8F5EE; color: #2E7D5E; }
+.jabatan-ketua      { background: bg-emerald-50; color: #059669; }
 .jabatan-pembina    { background: #E0F2FE; color: #0369A1; }
 .jabatan-pengawas   { background: #FCE7F3; color: #9D174D; }
 .jabatan-anggota    { background: #F3F4F6; color: #374151; }
@@ -305,8 +305,8 @@
 }
 .form-select:focus, .form-input:focus {
     outline: none;
-    border-color: #4F6560;
-    box-shadow: 0 0 0 3px rgba(79,101,96,0.12);
+    border-color: var(--color-text);
+    box-shadow: 0 0 0 3px rgba(230,33,41,0.12);
 }
 .form-select-sm { padding: 6px 10px; font-size: 12px; }
 .btn-full { width: 100%; justify-content: center; }

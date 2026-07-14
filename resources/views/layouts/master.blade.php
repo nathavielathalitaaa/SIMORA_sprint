@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="light scroll-smooth group" data-layout="vertical" data-sidebar="dark" data-sidebar-size="lg" data-mode="light" data-topbar="light" data-skin="default" data-navbar="sticky" data-content="fluid" dir="ltr">
+<html lang="id" class="light scroll-smooth group" data-layout="vertical" data-sidebar="dark" data-sidebar-size="lg" data-mode="light" data-topbar="light" data-skin="default" data-navbar="sticky" data-content="fluid" dir="ltr">
 <head>
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
@@ -14,7 +14,7 @@
     <link rel="shortcut icon" href="{{ URL::to('assets/images/favicon.ico') }}">
     <!-- layout config js -->
     <script src="{{ URL::to('assets/js/layout.js') }}"></script>
-    <!-- sinergi hotel & vila css -->
+    <!-- SIMORA SMK Telkom Sidoarjo css -->
     <link rel="stylesheet" href="{{ URL::to('assets/css/starcode2.css') }}">
     <script src="https://cdn.tailwindcss.com"></script>
 <script>
@@ -22,7 +22,7 @@
     theme: {
       extend: {
         fontFamily: {
-          playfair: ['"Playfair Display"', 'serif'],
+          sans: ['Poppins', 'sans-serif'],
           poppins: ['Poppins', 'sans-serif'],
         }
       }
@@ -32,7 +32,7 @@
     
     <!-- hivi design system fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     
 <!-- ============================================
      hivi design system styles
@@ -57,14 +57,14 @@
   ============================================= */
   body {
     font-family: 'Poppins', sans-serif;
-    background: var(--color-bg-light);
+    background: #F5F5F7 !important;
     min-height: 100vh;
     color: var(--color-text);
     overflow-x: hidden;
   }
 
   h1, h2, h3, h4, h5, h6, .serif { 
-    font-family: 'Playfair Display', serif; 
+    font-family: 'Poppins', sans-serif; 
   }
 
   /* =============================================
@@ -105,30 +105,6 @@
     box-shadow: none !important;
     height: 56px !important;
     padding: 0 !important;
-  }
-
-  /* Search Bar - Pill Shape */
-  #topbar-search {
-    background: rgba(255, 255, 255, 0.4) !important;
-    backdrop-filter: blur(6px) !important;
-    border: 1px solid rgba(232, 237, 237, 0.4) !important;
-    border-radius: 999px !important;
-    padding: 8px 16px 8px 36px !important;
-    box-shadow: none !important;
-    transition: all 0.2s ease;
-    color: #1A2B24 !important;
-    font-family: 'Poppins', sans-serif;
-    font-size: 13px;
-    width: 280px;
-  }
-  #topbar-search:focus {
-    border-color: #80BB9B !important;
-    outline: none !important;
-    background: rgba(255, 255, 255, 0.6) !important;
-  }
-  #topbar-search::placeholder {
-    color: #6B7280 !important;
-    font-weight: 300;
   }
 
   /* =============================================
@@ -173,7 +149,7 @@
       background: var(--color-surface);
       border-radius: var(--radius-card);
       padding: 32px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.06);
       border: none;
   }
 
@@ -181,18 +157,20 @@
       background: var(--color-primary);
       color: white !important;
       border-radius: var(--radius-pill);
-      padding: 12px 28px;
+      padding: 14px 24px;
+      font-size: 15px;
       font-family: 'Poppins', sans-serif;
       font-weight: 600;
       border: none;
       cursor: pointer;
-      transition: background 0.2s;
+      transition: background 0.2s, transform 0.1s;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
   }
   .hivi-btn-primary:hover { background: var(--color-primary-dark); }
+  .hivi-btn-primary:active { transform: scale(0.99); }
   
   .hivi-btn-secondary {
       background: transparent;
@@ -237,27 +215,27 @@
       display: inline-flex;
       align-items: center;
   }
-  .hivi-badge-green  { background: #E8F5EE; color: #2E7D5E; }
+  .hivi-badge-green  { background: var(--color-bg-light); color: #E62129; }
   .hivi-badge-amber  { background: #fef3c7; color: #92400e; }
   .hivi-badge-red    { background: #fee2e2; color: #991b1b; }
   .hivi-badge-blue   { background: #dbeafe; color: #1e40af; }
   .hivi-badge-gray   { background: #f3f4f6; color: #374151; }
   
   .hivi-input {
-      background: var(--color-bg-light);
+      background: #E5E7EB;
       border-radius: var(--radius-input);
-      padding: 12px 20px;
+      padding: 14px 20px;
       font-family: 'Poppins', sans-serif;
       font-size: 14px;
       font-weight: 400;
       width: 100%;
       outline: none;
-      border: 1px solid transparent;
-      transition: border-color 0.2s;
+      border: none;
+      transition: box-shadow 0.2s;
       color: var(--color-text);
   }
   .hivi-input:focus { 
-      border-color: var(--color-primary); 
+      box-shadow: 0 0 0 2px var(--color-primary);
       outline: none;
   }
   .hivi-input::placeholder { color: var(--color-text-muted); }
@@ -270,7 +248,7 @@
       color: #6B7280;
       padding: 10px 16px;
       background: transparent;
-      border-bottom: 1px solid #E8EDED;
+      border-bottom: 1px solid #F5F5F7;
       text-align: left;
   }
   .hivi-table tbody tr {
@@ -278,12 +256,12 @@
       height: 52px;
   }
   .hivi-table tbody tr:hover { 
-      background: rgba(240, 247, 243, 0.6); 
+      background: rgba(255, 241, 242, 0.6); 
   }
   .hivi-table tbody td {
       padding: 0 16px;
       font-size: 14px;
-      color: #1A2B24;
+      color: #111111;
       font-family: 'Poppins', sans-serif;
       font-weight: 400;
       border-bottom: 1px solid #F3F4F6;
@@ -293,10 +271,10 @@
   }
 
   .hivi-section-title {
-      font-family: 'Playfair Display', serif;
+      font-family: 'Poppins', sans-serif;
       font-size: 20px;
       font-weight: 600;
-      color: #1A2B24;
+      color: #111111;
       margin-bottom: 16px;
   }
 
@@ -334,7 +312,7 @@
     left: 0;
     bottom: 0;
     width: 240px;
-    background: var(--color-primary);
+    background: #E62129;
     display: flex;
     flex-direction: column;
     padding: 24px 0;
@@ -343,34 +321,51 @@
 
 /* Nav icon group */
 .hv-sidebar-nav {
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: 8px;
-    padding: 0 16px;
+    padding: 0 20px 0 0; /* Flush to the left */
     overflow-y: auto;
     overflow-x: hidden;
     flex: 1;
     scrollbar-width: none;
     -ms-overflow-style: none;
 }
+
+/* Sliding Background Pill */
+.hv-sidebar-slider {
+    position: absolute;
+    left: 0;
+    right: 20px;
+    height: 44px; /* default */
+    background: #F5F5F7;
+    border-radius: 0 30px 30px 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), height 0.25s;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0; /* hidden until js sets it */
+}
 .hv-sidebar-nav::-webkit-scrollbar { display: none; }
 
 /* Bottom section (logout) */
 .hv-sidebar-bottom {
-    padding: 0 16px;
+    padding: 0 20px 0 0;
     margin-top: auto;
 }
 
 /* ── Menu Items ── */
 .hv-sidebar a {
     position: relative;
+    z-index: 1;
     width: 100%;
-    border-radius: var(--radius-pill);
+    border-radius: 0 30px 30px 0;
     display: flex;
     align-items: center;
-    padding: 12px 20px;
-    color: rgba(255,255,255,0.8);
-    background: transparent;
+    padding: 12px 20px 12px 30px;
+    color: rgba(255,255,255,0.9);
+    background: transparent !important;
     text-decoration: none;
     transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     font-family: 'Poppins', sans-serif;
@@ -387,17 +382,10 @@
     flex-shrink: 0;
 }
 
-/* Hover */
-.hv-sidebar a:hover {
-    background: rgba(255, 255, 255, 0.1);
-    color: #ffffff;
-}
-
-/* Active */
+/* Hover & Active text colors */
+.hv-sidebar a:hover,
 .hv-sidebar a.active {
-    background: var(--color-surface);
-    color: var(--color-primary);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    color: #000000 !important;
 }
 
 /* Logout icon */
@@ -409,43 +397,7 @@
     color: #ffffff !important;
 }
 
-/* Tooltip on hover */
-.hv-sidebar a[title]:hover::after {
-    content: attr(title);
-    position: absolute;
-    left: calc(100% + 14px);
-    top: 50%;
-    transform: translateY(-50%);
-    background: #1A2B24;
-    color: #fff;
-    padding: 6px 14px;
-    border-radius: 8px;
-    font-family: 'Poppins', sans-serif;
-    font-size: 12px;
-    font-weight: 500;
-    white-space: nowrap;
-    pointer-events: none;
-    z-index: 1000000;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    animation: hv-tooltip-in 0.2s ease;
-}
-.hv-sidebar a[title]:hover::before {
-    content: '';
-    position: absolute;
-    left: calc(100% + 8px);
-    top: 50%;
-    transform: translateY(-50%);
-    border: 5px solid transparent;
-    border-right-color: #1A2B24;
-    pointer-events: none;
-    z-index: 1000000;
-    animation: hv-tooltip-in 0.2s ease;
-}
 
-@keyframes hv-tooltip-in {
-    from { opacity: 0; transform: translateY(-50%) translateX(-4px); }
-    to   { opacity: 1; transform: translateY(-50%) translateX(0); }
-}
 
 /* ── Content offset ── */
 .hv-main {
@@ -571,16 +523,11 @@
             <!-- logo (horizontal only) -->
             <div class="items-center justify-center hidden px-5 text-center h-header group-data-[layout=horizontal]:md:flex group-data-[layout=horizontal]:ltr::pl-0 group-data-[layout=horizontal]:rtl:pr-0">
               <a href="{{ route('home') }}" class="flex items-center gap-2">
-                <span style="font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: #1A2B24;">SIMORA</span>
+                <span style="font-family: 'Poppins', sans-serif; font-size: 22px; font-weight: 700; color: #111111;">SIMORA</span>
               </a>
             </div>
 
-            <!-- search bar -->
-            <div class="relative hidden ltr:ml-3 rtl:mr-3 lg:block group-data-[layout=horizontal]:hidden group-data-[layout=horizontal]:lg:block">
-              <input type="text" id="topbar-search" class="py-2 pr-4 text-sm text-topbar-item bg-topbar border border-topbar-border rounded pl-8 placeholder:text-slate-400 form-control focus-visible:outline-0 min-w-[300px] focus:border-blue-400 group-data-[topbar=dark]:bg-topbar-dark group-data-[topbar=dark]:border-topbar-border-dark group-data-[topbar=dark]:placeholder:text-slate-500 group-data-[topbar=dark]:text-topbar-item-dark group-data-[topbar=brand]:bg-topbar-brand group-data-[topbar=brand]:border-topbar-border-brand group-data-[topbar=brand]:placeholder:text-blue-300 group-data-[topbar=brand]:text-topbar-item-brand group-data-[topbar=dark]:dark:bg-zink-700 group-data-[topbar=dark]:dark:border-zink-500 group-data-[topbar=dark]:dark:text-zink-100" placeholder="Search employees, menus, or files" autocomplete="off">
-              <i data-lucide="search" class="inline-block size-4 absolute left-2.5 top-2.5 text-topbar-item fill-slate-100 group-data-[topbar=dark]:fill-topbar-item-bg-hover-dark group-data-[topbar=dark]:text-topbar-item-dark group-data-[topbar=brand]:fill-topbar-item-bg-hover-brand group-data-[topbar=brand]:text-topbar-item-brand group-data-[topbar=dark]:dark:text-zink-200 group-data-[topbar=dark]:dark:fill-zink-600"></i>
-              <div id="search-results" style="display:none; position:absolute; top:42px; left:0; width:340px; background:#fff; border-radius:6px; box-shadow:0 4px 16px rgba(0,0,0,0.12); z-index:9999; max-height:320px; overflow-y:auto;" class="dark:bg-zink-700"></div>
-            </div>
+
 
             <!-- right side: icons + notifications + profile -->
             <div class="flex gap-3 ms-auto">
@@ -616,17 +563,17 @@
                     ->count();
             @endphp
             @if($myWaitingGlobal > 0)
-            <div class="mb-4 flex items-center justify-between gap-3 px-4 py-3 rounded-xl shadow-sm border border-red-200"
+            <div class="mb-4 flex items-center justify-between gap-3 px-4 py-3 rounded-2xl shadow-sm border border-red-200"
                  style="background:rgba(254,242,242,0.9); backdrop-filter: blur(4px);">
                 <div class="flex items-center gap-3">
                     <i data-lucide="bell-ring" class="w-5 h-5 text-red-500 flex-shrink-0"></i>
                     <p class="text-sm text-red-800 font-medium">
-                        You have <strong>{{ $myWaitingGlobal }} letters</strong> waiting for your approval.
+                        Anda memiliki <strong>{{ $myWaitingGlobal }} surat</strong> yang menunggu persetujuan Anda.
                     </p>
                 </div>
                 @unless(request()->routeIs('surat.index'))
                 <a href="{{ route('surat.index') }}" class="px-3 py-1.5 bg-red-600 text-white rounded-lg text-xs font-semibold hover:bg-red-700 transition flex-shrink-0">
-                    Review Now
+                    Tinjau Sekarang
                 </a>
                 @endunless
             </div>
@@ -686,6 +633,45 @@
           el.classList.add('loaded');
         });
       }, 600); // 600ms artificial delay for perceived performance
+
+      // Sidebar Sliding Animation
+      const nav = document.querySelector('.hv-sidebar-nav');
+      if (nav) {
+        const slider = document.createElement('div');
+        slider.className = 'hv-sidebar-slider';
+        nav.appendChild(slider);
+        const links = nav.querySelectorAll('a:not(.hv-sidebar-logout)');
+        let activeLink = nav.querySelector('a.active');
+        
+        function moveSlider(target) {
+            if (!target) {
+                slider.style.opacity = '0';
+                return;
+            }
+            slider.style.opacity = '1';
+            slider.style.transform = `translateY(${target.offsetTop}px)`;
+            slider.style.height = `${target.offsetHeight}px`;
+        }
+        
+        if (activeLink) {
+            setTimeout(() => {
+                slider.style.transition = 'none';
+                moveSlider(activeLink);
+                setTimeout(() => {
+                    slider.style.transition = 'transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), height 0.25s';
+                }, 50);
+            }, 50);
+        }
+        
+        links.forEach(link => {
+            link.addEventListener('mouseenter', () => {
+                moveSlider(link);
+            });
+        });
+        nav.addEventListener('mouseleave', () => {
+            moveSlider(activeLink);
+        });
+      }
     });
   </script>
 
@@ -693,3 +679,4 @@
   @stack('scripts')
 </body>
 </html>
+

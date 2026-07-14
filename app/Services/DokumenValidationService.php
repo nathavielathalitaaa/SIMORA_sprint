@@ -5,6 +5,9 @@ namespace App\Services;
 use App\Models\SuratKegiatanDetail;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use App\Services\EmbeddingService;
+use App\Support\CosineSimilarity;
 
 /**
  * DokumenValidationService
@@ -24,6 +27,9 @@ use Illuminate\Support\Facades\DB;
  */
 class DokumenValidationService
 {
+    public function __construct(private EmbeddingService $embeddingService)
+    {
+    }
     /**
      * Status surat yang dianggap "aktif" dan berpotensi konflik/duplikat.
      * Dipakai di kedua method agar konsisten.
@@ -83,32 +89,69 @@ class DokumenValidationService
             return null;
         }
 
-        // Hitung kemiripan nama pakai similar_text() — bawaan PHP, tidak ada dependency
-        $inputNormal = strtolower(trim($namaKegiatan));
-        $tertinggi   = null;
+        // Coba pakai AI semantic search dulu
+        $inputVector = $this->embeddingService->embed($namaKegiatan);
+        
+        $tertinggi = null;
 
-        foreach ($kandidats as $kandidat) {
-            $kandidatNormal = strtolower(trim($kandidat->nama_kegiatan));
+        if ($inputVector !== null) {
+            // Berhasil kontak service AI -> gunakan Cosine Similarity
+            foreach ($kandidats as $kandidat) {
+                $kandidatVector = $this->embeddingService->embed($kandidat->nama_kegiatan);
+                
+                if ($kandidatVector) {
+                    $score = CosineSimilarity::calculate($inputVector, $kandidatVector);
+                    
+                    if ($score >= 0.75) {
+                        if ($tertinggi === null || $score > ($tertinggi['raw_score'] ?? 0)) {
+                            $tertinggi = [
+                                'surat_id'      => $kandidat->surat_id,
+                                'nomor_surat'   => $kandidat->nomor_surat ?? '(belum bernomor)',
+                                'nama_kegiatan' => $kandidat->nama_kegiatan,
+                                'tanggal_mulai' => $kandidat->tanggal_mulai instanceof Carbon
+                                    ? $kandidat->tanggal_mulai->toDateString()
+                                    : (string) $kandidat->tanggal_mulai,
+                                'percent'       => round($score * 100, 1),
+                                'raw_score'     => $score, // Internal tracking
+                            ];
+                        }
+                    }
+                }
+            }
+            
+            // Hapus raw_score sebelum return
+            if ($tertinggi !== null) {
+                unset($tertinggi['raw_score']);
+            }
+        } else {
+            // Fallback: AI Service down/not configured -> gunakan similar_text bawaan PHP
+            Log::info('Embedding service failed or unavailable. Falling back to similar_text for duplication check.');
+            
+            $inputNormal = strtolower(trim($namaKegiatan));
 
-            // similar_text() mengisi $percent via pass-by-reference
-            similar_text($inputNormal, $kandidatNormal, $percent);
+            foreach ($kandidats as $kandidat) {
+                $kandidatNormal = strtolower(trim($kandidat->nama_kegiatan));
 
-            if ($percent >= 70.0) {
-                if ($tertinggi === null || $percent > $tertinggi['percent']) {
-                    $tertinggi = [
-                        'surat_id'      => $kandidat->surat_id,
-                        'nomor_surat'   => $kandidat->nomor_surat ?? '(belum bernomor)',
-                        'nama_kegiatan' => $kandidat->nama_kegiatan,
-                        'tanggal_mulai' => $kandidat->tanggal_mulai instanceof Carbon
-                            ? $kandidat->tanggal_mulai->toDateString()
-                            : (string) $kandidat->tanggal_mulai,
-                        'percent'       => round($percent, 1),
-                    ];
+                // similar_text() mengisi $percent via pass-by-reference
+                similar_text($inputNormal, $kandidatNormal, $percent);
+
+                if ($percent >= 70.0) {
+                    if ($tertinggi === null || $percent > $tertinggi['percent']) {
+                        $tertinggi = [
+                            'surat_id'      => $kandidat->surat_id,
+                            'nomor_surat'   => $kandidat->nomor_surat ?? '(belum bernomor)',
+                            'nama_kegiatan' => $kandidat->nama_kegiatan,
+                            'tanggal_mulai' => $kandidat->tanggal_mulai instanceof Carbon
+                                ? $kandidat->tanggal_mulai->toDateString()
+                                : (string) $kandidat->tanggal_mulai,
+                            'percent'       => round($percent, 1),
+                        ];
+                    }
                 }
             }
         }
 
-        return $tertinggi; // null jika semua < 70%
+        return $tertinggi;
     }
 
     // ══════════════════════════════════════════════════════════════════════

@@ -273,7 +273,7 @@ class SuratValidationTest extends TestCase
         // Get the page for step 1 (is_signer = true)
         $showResponse1 = $this->actingAs($this->user)->get(route('surat.show', $surat->id));
         $showResponse1->assertStatus(200);
-        $showResponse1->assertSee('Please enter your 6-digit PIN to confirm your digital signature');
+        $showResponse1->assertSee('Silakan masukkan 6 digit PIN Anda untuk mengonfirmasi tanda tangan digital Anda');
         $html1 = $showResponse1->getContent();
         $modalApproveHtml1 = substr($html1, strpos($html1, 'id="modalApprove"'), strpos($html1, 'id="modalReject"') - strpos($html1, 'id="modalApprove"'));
         $this->assertStringContainsString('name="pin"', $modalApproveHtml1);
@@ -295,7 +295,7 @@ class SuratValidationTest extends TestCase
         // Get the page for step 2 (is_signer = false)
         $showResponse2 = $this->actingAs($bphMpkUser)->get(route('surat.show', $surat->id));
         $showResponse2->assertStatus(200);
-        $showResponse2->assertSee('Confirm your approval for this step.');
+        $showResponse2->assertSee('Konfirmasi persetujuan Anda untuk langkah ini.');
         $html2 = $showResponse2->getContent();
         $modalApproveHtml2 = substr($html2, strpos($html2, 'id="modalApprove"'), strpos($html2, 'id="modalReject"') - strpos($html2, 'id="modalApprove"'));
         $this->assertStringNotContainsString('name="pin"', $modalApproveHtml2);
@@ -357,7 +357,7 @@ class SuratValidationTest extends TestCase
     /**
      * TAHAP Testing - Case 7 / Bugfix:
      * User signature preview route (ttd.preview.user) works and resolves correctly
-     * when ttd_path is stored in the users table, even if the user has no EmployeeProfile.
+     * when ttd_path is stored in the users table, even if the user has no UserProfile.
      */
     public function test_ttd_preview_resolves_correctly_when_only_user_ttd_path_exists(): void
     {
@@ -421,7 +421,7 @@ class SuratValidationTest extends TestCase
         // 2. Visit the create page
         $createResponse = $this->actingAs($this->user)->get(route('surat.turunan.create', $surat->id));
         $createResponse->assertStatus(200);
-        $createResponse->assertSee('Generate Surat Turunan');
+        $createResponse->assertSee('Buat Surat Turunan');
         $createResponse->assertSee('undangan');
         $createResponse->assertSee('izin_kegiatan');
 

@@ -5,8 +5,8 @@
 @section('content')
 <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
     <div>
-        <h1 class="text-3xl font-playfair font-bold text-[#1A2B24]">
-            <i data-lucide="users" class="inline-block size-7 mr-2 text-[#4F6560] align-text-bottom"></i>
+        <h1 class="text-3xl font-sans font-bold text-[#111111]">
+            <i data-lucide="users" class="inline-block size-7 mr-2 text-[var(--color-text)] align-text-bottom"></i>
             Kelola Organisasi
         </h1>
         <p class="text-[13px] font-light text-[#6B7280] mt-1">Manajemen OSIS, MPK, dan Sub Organ SMK Telkom Sidoarjo</p>
@@ -118,7 +118,7 @@
      Sub Organ List
 ══════════════════════════════════════ --}}
 <div class="mb-4 mt-12">
-    <h2 class="text-xl font-playfair font-bold text-[#1A2B24]">Sub Organisasi</h2>
+    <h2 class="text-xl font-sans font-bold text-[#111111]">Sub Organisasi</h2>
 </div>
 
 <div class="sub-organ-grid">
@@ -144,7 +144,7 @@
     @empty
     <div class="empty-state">
         <i data-lucide="inbox" style="width:40px;height:40px;opacity:.4; margin: 0 auto 12px;"></i>
-        <p>Belum ada Sub Organ. <a href="{{ route('organisasi.create') }}" class="text-[#4F6560] font-semibold underline">Tambah sekarang</a>.</p>
+        <p>Belum ada Sub Organ. <a href="{{ route('organisasi.create') }}" class="text-[var(--color-text)] font-semibold underline">Tambah sekarang</a>.</p>
     </div>
     @endforelse
 </div>
@@ -168,25 +168,25 @@
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
 }
 .org-card-header { padding:24px 24px 16px; }
-.org-card-title { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: #1A2B24; margin: 0 0 8px; }
+.org-card-title { font-family: 'Poppins', sans-serif; font-size: 20px; font-weight: 700; color: #111111; margin: 0 0 8px; }
 .org-card-desc { color:#6B7280; font-size:13px; line-height: 1.5; margin:0; }
 .org-stat { display:flex; align-items:center; gap:6px; font-size:12px; color:#6B7280; font-weight: 400; }
 .org-card-body { padding:0 24px 20px; flex-grow: 1; }
 .org-card-footer { padding:16px 24px 24px; border-top:1px solid rgba(0,0,0,0.05); }
 
 .org-badge { display:inline-block; padding:4px 12px; border-radius:999px; font-size:11px; font-weight:600; letter-spacing:.05em; text-transform: uppercase; }
-.org-badge--osis { background:#E8F5EE; color:#2E7D5E; }
+.org-badge--osis { background:bg-emerald-50; color:#059669; }
 .org-badge--mpk  { background:#E0F2FE; color:#0369A1; }
 .org-badge--sub  { background:#FEF3C7; color:#B45309; }
 
 .org-member-row { display:flex; align-items:center; gap:12px; padding:10px 0; border-bottom:1px solid rgba(0,0,0,0.05); }
 .org-member-row:last-child { border-bottom:none; }
-.org-member-avatar { width:32px; height:32px; border-radius:50%; background:rgba(79, 101, 96, 0.1); color:#4F6560; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:13px; flex-shrink:0; }
+.org-member-avatar { width:32px; height:32px; border-radius:50%; background:rgba(230, 33, 41, 0.08); color:var(--color-text); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:13px; flex-shrink:0; }
 .org-member-info { display:flex; flex-direction:column; }
-.org-member-name { font-size:13px; font-weight:500; color: #1A2B24; }
+.org-member-name { font-size:13px; font-weight:500; color: #111111; }
 .org-member-jabatan { font-size:11px; font-weight: 500; }
 .jabatan-bph { color:#B45309; }
-.jabatan-ketua { color:#2E7D5E; }
+.jabatan-ketua { color:#059669; }
 .jabatan-pembina { color:#0369A1; }
 .jabatan-pengawas { color:#B91C1C; }
 
@@ -210,7 +210,7 @@
     transform: translateY(-4px);
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
 }
-.sub-organ-title { font-family: 'Playfair Display', serif; font-size:16px; font-weight:700; color: #1A2B24; margin: 0 0 4px; }
+.sub-organ-title { font-family: 'Poppins', sans-serif; font-size:16px; font-weight:700; color: #111111; margin: 0 0 4px; }
 .sub-organ-desc { font-size:13px; color:#6B7280; margin:0; line-height: 1.5; }
 .sub-organ-footer { border-top:1px solid rgba(0,0,0,0.05); padding-top:12px; margin-top: auto; }
 

@@ -5,21 +5,21 @@
 {{-- Header --}}
 <div class="flex items-center justify-between mb-8">
     <div>
-        <h1 class="text-3xl font-playfair font-bold text-[#1A2B24]">Edit Template</h1>
+        <h1 class="text-3xl font-sans font-bold text-[#1A2B24]">Ubah Template</h1>
         <p class="text-[13px] font-light text-[#6B7280] mt-1">
-            <span class="font-medium text-[#4F6560]">{{ $template->nama }}</span>
+            <span class="font-medium text-[var(--color-text)]">{{ $template->nama }}</span>
             <span class="mx-1.5 text-gray-300">·</span>
             <code class="text-[11px] bg-gray-100 px-1.5 py-0.5 rounded font-mono">{{ $template->kode }}</code>
         </p>
     </div>
     <a href="{{ route('surat-turunan-template.index') }}"
-       class="px-5 py-2.5 rounded-xl border border-gray-200 bg-white hover:bg-gray-50 text-sm font-medium text-gray-600 transition shadow-sm">
+       class="px-5 py-2.5 rounded-2xl border border-gray-200 bg-white hover:bg-gray-50 text-sm font-medium text-gray-600 transition shadow-sm">
         Kembali
     </a>
 </div>
 
 @if($errors->any())
-<div class="mb-6 p-4 rounded-xl" style="background:rgba(239,68,68,0.08);border-left:3px solid #ef4444;">
+<div class="mb-6 p-4 rounded-2xl" style="background:rgba(239,68,68,0.08);border-left:3px solid #ef4444;">
     <p class="text-sm font-semibold text-red-800 mb-2">Terjadi Kesalahan:</p>
     <ul class="text-sm text-red-700 list-disc list-inside">
         @foreach($errors->all() as $error)
@@ -48,7 +48,7 @@
                         value="{{ old('nama', $template->nama) }}"
                         placeholder="cth. Surat Undangan"
                         style="width:100%;padding:11px 16px;border-radius:12px;border:1px solid #e5e7eb;font-size:14px;background:#fff;outline:none;transition:all 0.2s;"
-                        onfocus="this.style.borderColor='#80BB9B';this.style.boxShadow='0 0 0 2px rgba(128,187,155,0.2)'"
+                        onfocus="this.style.borderColor='var(--color-primary)';this.style.boxShadow='0 0 0 2px rgba(128,187,155,0.2)'"
                         onblur="this.style.borderColor='#e5e7eb';this.style.boxShadow='none'"
                         required>
                     @error('nama')
@@ -62,7 +62,7 @@
                         <input type="hidden" name="is_active" value="0">
                         <input type="checkbox" name="is_active" value="1" id="is_active"
                                {{ old('is_active', $template->is_active) ? 'checked' : '' }}
-                               class="w-4 h-4 rounded accent-[#4F6560] cursor-pointer">
+                               class="w-4 h-4 rounded accent-[var(--color-text)] cursor-pointer">
                         <span class="text-sm font-medium text-[#1A2B24]">Template aktif</span>
                         <span class="text-xs text-gray-400">(nonaktif = tidak muncul di form generate)</span>
                     </label>
@@ -79,7 +79,7 @@
                             <button type="button" onclick="togglePreview()"
                                 class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg border border-gray-200 bg-gray-50 hover:bg-gray-100 text-xs font-medium text-gray-600 transition">
                                 <i data-lucide="eye" class="w-3.5 h-3.5"></i>
-                                <span id="previewBtnText">Preview</span>
+                                <span id="previewBtnText">Pratinjau</span>
                             </button>
                             {{-- Counter karakter --}}
                             <span id="charCount" class="text-[11px] text-gray-400">
@@ -94,15 +94,15 @@
                             placeholder="Tulis isi surat di sini. Gunakan {{token}} untuk data dinamis."
                             oninput="updateCharCount(this)"
                             style="width:100%;padding:14px 16px;border-radius:12px;border:1px solid #e5e7eb;font-size:13px;font-family:'Courier New',monospace;line-height:1.7;background:#fafafa;outline:none;resize:vertical;transition:all 0.2s;"
-                            onfocus="this.style.borderColor='#80BB9B';this.style.boxShadow='0 0 0 2px rgba(128,187,155,0.2)'"
+                            onfocus="this.style.borderColor='var(--color-primary)';this.style.boxShadow='0 0 0 2px rgba(128,187,155,0.2)'"
                             onblur="this.style.borderColor='#e5e7eb';this.style.boxShadow='none'"
                             required>{{ old('konten_template', $template->konten_template) }}</textarea>
                     </div>
 
                     {{-- Preview panel (hidden by default) --}}
                     <div id="previewPanel" style="display:none;"
-                         class="mt-3 p-5 rounded-xl border border-gray-200 bg-white">
-                        <p class="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-3">Preview (placeholder belum diganti)</p>
+                         class="mt-3 p-5 rounded-2xl border border-gray-200 bg-white">
+                        <p class="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-3">Pratinjau (placeholder belum diganti)</p>
                         <div id="previewContent"
                              class="text-sm text-gray-700 leading-relaxed whitespace-pre-wrap font-mono"></div>
                     </div>
@@ -116,12 +116,12 @@
                 <div class="flex justify-end gap-3 pt-5 border-t border-gray-100">
                     <a href="{{ route('surat-turunan-template.index') }}"
                        style="padding:10px 24px;border-radius:12px;border:1px solid #d1d5db;background:#fff;font-size:14px;font-weight:600;color:#374151;text-decoration:none;display:inline-flex;align-items:center;transition:all 0.2s;"
-                       onmouseover="this.style.background='#f9fafb'" onmouseout="this.style.background='#fff'">
+                       onmouseover="this.style.background='#F5F5F7'" onmouseout="this.style.background='#fff'">
                         Batal
                     </a>
                     <button type="submit"
-                            style="background-color:#4F6560;"
-                            class="inline-flex items-center gap-2 px-8 py-2.5 hover:opacity-90 text-white rounded-xl text-sm font-bold shadow transition">
+                            style="background-color:var(--color-text);"
+                            class="inline-flex items-center gap-2 px-8 py-2.5 hover:opacity-90 text-white rounded-2xl text-sm font-bold shadow transition">
                         <i data-lucide="save" class="w-4 h-4"></i>
                         Simpan Perubahan
                     </button>
@@ -137,7 +137,7 @@
         {{-- Daftar Token --}}
         <div class="bg-white rounded-[20px] border border-gray-100 shadow-[0_2px_12px_rgba(0,0,0,0.05)] p-5">
             <div class="flex items-center gap-2 mb-4">
-                <i data-lucide="braces" class="w-4 h-4 text-[#4F6560]"></i>
+                <i data-lucide="braces" class="w-4 h-4 text-[var(--color-text)]"></i>
                 <h3 class="text-sm font-bold text-[#1A2B24]">Placeholder Tersedia</h3>
             </div>
             <p class="text-xs text-gray-400 mb-4 leading-relaxed">
@@ -146,10 +146,10 @@
 
             <div class="space-y-2">
                 @foreach($placeholders as $ph)
-                <div class="group flex items-start gap-2 p-2.5 rounded-xl hover:bg-gray-50 transition cursor-pointer"
+                <div class="group flex items-start gap-2 p-2.5 rounded-2xl hover:bg-gray-50 transition cursor-pointer"
                      onclick="copyToken('{{ $ph['token'] }}', this)"
                      title="Klik untuk salin">
-                    <code class="shrink-0 text-[11px] font-bold font-mono bg-[#E8F5EE] text-[#2E7D5E] px-2 py-1 rounded-lg group-hover:bg-[#d1ede0] transition select-none">
+                    <code class="shrink-0 text-[11px] font-bold font-mono bg-[var(--color-bg-light)] text-[#2E7D5E] px-2 py-1 rounded-lg group-hover:bg-[#d1ede0] transition select-none">
                         {{ $ph['token'] }}
                     </code>
                     <span class="text-[11px] text-gray-500 leading-relaxed pt-0.5">
@@ -187,7 +187,7 @@
             <div class="space-y-1.5 text-xs text-gray-500">
                 <div class="flex justify-between">
                     <span>Kode</span>
-                    <code class="font-mono font-semibold text-[#4F6560]">{{ $template->kode }}</code>
+                    <code class="font-mono font-semibold text-[var(--color-text)]">{{ $template->kode }}</code>
                 </div>
                 <div class="flex justify-between">
                     <span>Dibuat</span>
@@ -229,7 +229,7 @@ function togglePreview() {
         btnText.textContent = 'Sembunyikan';
     } else {
         panel.style.display = 'none';
-        btnText.textContent = 'Preview';
+        btnText.textContent = 'Pratinjau';
     }
 }
 
@@ -271,3 +271,4 @@ function copyToken(token, el) {
 }
 </script>
 @endpush
+
