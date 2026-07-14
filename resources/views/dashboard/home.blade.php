@@ -6,10 +6,10 @@
 
 /* GREETING */
 .hv-welcome {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 36px;
     font-weight: 400;
-    color: #1A2B24;
+    color: #111111;
     margin: 0 0 32px 0;
     letter-spacing: -0.5px;
 }
@@ -48,10 +48,10 @@
     left: 0;
     right: 0;
     padding: 24px;
-    background: linear-gradient(to top, rgba(26,43,36,0.9), rgba(26,43,36,0.4));
+    background: linear-gradient(to top, rgba(17,17,17,0.9), rgba(17,17,17,0.4));
 }
 .hv-photo-name {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 16px;
     font-weight: 600;
     color: #fff;
@@ -96,10 +96,10 @@
     color: #6B7280;
 }
 .hv-stat-num {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 56px;
     font-weight: 600;
-    color: #1A2B24;
+    color: #111111;
     margin: 16px 0;
     line-height: 1.2;
 }
@@ -155,7 +155,7 @@
     margin-bottom: 12px;
 }
 .hv-recent-title {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 20px;
     font-weight: 600;
     color: var(--color-text);
@@ -203,10 +203,10 @@
 
 /* ACTION */
 .hv-actions-title {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 18px;
     margin-bottom: 16px;
-    color: #1A2B24;
+    color: #111111;
 }
 .hv-actions-list {
     display: flex;
@@ -260,61 +260,61 @@
 
 .hv-list-link {
     text-decoration: none;
-    color: #1A2B24;
+    color: #111111;
     font-weight: 500;
     transition: color 0.2s;
 }
 
 .hv-list-link:hover {
-    color: #4F6560;
+    color: var(--color-text);
 }
 </style>
 
 <div>
 
 <div class="mb-8">
-    <h1 class="text-3xl font-playfair font-bold text-[#1A2B24]">{{ $userDisplayName ?? 'Welcome back' }}, {{ auth()->user()->name }}</h1>
+    <h1 class="text-3xl font-sans font-bold text-[#111111]">{{ $userDisplayName ?? 'Selamat datang kembali' }}, {{ auth()->user()->name }}</h1>
     <p class="text-[13px] font-light text-[#6B7280] mt-1">Sistem Surat Organisasi SIMORA SMK Telkom Sidoarjo</p>
 </div>
 
 {{-- Statistik Pelaksanaan & LPJ Kegiatan --}}
 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
     {{-- Kegiatan Berjalan --}}
-    <div class="bg-white rounded-[24px] p-6 border border-gray-100 shadow-[0_2px_12px_rgba(0,0,0,0.03)] flex items-center justify-between">
+    <div class="bg-white rounded-[28px] p-6 border border-gray-100 shadow-[0_10px_40px_rgba(0,0,0,0.06)] flex items-center justify-between">
         <div>
             <span class="text-xs font-bold text-gray-400 uppercase tracking-wider block">Kegiatan Berjalan</span>
-            <span class="text-3xl font-playfair font-bold text-[#1A2B24] mt-2 block">{{ $kegiatanBerjalanCount }}</span>
-            <a href="{{ route('pelaksanaan.index') }}" class="text-[11px] text-[#2E7D5E] font-semibold hover:underline mt-2 inline-block">Monitor Pelaksanaan</a>
+            <span class="text-3xl font-sans font-bold text-[#111111] mt-2 block">{{ $kegiatanBerjalanCount }}</span>
+            <a href="{{ route('pelaksanaan.index') }}" class="text-[11px] text-[#E62129] font-semibold hover:underline mt-2 inline-block">Monitor Pelaksanaan</a>
         </div>
-        <div class="w-12 h-12 bg-emerald-50 rounded-2xl flex items-center justify-center text-[#2E7D5E]">
+        <div class="w-12 h-12 bg-[#F5F5F7] rounded-[28px] flex items-center justify-center text-[#E62129]">
             <i data-lucide="play-circle" class="w-6 h-6"></i>
         </div>
     </div>
 
     {{-- LPJ Menunggu Verifikasi --}}
-    <div class="bg-white rounded-[24px] p-6 border border-gray-100 shadow-[0_2px_12px_rgba(0,0,0,0.03)] flex items-center justify-between">
+    <div class="bg-white rounded-[28px] p-6 border border-gray-100 shadow-[0_10px_40px_rgba(0,0,0,0.06)] flex items-center justify-between">
         <div>
             <span class="text-xs font-bold text-gray-400 uppercase tracking-wider block">LPJ Menunggu Verifikasi</span>
-            <span class="text-3xl font-playfair font-bold text-[#1A2B24] mt-2 block">{{ $lpjPendingCount }}</span>
+            <span class="text-3xl font-sans font-bold text-[#111111] mt-2 block">{{ $lpjPendingCount }}</span>
             @if(auth()->user()->hasAnyRole(['admin', 'super-admin', 'guru']))
-                <a href="{{ route('lpj.verifikasi.index') }}" class="text-[11px] text-amber-600 font-semibold hover:underline mt-2 inline-block">Verifikasi Sekarang</a>
+                <a href="{{ route('lpj.verifikasi.index') }}" class="text-[11px] text-[#E62129] font-semibold hover:underline mt-2 inline-block">Verifikasi Sekarang</a>
             @else
                 <span class="text-[11px] text-gray-400 mt-2 inline-block">Menunggu Review Pembina</span>
             @endif
         </div>
-        <div class="w-12 h-12 bg-amber-50 rounded-2xl flex items-center justify-center text-amber-600">
+        <div class="w-12 h-12 bg-[#F5F5F7] rounded-[28px] flex items-center justify-center text-[#E62129]">
             <i data-lucide="clock" class="w-6 h-6"></i>
         </div>
     </div>
 
     {{-- LPJ Revisi --}}
-    <div class="bg-white rounded-[24px] p-6 border border-gray-100 shadow-[0_2px_12px_rgba(0,0,0,0.03)] flex items-center justify-between">
+    <div class="bg-white rounded-[28px] p-6 border border-gray-100 shadow-[0_10px_40px_rgba(0,0,0,0.06)] flex items-center justify-between">
         <div>
             <span class="text-xs font-bold text-gray-400 uppercase tracking-wider block">LPJ Perlu Revisi</span>
-            <span class="text-3xl font-playfair font-bold text-[#1A2B24] mt-2 block">{{ $lpjRevisiCount }}</span>
-            <a href="{{ route('pelaksanaan.index') }}" class="text-[11px] text-rose-600 font-semibold hover:underline mt-2 inline-block">Lihat Pelaksanaan Saya</a>
+            <span class="text-3xl font-sans font-bold text-[#111111] mt-2 block">{{ $lpjRevisiCount }}</span>
+            <a href="{{ route('pelaksanaan.index') }}" class="text-[11px] text-[#E62129] font-semibold hover:underline mt-2 inline-block">Lihat Pelaksanaan Saya</a>
         </div>
-        <div class="w-12 h-12 bg-rose-50 rounded-2xl flex items-center justify-center text-rose-600">
+        <div class="w-12 h-12 bg-[#F5F5F7] rounded-[28px] flex items-center justify-center text-[#E62129]">
             <i data-lucide="alert-triangle" class="w-6 h-6"></i>
         </div>
     </div>
@@ -330,7 +330,7 @@
             @if(auth()->user()->avatar)
                 <img src="{{ URL::to('assets/images/user/'.auth()->user()->avatar) }}" alt="{{ auth()->user()->name }}">
             @else
-                <img src="https://ui-avatars.com/api/?name={{ urlencode(auth()->user()->name) }}&background=E8F5EE&color=1A2B24&size=200" alt="{{ auth()->user()->name }}">
+                <img src="https://ui-avatars.com/api/?name={{ urlencode(auth()->user()->name) }}&background=FFF1F2&color=111111&size=200" alt="{{ auth()->user()->name }}">
             @endif
             <div class="hv-photo-overlay">
                 <p class="hv-photo-name">{{ auth()->user()->name }}</p>
@@ -351,25 +351,23 @@
 
         {{-- pending approvals --}}
         <div class="hv-stat">
-            <p class="hv-stat-label">Surat Menunggu Approval (Global)</p>
+            <p class="hv-stat-label">Surat Menunggu Persetujuan (Global)</p>
             <p class="hv-stat-num">{{ $suratMenungguCount ?? 0 }}</p>
             <div class="hv-stat-bottom">
                 <svg class="hv-stat-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
                 </svg>
-                <a href="{{ route('surat.index') }}" class="hv-list-link" style="font-size:12px;text-decoration:underline;text-underline-offset:2px;color:#1A2B24;">Lihat Surat</a>
+                <a href="{{ route('surat.index') }}" class="hv-list-link" style="font-size:12px;text-decoration:underline;text-underline-offset:2px;color:#111111;">Lihat Surat</a>
             </div>
         </div>
 
         {{-- recent activity --}}
         <div class="hv-recent">
             <div class="hv-recent-header">
-                <p class="hv-recent-title">Recent Activity</p>
-                <a href="{{ route('activity.log') }}" class="hv-recent-viewall">View all</a>
+                <p class="hv-recent-title">Aktivitas Terbaru</p>
+                <a href="{{ route('activity.log') }}" class="hv-recent-viewall">Lihat semua</a>
             </div>
             <p class="hv-recent-sub">Log aktivitas sistem</p>
-            
-            @if(isset($recentActivities) && $recentActivities->count())
             <div class="hv-recent-list">
                 @foreach($recentActivities as $log)
                 <div class="hv-recent-item">
@@ -413,7 +411,7 @@
             @if(auth()->user()->avatar)
                 <img src="{{ URL::to('assets/images/user/'.auth()->user()->avatar) }}" alt="{{ auth()->user()->name }}">
             @else
-                <img src="https://ui-avatars.com/api/?name={{ urlencode(auth()->user()->name) }}&background=E8F5EE&color=1A2B24&size=200" alt="{{ auth()->user()->name }}">
+                <img src="https://ui-avatars.com/api/?name={{ urlencode(auth()->user()->name) }}&background=FFF1F2&color=111111&size=200" alt="{{ auth()->user()->name }}">
             @endif
             <div class="hv-photo-overlay">
                 <p class="hv-photo-name">{{ auth()->user()->name }}</p>
@@ -423,7 +421,7 @@
 
         {{-- surat menunggu --}}
         <div class="hv-stat dark">
-            <p class="hv-stat-label">Perlu Approval Anda</p>
+            <p class="hv-stat-label">Perlu Persetujuan Anda</p>
             <p class="hv-stat-num">{{ $suratMenungguCount ?? 0 }}</p>
             <div class="hv-stat-bottom">
                 <svg class="hv-stat-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -439,7 +437,7 @@
         <div class="hv-recent">
             <div class="hv-recent-header">
                 <p class="hv-recent-title">Daftar Menunggu</p>
-                <a href="{{ route('surat.index') }}" class="hv-recent-viewall">View all</a>
+                <a href="{{ route('surat.index') }}" class="hv-recent-viewall">Lihat semua</a>
             </div>
             <p class="hv-recent-sub">Surat yang menunggu persetujuan Anda</p>
             @if(isset($suratMenungguList) && $suratMenungguList->count())
@@ -477,7 +475,7 @@
             @if(auth()->user()->avatar)
                 <img src="{{ URL::to('assets/images/user/'.auth()->user()->avatar) }}" alt="{{ auth()->user()->name }}">
             @else
-                <img src="https://ui-avatars.com/api/?name={{ urlencode(auth()->user()->name) }}&background=E8F5EE&color=1A2B24&size=200" alt="{{ auth()->user()->name }}">
+                <img src="https://ui-avatars.com/api/?name={{ urlencode(auth()->user()->name) }}&background=FFF1F2&color=111111&size=200" alt="{{ auth()->user()->name }}">
             @endif
             <div class="hv-photo-overlay">
                 <p class="hv-photo-name">{{ auth()->user()->name }}</p>
@@ -510,8 +508,8 @@
         {{-- Butuh approval dari user (bila anggota BPH dll) --}}
         <div class="hv-recent">
             <div class="hv-recent-header">
-                <p class="hv-recent-title">Perlu Approval Anda</p>
-                <a href="{{ route('surat.index') }}" class="hv-recent-viewall">View all</a>
+                <p class="hv-recent-title">Perlu Persetujuan Anda</p>
+                <a href="{{ route('surat.index') }}" class="hv-recent-viewall">Lihat semua</a>
             </div>
             <p class="hv-recent-sub">Di organisasi tempat Anda bergabung</p>
             @if(isset($suratMenungguList) && $suratMenungguList->count())
@@ -532,7 +530,7 @@
                 @endforeach
             </div>
             @else
-            <div class="hv-recent-empty">Tidak ada surat untuk di-approve</div>
+            <div class="hv-recent-empty">Tidak ada surat untuk disetujui</div>
             @endif
         </div>
 
@@ -542,16 +540,16 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-6">
         
         <div class="hv-full-card">
-            <p class="font-playfair text-lg font-bold mb-4">Organisasi Saya</p>
+            <p class="font-sans text-lg font-bold mb-4">Organisasi Saya</p>
             @if(isset($myOrganisasi) && $myOrganisasi->count())
                 <div class="space-y-3">
                 @foreach($myOrganisasi as $orgMember)
-                    <div class="flex items-center justify-between p-3 rounded-xl border border-gray-100 bg-gray-50/50">
+                    <div class="flex items-center justify-between p-3 rounded-2xl border border-gray-100 bg-gray-50/50">
                         <div>
                             <p class="font-medium text-sm text-gray-800">{{ $orgMember->organisasi->nama ?? '-' }}</p>
                             <p class="text-xs text-gray-500">{{ $orgMember->organisasi->tipe_label ?? '-' }}</p>
                         </div>
-                        <span class="px-3 py-1 rounded-full text-xs font-medium bg-[#80BB9B]/20 text-[#4F6560]">
+                        <span class="px-3 py-1 rounded-full text-xs font-medium bg-[var(--color-primary)]/20 text-[var(--color-text)]">
                             {{ $orgMember->jabatan_label }}
                         </span>
                     </div>
@@ -569,7 +567,7 @@
                 <a href="{{ route('surat.create') }}" class="hv-btn-primary">Ajukan Surat Baru</a>
                 @endcan
                 <a href="{{ route('surat.index') }}" class="hv-btn-outline">Lihat Semua Surat</a>
-                <a href="{{ route('profile.show') }}" class="hv-btn-outline">Update Profil</a>
+                <a href="{{ route('profile.show') }}" class="hv-btn-outline">Perbarui Profil</a>
             </div>
         </div>
     </div>
@@ -578,3 +576,5 @@
 
 </div>
 @endsection
+
+

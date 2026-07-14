@@ -34,7 +34,7 @@
     white-space: nowrap !important;
     width: auto !important;
     color: #ffffff !important;
-    background-color: #4F6560 !important;
+    background-color: var(--color-text) !important;
   }
 </style>
 
@@ -42,7 +42,7 @@
 
     <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-6 gap-4 custom-header-fix">
       <div class="mb-8">
-        <h1 class="text-3xl font-playfair font-bold text-[#1A2B24]">Inbox Admin Sekretariat</h1>
+        <h1 class="text-3xl font-sans font-bold text-[#111111]">Inbox Admin Sekretariat</h1>
         <p class="text-[13px] font-light text-[#6B7280] mt-1">Review format dan registrasi nomor surat</p>
       </div>
     </div>
@@ -63,7 +63,7 @@
         <div class="skeleton-wrapper w-full">
             <div class="space-y-4">
                 @for($i=0; $i<4; $i++)
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between bg-white rounded-2xl shadow-sm border border-gray-100 px-6 py-5 gap-4">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between bg-white rounded-[28px] shadow-sm border border-gray-100 px-6 py-5 gap-4">
                     <div class="flex items-center gap-4 w-full">
                         <div class="skeleton w-12 h-12 rounded-full flex-shrink-0"></div>
                         <div class="flex-grow space-y-2">
@@ -73,8 +73,8 @@
                         </div>
                     </div>
                     <div class="flex gap-2 shrink-0">
-                        <div class="skeleton h-8 w-20 rounded-xl"></div>
-                        <div class="skeleton h-8 w-20 rounded-xl"></div>
+                        <div class="skeleton h-8 w-20 rounded-2xl"></div>
+                        <div class="skeleton h-8 w-20 rounded-2xl"></div>
                     </div>
                 </div>
                 @endfor
@@ -85,12 +85,12 @@
 
     @forelse($surats as $key => $surat)
 
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between bg-white rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition px-6 py-5 gap-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between bg-white rounded-[28px] shadow-sm border border-gray-100 hover:shadow-md transition px-6 py-5 gap-4">
             
             <!-- left content (keep data same) -->
             <div class="flex items-center gap-4">
                 <!-- avatar -->
-                <div class="w-12 h-12 rounded-full bg-[#80BB9B]/30 flex items-center justify-center font-semibold text-[#4F6560] text-lg flex-shrink-0">
+                <div class="w-12 h-12 rounded-full bg-[var(--color-primary)]/30 flex items-center justify-center font-semibold text-[var(--color-text)] text-lg flex-shrink-0">
                     {{ strtoupper(substr($surat->user->name ?? 'U',0,1)) }}
                 </div>
 
@@ -101,7 +101,7 @@
                     <p class="text-sm text-gray-500 mt-0.5">
                         {{ $surat->suratType ? $surat->suratType->nama : ucfirst(str_replace('_', ' ', $surat->jenis_surat)) }} 
                         @if($surat->organisasi)
-                            &bull; <span class="text-[#4F6560] font-medium">{{ $surat->organisasi->nama }}</span>
+                            &bull; <span class="text-[var(--color-text)] font-medium">{{ $surat->organisasi->nama }}</span>
                         @endif
                         <br>
                         <span class="text-xs">Menunggu Nomor Surat</span>
@@ -120,18 +120,18 @@
 
                 <div class="surat-actions flex flex-col sm:flex-row gap-2 w-full sm:w-auto mt-2 sm:mt-0">
                     <a href="{{ route('surat.show', $surat->id) }}"
-                       class="px-4 py-2 rounded-xl border border-gray-300 bg-white text-gray-700 text-sm font-medium hover:bg-gray-50 transition flex items-center justify-center">
-                        View Document
+                       class="px-4 py-2 rounded-2xl border border-gray-300 bg-white text-gray-700 text-sm font-medium hover:bg-gray-50 transition flex items-center justify-center">
+                        Lihat Dokumen
                     </a>
 
                     <button type="button"
                         onclick="quickVerify('{{ route('surat.verifikasi_admin', $surat->id) }}')"
-                        class="px-4 py-2 bg-[#4F6560] text-white rounded-xl text-sm font-medium hover:bg-[#3d504c] transition shadow-sm flex items-center justify-center">
+                        class="px-4 py-2 bg-[var(--color-primary)] text-white rounded-2xl text-sm font-medium hover:bg-[var(--color-primary-dark)] transition shadow-sm flex items-center justify-center">
                         <i data-lucide="check-circle" class="w-4 h-4 mr-1"></i> Disposisi
                     </button>
                     <button type="button"
                         onclick="quickRejectAdmin('{{ route('surat.verifikasi_admin', $surat->id) }}')"
-                        class="px-4 py-2 bg-red-50 text-red-600 border border-red-200 rounded-xl text-sm font-medium hover:bg-red-100 transition flex items-center justify-center">
+                        class="px-4 py-2 bg-red-50 text-red-600 border border-red-200 rounded-2xl text-sm font-medium hover:bg-red-100 transition flex items-center justify-center">
                         <i data-lucide="x" class="w-4 h-4 mr-1"></i> Kembalikan
                     </button>
                 </div>
@@ -139,15 +139,15 @@
         </div>
 
     @empty
-        <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-16 text-center">
-            <div class="w-16 h-16 bg-[#80BB9B]/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                <i data-lucide="file-text" class="w-8 h-8 text-[#80BB9B]"></i>
+        <div class="bg-white rounded-[28px] border border-gray-100 shadow-sm p-16 text-center">
+            <div class="w-16 h-16 bg-[var(--color-primary)]/10 rounded-[28px] flex items-center justify-center mx-auto mb-4">
+                <i data-lucide="file-text" class="w-8 h-8 text-[var(--color-primary)]"></i>
             </div>
-            <h3 class="text-lg font-semibold text-gray-800 mb-2">No Letters Yet</h3>
-            <p class="text-sm text-gray-500 mb-6">Create a new letter to start the approval process.</p>
+            <h3 class="text-lg font-semibold text-gray-800 mb-2">Belum Ada Surat</h3>
+            <p class="text-sm text-gray-500 mb-6">Ajukan surat baru untuk memulai alur persetujuan.</p>
             @can('create', App\Models\Surat::class)
-            <a href="{{ route('surat.create') }}" class="inline-flex items-center gap-2 px-5 py-2.5 bg-[#4F6560] text-white rounded-xl text-sm font-semibold hover:bg-[#3d504c] transition shadow-sm">
-                <i data-lucide="plus" class="w-4 h-4"></i> Create First Letter
+            <a href="{{ route('surat.create') }}" class="inline-flex items-center gap-2 px-5 py-2.5 bg-[var(--color-primary)] text-white rounded-2xl text-sm font-semibold hover:bg-[var(--color-primary-dark)] transition shadow-sm">
+                <i data-lucide="plus" class="w-4 h-4"></i> Ajukan Surat Pertama
             </a>
             @endcan
         </div>
@@ -166,7 +166,7 @@
 {{-- modal verifikasi --}}
 <div id="modalVerifikasi" class="fixed inset-0 z-50 hidden items-center justify-center"
      style="background:rgba(0,0,0,.4);">
-    <div class="bg-white rounded-2xl shadow-xl w-full max-w-md mx-4 p-6 overflow-y-auto max-h-[90vh]">
+    <div class="bg-white rounded-[28px] shadow-xl w-full max-w-md mx-4 p-6 overflow-y-auto max-h-[90vh]">
         <h6 class="text-base font-bold text-slate-900 mb-4">Verifikasi & Disposisi Awal</h6>
         <form id="formVerifikasi" method="POST">
             @csrf
@@ -198,27 +198,27 @@
 {{-- modal reject --}}
 <div id="modalReject" class="fixed inset-0 z-50 hidden items-center justify-center"
      style="background:rgba(0,0,0,.4);">
-    <div class="bg-white rounded-2xl shadow-xl w-full max-w-md mx-4 p-6">
+    <div class="bg-white rounded-[28px] shadow-xl w-full max-w-md mx-4 p-6">
         <h6 class="text-base font-bold text-slate-900 mb-4">Kembalikan Dokumen</h6>
         <form id="formReject" method="POST">
             @csrf
             <input type="hidden" name="action" value="reject">
             <div class="mb-4">
                 <label class="block text-xs font-semibold text-red-700 mb-1">
-                    Rejection Reason <span class="text-red-500">*</span>
+                    Alasan Penolakan <span class="text-red-500">*</span>
                 </label>
                 <textarea name="catatan_revisi" rows="3" required
                     class="w-full px-3 py-2 rounded-lg border border-red-200 text-sm"
-                    placeholder="Write the reason for rejection clearly..."></textarea>
+                    placeholder="Tulis alasan penolakan secara jelas..."></textarea>
             </div>
             <div class="flex gap-3 justify-end">
                 <button type="button" onclick="closeModals()"
                     class="px-4 py-2 border border-slate-200 text-slate-600 rounded-lg text-sm font-semibold">
-                    Cancel
+                    Batal
                 </button>
                 <button type="submit"
                     class="px-4 py-2 bg-red-500 text-white rounded-lg text-sm font-bold">
-                    Reject Letter
+                    Tolak Surat
                 </button>
             </div>
         </form>
@@ -262,3 +262,4 @@
 @endpush
 
 @endsection
+

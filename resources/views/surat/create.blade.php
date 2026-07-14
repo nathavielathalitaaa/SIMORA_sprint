@@ -4,11 +4,11 @@
         {{-- Header --}}
         <div class="flex items-center justify-between mb-8">
             <div>
-                <h1 class="text-3xl font-playfair font-bold text-[#1A2B24]">Buat Surat Baru</h1>
+                <h1 class="text-3xl font-sans font-bold text-[#111111]">Buat Surat Baru</h1>
                 <p class="text-[13px] font-light text-[#6B7280] mt-1">Isi formulir di bawah untuk mengajukan surat baru</p>
             </div>
             <a href="{{ route('surat.index') }}"
-               class="px-5 py-2.5 rounded-xl border border-gray-200 bg-white hover:bg-gray-50 text-sm font-medium text-gray-600 transition shadow-sm">
+               class="px-5 py-2.5 rounded-2xl border border-gray-200 bg-white hover:bg-gray-50 text-sm font-medium text-gray-600 transition shadow-sm">
                 Kembali
             </a>
         </div>
@@ -17,7 +17,7 @@
         <div style="background: #ffffff; border-radius: 24px; padding: 36px; border: 1px solid #f3f4f6; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
 
             @if ($errors->any())
-                <div class="mb-6 p-4 rounded-xl" style="background:rgba(239,68,68,0.08);border-left:3px solid #ef4444;">
+                <div class="mb-6 p-4 rounded-2xl" style="background:rgba(239,68,68,0.08);border-left:3px solid #ef4444;">
                     <p class="text-sm font-semibold text-red-800 mb-2">Terjadi Kesalahan:</p>
                     <ul class="text-sm text-red-700 list-disc list-inside">
                         @foreach ($errors->all() as $error)
@@ -37,12 +37,12 @@
 
                         {{-- Nama Organisasi --}}
                         <div>
-                            <label for="organisasi_id" class="block text-sm font-bold text-[#1A2B24] mb-2">
+                            <label for="organisasi_id" class="block text-sm font-bold text-[#111111] mb-2">
                                 Organisasi Pengaju <span class="text-red-500">*</span>
                             </label>
                             <select id="organisasi_id" name="organisasi_id"
                                 style="width: 100%; padding: 12px 16px; border-radius: 12px; border: 1px solid #e5e7eb; font-size: 14px; background: #ffffff; outline: none; transition: all 0.2s;"
-                                onfocus="this.style.borderColor='#80BB9B'; this.style.boxShadow='0 0 0 2px rgba(128,187,155,0.2)'"
+                                onfocus="this.style.borderColor='var(--color-primary)'; this.style.boxShadow='0 0 0 2px rgba(230,33,41,0.2)'"
                                 onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'"
                                 onchange="handleOrganisasiChange(this)"
                                 required>
@@ -60,12 +60,12 @@
 
                         {{-- Jenis Surat --}}
                         <div>
-                            <label for="surat_type_id" class="block text-sm font-bold text-[#1A2B24] mb-2">
+                            <label for="surat_type_id" class="block text-sm font-bold text-[#111111] mb-2">
                                 Jenis Surat <span class="text-red-500">*</span>
                             </label>
                             <select id="jenis_surat" name="surat_type_id" disabled
                                 style="width: 100%; padding: 12px 16px; border-radius: 12px; border: 1px solid #e5e7eb; font-size: 14px; background: #ffffff; outline: none; transition: all 0.2s;"
-                                onfocus="this.style.borderColor='#80BB9B'; this.style.boxShadow='0 0 0 2px rgba(128,187,155,0.2)'"
+                                onfocus="this.style.borderColor='var(--color-primary)'; this.style.boxShadow='0 0 0 2px rgba(230,33,41,0.2)'"
                                 onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'"
                                 onchange="handleSuratTypeChange(this)"
                                 required>
@@ -87,13 +87,13 @@
 
                         {{-- Komisi (khusus MPK) --}}
                         <div id="komisi-group" style="display:none;">
-                            <label for="komisi_id" class="block text-sm font-bold text-[#1A2B24] mb-2">
+                            <label for="komisi_id" class="block text-sm font-bold text-[#111111] mb-2">
                                 Komisi <span class="text-red-500">*</span>
                                 <span class="text-xs font-normal text-gray-400 ml-1">(wajib untuk surat MPK)</span>
                             </label>
                             <select id="komisi_id" name="komisi_id"
                                 style="width: 100%; padding: 12px 16px; border-radius: 12px; border: 1px solid #e5e7eb; font-size: 14px; background: #ffffff; outline: none; transition: all 0.2s;"
-                                onfocus="this.style.borderColor='#80BB9B'; this.style.boxShadow='0 0 0 2px rgba(128,187,155,0.2)'"
+                                onfocus="this.style.borderColor='var(--color-primary)'; this.style.boxShadow='0 0 0 2px rgba(230,33,41,0.2)'"
                                 onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'">
                                 <option value="">-- Pilih Komisi --</option>
                                 @foreach($komisis as $k)
@@ -109,12 +109,12 @@
 
                         {{-- Perihal --}}
                         <div>
-                            <label for="perihal" class="block text-sm font-bold text-[#1A2B24] mb-2">
+                            <label for="perihal" class="block text-sm font-bold text-[#111111] mb-2">
                                 Perihal <span class="text-red-500">*</span>
                             </label>
                             <textarea id="perihal" name="perihal" rows="4"
                                 style="width: 100%; padding: 12px 16px; border-radius: 12px; border: 1px solid #e5e7eb; font-size: 14px; background: #ffffff; outline: none; transition: all 0.2s;"
-                                onfocus="this.style.borderColor='#80BB9B'; this.style.boxShadow='0 0 0 2px rgba(128,187,155,0.2)'"
+                                onfocus="this.style.borderColor='var(--color-primary)'; this.style.boxShadow='0 0 0 2px rgba(230,33,41,0.2)'"
                                 onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'"
                                 placeholder="Jelaskan perihal surat Anda" required>{{ old('perihal') }}</textarea>
                             @error('perihal')
@@ -126,8 +126,8 @@
                         <div id="kegiatan-detail-section" style="display:none;">
                             <div style="background:#f0fdf4; border:1px solid #bbf7d0; border-radius:16px; padding:20px 24px;">
                                 <div class="flex items-center gap-2 mb-4">
-                                    <i data-lucide="calendar-range" style="width:16px;height:16px;color:#166534;"></i>
-                                    <h3 style="font-family:'Poppins',sans-serif;font-weight:600;font-size:13px;color:#166534;margin:0;">
+                                    <i data-lucide="calendar-range" style="width:16px;height:16px;color:#E62129;"></i>
+                                    <h3 style="font-family:'Poppins',sans-serif;font-weight:600;font-size:13px;color:#E62129;margin:0;">
                                         Detail Kegiatan
                                     </h3>
                                     <span style="font-size:11px;color:#4ade80;margin-left:4px;">(digunakan untuk generate surat turunan)</span>
@@ -137,7 +137,7 @@
 
                                     {{-- Nama Kegiatan --}}
                                     <div>
-                                        <label for="nama_kegiatan" class="block text-sm font-bold text-[#1A2B24] mb-1.5">
+                                        <label for="nama_kegiatan" class="block text-sm font-bold text-[#111111] mb-1.5">
                                             Nama Kegiatan <span class="text-red-500">*</span>
                                         </label>
                                         <input type="text" id="nama_kegiatan" name="nama_kegiatan"
@@ -150,7 +150,7 @@
                                             <span class="text-xs text-red-500 mt-1 block">{{ $message }}</span>
                                         @enderror
                                         {{-- Warning badge duplikat --}}
-                                        <div id="warn-duplikat" style="display:none;" class="mt-2 flex items-start gap-2 px-3 py-2.5 rounded-xl border border-amber-200 bg-amber-50">
+                                        <div id="warn-duplikat" style="display:none;" class="mt-2 flex items-start gap-2 px-3 py-2.5 rounded-2xl border border-amber-200 bg-amber-50">
                                             <span style="font-size:13px;line-height:1;">⚠️</span>
                                             <div class="flex-1 min-w-0">
                                                 <p class="text-xs font-bold text-amber-800 mb-0.5">Mirip kegiatan lain, cek dulu</p>
@@ -164,7 +164,7 @@
                                     {{-- Tanggal Mulai & Selesai --}}
                                     <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
                                         <div>
-                                            <label for="tanggal_mulai" class="block text-sm font-bold text-[#1A2B24] mb-1.5">
+                                            <label for="tanggal_mulai" class="block text-sm font-bold text-[#111111] mb-1.5">
                                                 Tanggal Mulai <span class="text-red-500">*</span>
                                             </label>
                                             <input type="date" id="tanggal_mulai" name="tanggal_mulai"
@@ -177,7 +177,7 @@
                                             @enderror
                                         </div>
                                         <div>
-                                            <label for="tanggal_selesai" class="block text-sm font-bold text-[#1A2B24] mb-1.5">
+                                            <label for="tanggal_selesai" class="block text-sm font-bold text-[#111111] mb-1.5">
                                                 Tanggal Selesai
                                                 <span class="text-xs font-normal text-gray-400 ml-1">(opsional)</span>
                                             </label>
@@ -194,7 +194,7 @@
 
                                     {{-- Lokasi --}}
                                     <div>
-                                        <label for="lokasi" class="block text-sm font-bold text-[#1A2B24] mb-1.5">
+                                        <label for="lokasi" class="block text-sm font-bold text-[#111111] mb-1.5">
                                             Lokasi <span class="text-red-500">*</span>
                                         </label>
                                         <input type="text" id="lokasi" name="lokasi"
@@ -207,7 +207,7 @@
                                             <span class="text-xs text-red-500 mt-1 block">{{ $message }}</span>
                                         @enderror
                                         {{-- Warning badge konflik --}}
-                                        <div id="warn-konflik" style="display:none;" class="mt-2 flex items-start gap-2 px-3 py-2.5 rounded-xl border border-orange-200 bg-orange-50">
+                                        <div id="warn-konflik" style="display:none;" class="mt-2 flex items-start gap-2 px-3 py-2.5 rounded-2xl border border-orange-200 bg-orange-50">
                                             <span style="font-size:13px;line-height:1;">🚫</span>
                                             <div class="flex-1 min-w-0">
                                                 <p class="text-xs font-bold text-orange-800 mb-0.5">Potensi konflik jadwal lokasi</p>
@@ -220,7 +220,7 @@
 
                                     {{-- Deskripsi Singkat --}}
                                     <div>
-                                        <label for="deskripsi_singkat" class="block text-sm font-bold text-[#1A2B24] mb-1.5">
+                                        <label for="deskripsi_singkat" class="block text-sm font-bold text-[#111111] mb-1.5">
                                             Deskripsi Singkat
                                             <span class="text-xs font-normal text-gray-400 ml-1">(opsional)</span>
                                         </label>
@@ -259,12 +259,12 @@
 
                         {{-- File PDF --}}
                         <div>
-                            <label for="file_pdf" class="block text-sm font-bold text-[#1A2B24] mb-2">
+                            <label for="file_pdf" class="block text-sm font-bold text-[#111111] mb-2">
                                 File PDF <span class="text-red-500">*</span>
                             </label>
                             <input type="file" id="file_pdf" name="file_pdf" accept=".pdf" required
                                 style="width: 100%; padding: 12px 16px; border-radius: 12px; border: 1px solid #e5e7eb; font-size: 14px; background: #ffffff; outline: none; transition: all 0.2s;"
-                                onfocus="this.style.borderColor='#80BB9B'; this.style.boxShadow='0 0 0 2px rgba(128,187,155,0.2)'"
+                                onfocus="this.style.borderColor='var(--color-primary)'; this.style.boxShadow='0 0 0 2px rgba(230,33,41,0.2)'"
                                 onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none'">
                             <p class="text-xs text-gray-400 mt-2">Format: PDF, Ukuran maksimal: 5MB</p>
                             @error('file_pdf')
@@ -285,10 +285,10 @@
 
                         {{-- Placeholder saat belum ada jenis / mode append --}}
                         <div id="ttd-placeholder"
-                             style="height: 100%; min-height: 300px; display: flex; flex-direction: column; align-items: center; justify-content: center; border-radius: 16px; border: 2px dashed rgba(128,187,155,0.4); background: #f8faf9;">
-                            <i data-lucide="file-search" class="w-12 h-12 text-[#80BB9B]/50 mb-3"></i>
-                            <p class="text-sm font-semibold text-[#4F6560]/60">Pilih jenis surat terlebih dahulu</p>
-                            <p class="text-xs text-gray-400 mt-1">Preview TTD akan muncul jika mode stamp aktif</p>
+                             style="height: 100%; min-height: 300px; display: flex; flex-direction: column; align-items: center; justify-content: center; border-radius: 16px; border: 2px dashed rgba(230,33,41,0.4); background: #f8faf9;">
+                            <i data-lucide="file-search" class="w-12 h-12 text-[var(--color-primary)]/50 mb-3"></i>
+                            <p class="text-sm font-semibold text-[var(--color-text)]/60">Pilih jenis surat terlebih dahulu</p>
+                            <p class="text-xs text-gray-400 mt-1">Pratinjau TTD akan muncul jika mode stamp aktif</p>
                         </div>
 
                         {{-- Section TTD Marker (hanya mode stamp) --}}
@@ -298,8 +298,8 @@
                                 {{-- Header --}}
                                 <div class="flex items-center justify-between">
                                     <div>
-                                        <h6 class="text-sm font-bold text-[#1A2B24]">Posisi Tanda Tangan</h6>
-                                        <p class="text-xs text-gray-400 mt-0.5">Klik pada preview PDF untuk menempatkan TTD</p>
+                                        <h6 class="text-sm font-bold text-[#111111]">Posisi Tanda Tangan</h6>
+                                        <p class="text-xs text-gray-400 mt-0.5">Klik pada pratinjau PDF untuk menempatkan TTD</p>
                                     </div>
                                     <div id="marker-status"
                                          class="text-xs font-bold text-amber-600 px-3 py-1 bg-amber-50 rounded-full border border-amber-100">
@@ -311,13 +311,13 @@
                                 <div id="approver-buttons" class="flex flex-wrap gap-2"></div>
 
                                 {{-- PDF Canvas area --}}
-                                <div class="relative flex-1 bg-white border border-slate-200 rounded-xl overflow-hidden shadow-inner" style="min-height:420px;">
+                                <div class="relative flex-1 bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-inner" style="min-height:420px;">
 
                                     {{-- Upload hint (tampil sebelum PDF di-upload) --}}
                                     <div id="pdf-upload-hint"
                                          style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 10;">
-                                        <i data-lucide="upload-cloud" class="w-10 h-10 text-[#80BB9B] mb-2"></i>
-                                        <p class="text-sm font-semibold text-[#4F6560]">Upload PDF untuk melihat preview</p>
+                                        <i data-lucide="upload-cloud" class="w-10 h-10 text-[var(--color-primary)] mb-2"></i>
+                                        <p class="text-sm font-semibold text-[var(--color-text)]">Unggah PDF untuk melihat pratinjau</p>
                                         <p class="text-xs text-gray-400 mt-1">Lalu klik posisi tanda tangan</p>
                                     </div>
 
@@ -356,11 +356,11 @@
                 <div class="flex justify-end gap-3 pt-6 border-t border-gray-100">
                     <a href="{{ route('surat.index') }}"
                        style="padding: 10px 24px; border-radius: 12px; border: 1px solid #d1d5db; background: #ffffff; font-size: 14px; font-weight: 600; color: #374151; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; transition: all 0.2s;"
-                       onmouseover="this.style.background='#f9fafb'" onmouseout="this.style.background='#ffffff'">
+                       onmouseover="this.style.background='#F5F5F7'" onmouseout="this.style.background='#ffffff'">
                         Batal
                     </a>
-                    <button type="submit" style="background-color: #4F6560;"
-                            class="inline-flex items-center gap-2 px-8 py-2.5 hover:opacity-90 text-white rounded-xl text-sm font-bold shadow transition">
+                    <button type="submit" style="background-color: var(--color-text);"
+                            class="inline-flex items-center gap-2 px-8 py-2.5 hover:opacity-90 text-white rounded-2xl text-sm font-bold shadow transition">
                         <i data-lucide="send" class="w-4 h-4"></i>
                         Simpan & Ajukan Surat
                     </button>
@@ -431,9 +431,9 @@ window.onerror = function(msg, url, line, col, error) {
         ph.style.display = 'flex';
         ph.innerHTML = `
             <div style="text-align:center; padding: 20px;">
-                <p style="font-size: 14px; font-weight: 600; color: ${isError ? '#ef4444' : '#4F6560'}; margin: 0;">${title}</p>
+                <p style="font-size: 14px; font-weight: 600; color: ${isError ? '#ef4444' : 'var(--color-text)'}; margin: 0;">${title}</p>
                 <p style="font-size: 12px; color: #94a3b8; margin-top: 4px;">${sub}</p>
-                ${isError ? '<button type="button" onclick="window.location.reload()" style="margin-top:12px; padding:4px 12px; font-size:11px; background:#4F6560; color:white; border-radius:99px; border:none; cursor:pointer;">Refresh Halaman</button>' : ''}
+                ${isError ? '<button type="button" onclick="window.location.reload()" style="margin-top:12px; padding:4px 12px; font-size:11px; background:var(--color-text); color:white; border-radius:99px; border:none; cursor:pointer;">Refresh Halaman</button>' : ''}
             </div>
         `;
     }
@@ -449,7 +449,7 @@ window.onerror = function(msg, url, line, col, error) {
             if (!jenis) {
                 hideStamp();
                 if ($('ttd-mode-info')) $('ttd-mode-info').style.display = 'none';
-                setPlaceholderMessage('Pilih jenis surat terlebih dahulu', 'Preview TTD akan muncul jika mode stamp aktif');
+                setPlaceholderMessage('Pilih jenis surat terlebih dahulu', 'Pratinjau TTD akan muncul jika mode stamp aktif');
                 return;
             }
 
@@ -478,8 +478,8 @@ window.onerror = function(msg, url, line, col, error) {
                 showStamp();
 
                 if (infoText) {
-                    infoDiv.className = 'mt-4 p-4 rounded-xl border bg-blue-50 border-blue-100';
-                    infoText.innerHTML = `<strong class="text-blue-800">Mode Stamp:</strong> <span class="text-blue-700">Silakan upload PDF dan tentukan posisi tanda tangan.</span>`;
+                    infoDiv.className = 'mt-4 p-4 rounded-2xl border bg-blue-50 border-blue-100';
+                    infoText.innerHTML = `<strong class="text-blue-800">Mode Stamp:</strong> <span class="text-blue-700">Silakan unggah PDF dan tentukan posisi tanda tangan.</span>`;
                 }
 
                 preloadTtdImages();
@@ -499,7 +499,7 @@ window.onerror = function(msg, url, line, col, error) {
                 hideStamp();
                 if ($('ttd-placeholder')) $('ttd-placeholder').style.display = 'none'; 
                 if (infoText) {
-                    infoDiv.className = 'mt-4 p-4 rounded-xl border bg-emerald-50 border-emerald-100';
+                    infoDiv.className = 'mt-4 p-4 rounded-2xl border bg-emerald-50 border-emerald-100';
                     infoText.innerHTML = `<strong class="text-emerald-800">Mode Append:</strong> <span class="text-emerald-700">Tanda tangan akan ditambahkan di halaman baru di akhir dokumen.</span>`;
                 }
             }
@@ -649,7 +649,7 @@ window.onerror = function(msg, url, line, col, error) {
             btn.type  = 'button';
             btn.className = 'transition-all duration-150 flex items-center gap-2 px-3 py-1.5 rounded-lg border text-xs font-bold';
             
-            if (active) btn.style.cssText = 'background:#4F6560; color:#fff; border-color:#4F6560;';
+            if (active) btn.style.cssText = 'background:var(--color-text); color:#fff; border-color:var(--color-text);';
             else if (done) btn.style.cssText = 'background:#f0fdf4; color:#166534; border-color:#bbf7d0;';
             else btn.style.cssText = 'background:#fff; color:#64748b; border-color:#e2e8f0;';
 
@@ -684,20 +684,20 @@ window.onerror = function(msg, url, line, col, error) {
 
             if (hasImg) {
                 const box = document.createElement('div');
-                box.style.cssText = `width:110px; height:54px; background:rgba(255,255,255,0.9); border:2px solid ${active ? '#4F6560' : '#22c55e'}; border-radius:6px; box-shadow:0 3px 12px rgba(0,0,0,0.1); display:flex; align-items:center; justify-content:center; overflow:hidden; position:relative;`;
+                box.style.cssText = `width:110px; height:54px; background:rgba(255,255,255,0.9); border:2px solid ${active ? 'var(--color-text)' : '#22c55e'}; border-radius:6px; box-shadow:0 3px 12px rgba(0,0,0,0.1); display:flex; align-items:center; justify-content:center; overflow:hidden; position:relative;`;
                 const preview = document.createElement('img');
                 preview.src = img.src;
                 preview.style.cssText = 'max-width:90%; max-height:90%; object-fit:contain;';
                 box.appendChild(preview);
 
                 const badge = document.createElement('div');
-                badge.style.cssText = `position:absolute; top:-7px; right:-7px; width:16px; height:16px; background:${active ? '#4F6560' : '#22c55e'}; border-radius:50%; border:2px solid white; display:flex; align-items:center; justify-content:center;`;
+                badge.style.cssText = `position:absolute; top:-7px; right:-7px; width:16px; height:16px; background:${active ? 'var(--color-text)' : '#22c55e'}; border-radius:50%; border:2px solid white; display:flex; align-items:center; justify-content:center;`;
                 badge.innerHTML = `<svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3.5"><polyline points="20 6 9 17 4 12"/></svg>`;
                 box.appendChild(badge);
                 wrap.appendChild(box);
             } else {
                 const dot = document.createElement('div');
-                dot.style.cssText = `width:28px; height:28px; background:${active ? '#4F6560' : '#22c55e'}; border-radius:50%; border:2px solid white; box-shadow:0 2px 8px rgba(0,0,0,0.2); display:flex; align-items:center; justify-content:center;`;
+                dot.style.cssText = `width:28px; height:28px; background:${active ? 'var(--color-text)' : '#22c55e'}; border-radius:50%; border:2px solid white; box-shadow:0 2px 8px rgba(0,0,0,0.2); display:flex; align-items:center; justify-content:center;`;
                 dot.innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>`;
                 wrap.appendChild(dot);
             }
@@ -929,13 +929,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const data = await res.json();
 
             if (data.duplikat) {
-                const d = data.duplikat;
-                showWarn(
-                    'warn-duplikat',
-                    `Kemiripan ${d.percent}% dengan "${d.nama_kegiatan}" (${d.tanggal_mulai})` +
-                    (d.nomor_surat && d.nomor_surat !== '(belum bernomor)' ? ` — No. ${d.nomor_surat}` : '') +
-                    `. Pastikan ini kegiatan yang berbeda sebelum submit.`
-                );
+                showWarn('warn-duplikat', data.rekomendasi);
             } else {
                 hideWarn('warn-duplikat');
             }
@@ -968,15 +962,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const data = await res.json();
 
             if (data.konflik) {
-                const k = data.konflik;
-                const tglLabel = k.tanggal_selesai && k.tanggal_selesai !== k.tanggal_mulai
-                    ? `${k.tanggal_mulai} s.d. ${k.tanggal_selesai}`
-                    : k.tanggal_mulai;
-                showWarn(
-                    'warn-konflik',
-                    `"${k.nama_kegiatan}" (${k.organisasi_nama}) sudah menggunakan lokasi ini pada ${tglLabel}. ` +
-                    `Pertimbangkan untuk mengubah lokasi atau tanggal.`
-                );
+                showWarn('warn-konflik', data.rekomendasi);
             } else {
                 hideWarn('warn-konflik');
             }
@@ -1020,3 +1006,4 @@ document.addEventListener('DOMContentLoaded', function() {
 })();
 </script>
 @endpush
+

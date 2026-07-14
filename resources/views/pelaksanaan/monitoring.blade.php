@@ -5,7 +5,7 @@
     {{-- Header --}}
     <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
         <div>
-            <h1 class="text-3xl font-playfair font-bold text-[#1A2B24]">Pelaksanaan Kegiatan Saya</h1>
+            <h1 class="text-3xl font-sans font-bold text-[#111111]">Pelaksanaan Kegiatan Saya</h1>
             <p class="text-[13px] font-light text-[#6B7280] mt-1">
                 Pantau pelaksanaan, perbarui progress, dan tandai kegiatan selesai untuk memulai penyusunan LPJ.
             </p>
@@ -20,24 +20,24 @@
                 $latestUpdate = $surat->progressUpdates->first();
                 $currentProgress = $latestUpdate ? $latestUpdate->persentase : 0;
             @endphp
-            <div class="bg-white rounded-[24px] border border-gray-100 shadow-[0_2px_12px_rgba(0,0,0,0.03)] p-6 md:p-8 transition duration-200">
+            <div class="bg-white rounded-[28px] border border-gray-100 shadow-[0_10px_40px_rgba(0,0,0,0.06)] p-6 md:p-8 transition duration-200">
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                     
                     {{-- Column 1: Info Kegiatan & Progress --}}
                     <div class="space-y-6">
                         <div>
-                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-[#E8F5EE] text-[#2E7D5E] mb-3">
-                                <span class="w-1.5 h-1.5 rounded-full bg-[#2E7D5E]"></span>
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-[var(--color-bg-light)] text-[#E62129] mb-3">
+                                <span class="w-1.5 h-1.5 rounded-full bg-[#E62129]"></span>
                                 {{ ucfirst($surat->status_pelaksanaan) }}
                             </span>
-                            <h2 class="text-2xl font-playfair font-bold text-[#1A2B24]">{{ $detail->nama_kegiatan ?? $surat->perihal }}</h2>
+                            <h2 class="text-2xl font-sans font-bold text-[#111111]">{{ $detail->nama_kegiatan ?? $surat->perihal }}</h2>
                             <p class="text-xs text-gray-500 mt-1">
                                 Organisasi: <span class="font-semibold text-gray-700">{{ $surat->organisasi->nama ?? '-' }}</span>
                             </p>
                         </div>
 
                         {{-- Timeline --}}
-                        <div class="bg-gray-50 rounded-2xl p-4 border border-gray-100 space-y-2.5 text-xs text-gray-600">
+                        <div class="bg-gray-50 rounded-[28px] p-4 border border-gray-100 space-y-2.5 text-xs text-gray-600">
                             <div class="flex items-center gap-2">
                                 <i data-lucide="calendar" class="w-4 h-4 text-gray-400 shrink-0"></i>
                                 <span>
@@ -57,10 +57,10 @@
                         <div class="space-y-2">
                             <div class="flex justify-between items-center text-xs font-bold">
                                 <span class="text-gray-400 uppercase tracking-widest">Progress Pelaksanaan</span>
-                                <span class="text-[#2E7D5E]">{{ $currentProgress }}%</span>
+                                <span class="text-[#E62129]">{{ $currentProgress }}%</span>
                             </div>
                             <div class="w-full bg-gray-150 h-3.5 rounded-full overflow-hidden">
-                                <div class="bg-[#2E7D5E] h-full rounded-full transition-all duration-500" style="width: {{ $currentProgress }}%"></div>
+                                <div class="bg-[#E62129] h-full rounded-full transition-all duration-500" style="width: {{ $currentProgress }}%"></div>
                             </div>
                         </div>
                     </div>
@@ -76,9 +76,9 @@
                                     <div class="flex items-center gap-3">
                                         <input type="range" name="persentase" min="0" max="100" value="{{ $currentProgress }}"
                                                id="slider-{{ $surat->id }}"
-                                               class="w-full h-1.5 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#2E7D5E]"
+                                               class="w-full h-1.5 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#E62129]"
                                                oninput="document.getElementById('badge-{{ $surat->id }}').textContent = this.value + '%'">
-                                        <span id="badge-{{ $surat->id }}" class="bg-white border border-gray-200 px-3 py-1.5 rounded-xl text-xs font-bold text-gray-700 shrink-0 shadow-sm">
+                                        <span id="badge-{{ $surat->id }}" class="bg-white border border-gray-200 px-3 py-1.5 rounded-2xl text-xs font-bold text-gray-700 shrink-0 shadow-sm">
                                             {{ $currentProgress }}%
                                         </span>
                                     </div>
@@ -87,11 +87,11 @@
                                 <div>
                                     <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1.5">Catatan Progress</label>
                                     <textarea name="catatan" rows="2" placeholder="Tulis perkembangan pelaksanaan kegiatan..." required
-                                              class="w-full bg-white border border-gray-250 rounded-xl py-3 px-4 text-xs focus:ring-1 focus:ring-[#2E7D5E] focus:border-[#2E7D5E] transition outline-none resize-none"></textarea>
+                                              class="w-full bg-white border border-gray-250 rounded-2xl py-3 px-4 text-xs focus:ring-1 focus:ring-[#E62129] focus:border-[#E62129] transition outline-none resize-none"></textarea>
                                 </div>
 
                                 <button type="submit"
-                                        class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-[#4F6560] text-white rounded-xl text-xs font-bold hover:bg-[#3d504c] transition shadow-sm">
+                                        class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-[var(--color-primary)] text-white rounded-2xl text-xs font-bold hover:bg-[var(--color-primary-dark)] transition shadow-sm">
                                     <i data-lucide="save" class="w-4 h-4"></i> Simpan Progress
                                 </button>
                             </form>
@@ -101,7 +101,7 @@
                         <div class="pt-4 border-t border-gray-150">
                             <button type="button"
                                     onclick="openSelesaiModal('{{ route('pelaksanaan.selesai', $surat->id) }}', '{{ $detail->nama_kegiatan ?? $surat->perihal }}')"
-                                    class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-emerald-600 text-white rounded-xl text-xs font-bold hover:bg-emerald-700 transition shadow-sm">
+                                    class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-emerald-600 text-white rounded-2xl text-xs font-bold hover:bg-emerald-700 transition shadow-sm">
                                 <i data-lucide="check-circle" class="w-4 h-4"></i> Tandai Kegiatan Selesai
                             </button>
                         </div>
@@ -135,9 +135,9 @@
                 </div>
             </div>
         @empty
-            <div class="bg-white rounded-[24px] border border-gray-100 shadow-[0_2px_12px_rgba(0,0,0,0.03)] p-16 text-center">
-                <div class="w-16 h-16 bg-[#E8F5EE] rounded-2xl flex items-center justify-center mx-auto mb-4">
-                    <i data-lucide="check-circle" class="w-8 h-8 text-[#2E7D5E]"></i>
+            <div class="bg-white rounded-[28px] border border-gray-100 shadow-[0_10px_40px_rgba(0,0,0,0.06)] p-16 text-center">
+                <div class="w-16 h-16 bg-[var(--color-bg-light)] rounded-[28px] flex items-center justify-center mx-auto mb-4">
+                    <i data-lucide="check-circle" class="w-8 h-8 text-[#E62129]"></i>
                 </div>
                 <h3 class="text-lg font-bold text-gray-800 mb-1">Tidak Ada Kegiatan Aktif</h3>
                 <p class="text-sm text-gray-500">Anda tidak terdaftar sebagai PIC untuk kegiatan aktif apapun saat ini.</p>
@@ -154,9 +154,9 @@
             <div class="w-16 h-16 bg-emerald-50 rounded-full flex items-center justify-center mx-auto mb-4">
                 <i data-lucide="check-circle" class="w-8 h-8 text-emerald-600"></i>
             </div>
-            <h3 class="text-xl font-playfair font-bold text-[#1A2B24] mb-1">Tandai Kegiatan Selesai</h3>
+            <h3 class="text-xl font-sans font-bold text-[#111111] mb-1">Tandai Kegiatan Selesai</h3>
             <p class="text-xs text-gray-500">
-                <span id="selesaiModalTitle" class="font-semibold text-[#4F6560]"></span>
+                <span id="selesaiModalTitle" class="font-semibold text-[var(--color-text)]"></span>
             </p>
             <p class="text-xs text-gray-400 mt-2 px-4">
                 Dengan menandai kegiatan selesai, sistem akan mengunci alur progress dan membuat draf Laporan Pertanggungjawaban (LPJ).
@@ -171,16 +171,16 @@
                 </label>
                 <textarea id="catatanPenutupInput" name="catatan_penutup" rows="4" required
                           placeholder="Berikan ringkasan penutup hasil pelaksanaan kegiatan, kendala, atau kesimpulan..."
-                          class="w-full bg-gray-50 border-none rounded-2xl py-3 px-4 text-xs focus:ring-2 focus:ring-emerald-100 transition outline-none resize-none"></textarea>
+                          class="hivi-input"></textarea>
             </div>
 
             <div class="mt-6 flex flex-col gap-3">
                 <button type="submit"
-                        class="w-full py-4 bg-emerald-600 text-white rounded-2xl text-sm font-bold shadow-lg shadow-emerald-100 hover:bg-emerald-700 transition flex items-center justify-center gap-2">
+                        class="w-full py-4 bg-emerald-600 text-white rounded-[28px] text-sm font-bold shadow-lg shadow-emerald-100 hover:bg-emerald-700 transition flex items-center justify-center gap-2">
                     <i data-lucide="check" class="w-4 h-4"></i> Selesaikan Kegiatan
                 </button>
                 <button type="button" onclick="closeSelesaiModal()"
-                        class="w-full py-3 bg-white text-gray-500 rounded-2xl text-sm font-bold hover:bg-gray-50 transition">
+                        class="w-full py-3 bg-white text-gray-500 rounded-[28px] text-sm font-bold hover:bg-gray-50 transition">
                     Batal
                 </button>
             </div>
@@ -221,3 +221,6 @@
     });
 </script>
 @endpush
+
+
+

@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Onboarding — HR Sinergi Hotel & Villa</title>
+    <title>Onboarding — HR SIMORA SMK Telkom Sidoarjo</title>
 
     <link rel="shortcut icon" href="{{ URL::to('assets/images/favicon.ico') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
@@ -26,7 +26,7 @@
         /* ── KIRI ── */
         .left-panel {
             flex: 1.4;
-            background: linear-gradient(145deg, #C5D9CE 0%, #80BB9B 50%, #4F6560 100%);
+            background: linear-gradient(145deg, #C5D9CE 0%, var(--color-primary) 50%, var(--color-text) 100%);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -67,7 +67,7 @@
         }
 
         .left-brand h1 {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Poppins', sans-serif;
             font-size: 52px;
             font-weight: 700;
             color: white;
@@ -135,7 +135,7 @@
         }
 
         .ob-card h2 {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Poppins', sans-serif;
             font-size: 28px;
             font-weight: 700;
             color: #1A2B24;
@@ -179,14 +179,14 @@
         }
 
         .step-item.active .step-circle {
-            background: #4F6560;
-            border-color: #4F6560;
+            background: var(--color-text);
+            border-color: var(--color-text);
             color: white;
         }
 
         .step-item.done .step-circle {
-            background: #80BB9B;
-            border-color: #80BB9B;
+            background: var(--color-primary);
+            border-color: var(--color-primary);
             color: white;
         }
 
@@ -196,7 +196,7 @@
             color: #9CA3AF;
         }
         .step-item.active .step-label,
-        .step-item.done .step-label { color: #4F6560; }
+        .step-item.done .step-label { color: var(--color-text); }
 
         .step-line {
             flex: 1;
@@ -204,7 +204,7 @@
             background: #E5E7EB;
             margin: 0 12px;
         }
-        .step-line.done { background: #80BB9B; }
+        .step-line.done { background: var(--color-primary); }
 
         /* ── FORM ELEMENTS ── */
         .form-group { margin-bottom: 20px; }
@@ -232,31 +232,31 @@
             transition: box-shadow 0.2s;
             letter-spacing: 0.05em;
         }
-        .hv-input:focus { box-shadow: 0 0 0 2px #80BB9B; }
+        .hv-input:focus { box-shadow: 0 0 0 2px var(--color-primary); }
         .hv-input::placeholder { color: #9CA3AF; letter-spacing: 0; }
 
         /* ── UPLOAD AREA ── */
         .upload-area {
-            border: 2px dashed #D1E8DC;
+            border: 2px dashed var(--color-border);
             border-radius: 16px;
             padding: 32px 20px;
             text-align: center;
             cursor: pointer;
             transition: all 0.2s;
-            background: #F6FAF8;
+            background: var(--color-bg-light);
         }
         .upload-area:hover {
-            border-color: #80BB9B;
-            background: #EDF7F1;
+            border-color: var(--color-primary);
+            background: #fca5a5;
         }
         .upload-area input { display: none; }
         .upload-icon {
             width: 44px; height: 44px;
-            background: #E8F5EE;
+            background: var(--color-bg-light);
             border-radius: 12px;
             display: flex; align-items: center; justify-content: center;
             margin: 0 auto 12px;
-            color: #4F6560;
+            color: var(--color-text);
         }
         .upload-title {
             font-size: 14px;
@@ -282,8 +282,8 @@
         }
 
         .ttd-saved-box {
-            background: #F6FAF8;
-            border: 1px solid #D1E8DC;
+            background: var(--color-bg-light);
+            border: 1px solid var(--color-border);
             border-radius: 16px;
             padding: 20px;
             text-align: center;
@@ -305,7 +305,7 @@
         }
         .ttd-check {
             font-size: 12px;
-            color: #4F6560;
+            color: var(--color-text);
             font-weight: 500;
             display: flex;
             align-items: center;
@@ -316,11 +316,11 @@
         /* ── INFO BOX ── */
         .info-box {
             background: #F0F7F3;
-            border-left: 3px solid #80BB9B;
+            border-left: 3px solid var(--color-primary);
             border-radius: 0 10px 10px 0;
             padding: 12px 16px;
             font-size: 12px;
-            color: #4F6560;
+            color: var(--color-text);
             margin-bottom: 20px;
             font-weight: 300;
             line-height: 1.5;
@@ -339,7 +339,7 @@
         /* ── BUTTON ── */
         .btn-submit {
             width: 100%;
-            background: #4F6560;
+            background: var(--color-text);
             color: white;
             border: none;
             border-radius: 9999px;
@@ -487,12 +487,12 @@
                 @csrf
 
                 <div class="form-group">
-                    <label>Upload Tanda Tangan Digital</label>
+                    <label>Unggah Tanda Tangan Digital</label>
                     <div class="upload-area" onclick="document.getElementById('ttd').click()">
                         <div class="upload-icon">
                             <i data-lucide="upload" style="width:20px;height:20px;"></i>
                         </div>
-                        <p class="upload-title">Klik untuk upload file</p>
+                        <p class="upload-title">Klik untuk mengunggah file</p>
                         <p class="upload-sub">Format PNG, JPG, JPEG · Maks. 2MB</p>
                         <input type="file" id="ttd" name="ttd" accept=".png,.jpg,.jpeg"
                             @change="

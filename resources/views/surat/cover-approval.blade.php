@@ -15,14 +15,14 @@
   /* Header */
   .header {
     text-align: center;
-    border-bottom: 2px solid #4F6560;
+    border-bottom: 2px solid var(--color-text);
     padding-bottom: 16px;
     margin-bottom: 24px;
   }
   .header h2 {
     font-size: 18px;
     font-weight: bold;
-    color: #4F6560;
+    color: var(--color-text);
     margin-bottom: 4px;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -39,7 +39,7 @@
   .ttd-section-title {
     font-size: 13px;
     font-weight: bold;
-    color: #4F6560;
+    color: var(--color-text);
     border-bottom: 1px solid #e5e7eb;
     padding-bottom: 8px;
     margin-bottom: 20px;
@@ -135,7 +135,7 @@
 {{-- Header --}}
 <div class="header">
   <h2>Lembar Persetujuan Dokumen</h2>
-  <p>{{ $settings['company_name'] ?? 'HR Sinergi Hotel & Villa' }}</p>
+  <p>{{ $settings['company_name'] ?? 'HR SIMORA SMK Telkom Sidoarjo' }}</p>
 </div>
 
 {{-- Info Surat --}}

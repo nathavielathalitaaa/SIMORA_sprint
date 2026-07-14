@@ -366,6 +366,23 @@ class SuratController extends Controller
                 route('surat.show', $surat->id)
             );
 
+            // Broadcast ke semua approver lain
+            $approverIds = \App\Models\DocumentApproval::where('document_type', $documentType)
+                ->where('document_id', $surat->id)
+                ->whereNotNull('approver_id')
+                ->pluck('approver_id')
+                ->unique()
+                ->reject(fn($id) => $id == $surat->user_id);
+
+            foreach ($approverIds as $apprId) {
+                $this->notifService->send(
+                    $apprId,
+                    'Surat Disetujui Penuh',
+                    "Surat dengan nomor {$surat->nomor_surat} yang Anda setujui telah disetujui sepenuhnya oleh seluruh rantai approval.",
+                    route('surat.show', $surat->id)
+                );
+            }
+
             try {
                 $documentType = 'surat_' . $surat->jenis_surat;
                 
@@ -741,7 +758,12 @@ class SuratController extends Controller
             $request->tanggal_mulai
         );
 
-        return response()->json(['duplikat' => $duplikat]);
+        return response()->json([
+            'duplikat' => $duplikat,
+            'rekomendasi' => $duplikat
+                ? "Kegiatan \"{$duplikat['nama_kegiatan']}\" ({$duplikat['percent']}% mirip) sudah diajukan dengan nomor {$duplikat['nomor_surat']} pada {$duplikat['tanggal_mulai']}. Pertimbangkan untuk mengganti nama kegiatan agar lebih spesifik, atau pastikan ini bukan pengajuan ganda."
+                : null,
+        ]);
     }
 
     /**
@@ -763,6 +785,11 @@ class SuratController extends Controller
             $request->tanggal_selesai ?: null
         );
 
-        return response()->json(['konflik' => $konflik]);
+        return response()->json([
+            'konflik' => $konflik,
+            'rekomendasi' => $konflik
+                ? "Lokasi \"{$request->lokasi}\" sudah dipakai oleh {$konflik['organisasi_nama']} untuk kegiatan \"{$konflik['nama_kegiatan']}\" pada {$konflik['tanggal_mulai']}" . ($konflik['tanggal_selesai'] ? " s/d {$konflik['tanggal_selesai']}" : "") . ". Pilih lokasi lain atau ubah jadwal kegiatan Anda."
+                : null,
+        ]);
     }
 }

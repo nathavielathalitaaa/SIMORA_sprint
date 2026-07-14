@@ -3,7 +3,7 @@
 @section('content')
 <style>
     .hv-page-title {
-        font-family: 'Playfair Display', serif;
+        font-family: 'Poppins', sans-serif;
         font-size: 32px;
         color: #1A2B24;
         margin-bottom: 4px;
@@ -31,7 +31,7 @@
         margin-bottom: 24px;
     }
     .hv-section-title {
-        font-family: 'Playfair Display', serif;
+        font-family: 'Poppins', sans-serif;
         font-size: 20px;
         font-weight: 700;
         color: #1A2B24;
@@ -41,7 +41,7 @@
         gap: 12px;
     }
     .hv-section-title i {
-        color: #4F6560;
+        color: var(--color-text);
     }
     .hv-label {
         font-family: 'Poppins', sans-serif;
@@ -58,13 +58,13 @@
         padding: 12px 16px;
         border-radius: 12px;
         border: 1px solid #E5E7EB;
-        background: #F9FAFB;
+        background: #F5F5F7;
         font-size: 14px;
         transition: all 0.2s;
     }
     .hv-input:focus {
         outline: none;
-        border-color: #4F6560;
+        border-color: var(--color-text);
         background: white;
         box-shadow: 0 0 0 4px rgba(79, 101, 96, 0.1);
     }
@@ -110,8 +110,8 @@
         color: #4B5563;
     }
     .hv-pill-tool:hover {
-        border-color: #4F6560;
-        color: #4F6560;
+        border-color: var(--color-text);
+        color: var(--color-text);
     }
     .hv-active-format {
         display: flex;
@@ -125,7 +125,7 @@
         border-radius: 12px;
     }
     .hv-format-item {
-        background: #E8F5EE;
+        background: var(--color-bg-light);
         color: #2E7D5E;
         border: 1px solid #A7F3D0;
         padding: 6px 12px;
@@ -174,7 +174,7 @@
     .hv-step-number {
         width: 24px;
         height: 24px;
-        background: #4F6560;
+        background: var(--color-text);
         color: white;
         border-radius: 50%;
         display: flex;
@@ -187,8 +187,8 @@
         width: 100%;
         padding: 12px;
         background: transparent;
-        border: 1px dashed #4F6560;
-        color: #4F6560;
+        border: 1px dashed var(--color-text);
+        color: var(--color-text);
         border-radius: 12px;
         font-size: 13px;
         font-weight: 600;
@@ -257,14 +257,14 @@
         border-radius: 50%;
     }
     input:checked + .hv-toggle-slider {
-        background-color: #4F6560;
+        background-color: var(--color-text);
     }
     input:checked + .hv-toggle-slider:before {
         transform: translateX(20px);
     }
 
     .hv-btn-submit {
-        background: #4F6560;
+        background: var(--color-text);
         color: white;
         padding: 16px 32px;
         border-radius: 999px;
@@ -284,23 +284,23 @@
 
     /* Card Index Style for Preview */
     .hv-p-card { border-radius: 20px; padding: 24px; background: white; border: 1px solid #f0f0f0; }
-    .hv-p-nama { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: #1A2B24; margin-bottom: 4px; }
-    .hv-p-kode { background: #E8F5EE; color: #2E7D5E; padding: 2px 10px; border-radius: 999px; font-size: 10px; font-weight: 600; text-transform: uppercase; }
+    .hv-p-nama { font-family: 'Poppins', sans-serif; font-size: 18px; font-weight: 700; color: #1A2B24; margin-bottom: 4px; }
+    .hv-p-kode { background: var(--color-bg-light); color: #2E7D5E; padding: 2px 10px; border-radius: 999px; font-size: 10px; font-weight: 600; text-transform: uppercase; }
     .hv-p-desc { font-size: 12px; color: #6B7280; margin: 12px 0; }
     .hv-p-label { font-size: 9px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: #9CA3AF; margin-bottom: 6px; }
     .hv-p-chain { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-bottom: 16px; }
     .hv-p-pill { background: #F3F4F6; color: #374151; padding: 3px 8px; border-radius: 4px; font-size: 10px; font-weight: 500; }
-    .hv-p-nomor { background: #F9FAFB; border: 1px dashed #D1D5DB; border-radius: 6px; padding: 6px; font-family: monospace; font-size: 11px; color: #4B5563; text-align: center; }
+    .hv-p-nomor { background: #F5F5F7; border: 1px dashed #D1D5DB; border-radius: 6px; padding: 6px; font-family: monospace; font-size: 11px; color: #4B5563; text-align: center; }
 </style>
 
 <div class="mb-8">
-    <h1 class="text-3xl font-playfair font-bold text-[#1A2B24]">{{ isset($suratType) ? 'Edit Document Type' : 'Add Document Type' }}</h1>
-    <p class="text-[13px] font-light text-[#6B7280] mt-1">Define the number format and approval workflow for your documents.</p>
+    <h1 class="text-3xl font-sans font-bold text-[#1A2B24]">{{ isset($suratType) ? 'Ubah Tipe Dokumen' : 'Tambah Tipe Dokumen' }}</h1>
+    <p class="text-[13px] font-light text-[#6B7280] mt-1">Tentukan format nomor dan alur kerja persetujuan untuk dokumen Anda.</p>
 </div>
 
 @if($errors->any())
 <div style="background: #FEE2E2; border: 1px solid #EF4444; color: #B91C1C; padding: 16px; border-radius: 12px; margin-bottom: 24px;">
-    <p style="font-weight: 600; margin-bottom: 8px;">Wait, something is missing or wrong:</p>
+    <p style="font-weight: 600; margin-bottom: 8px;">Tunggu, ada yang kurang atau salah:</p>
     <ul style="font-size: 13px; list-style-type: disc; margin-left: 20px;">
         @foreach($errors->all() as $error)
             <li>{{ $error }}</li>
@@ -320,23 +320,23 @@
             <div class="hv-section-card">
                 <h2 class="hv-section-title">
                     <i data-lucide="info" style="width: 20px; height: 20px;"></i>
-                    Document Type Information
+                    Informasi Tipe Dokumen
                 </h2>
                 
                 <div class="hv-form-row">
                     <div class="hv-form-group">
-                        <label class="hv-label">Document Name</label>
-                        <input type="text" name="nama" id="input_nama" class="hv-input" placeholder="Example: Work Permit Letter" value="{{ $suratType->nama ?? '' }}" required>
+                        <label class="hv-label">Nama Dokumen</label>
+                        <input type="text" name="nama" id="input_nama" class="hv-input" placeholder="Contoh: Surat Izin Kerja" value="{{ $suratType->nama ?? '' }}" required>
                     </div>
                     <div class="hv-form-group">
-                        <label class="hv-label">Code / Slug</label>
-                        <input type="text" name="kode" id="input_kode" class="hv-input" placeholder="Example: permit" value="{{ $suratType->kode ?? '' }}" required>
+                        <label class="hv-label">Kode / Slug</label>
+                        <input type="text" name="kode" id="input_kode" class="hv-input" placeholder="Contoh: izin" value="{{ $suratType->kode ?? '' }}" required>
                     </div>
                 </div>
 
                 <div class="hv-form-group">
-                    <label class="hv-label">Description (Optional)</label>
-                    <textarea name="deskripsi" id="input_deskripsi" class="hv-input hv-textarea" placeholder="Explain the purpose of this document...">{{ $suratType->deskripsi ?? '' }}</textarea>
+                    <label class="hv-label">Deskripsi (Opsional)</label>
+                    <textarea name="deskripsi" id="input_deskripsi" class="hv-input hv-textarea" placeholder="Jelaskan tujuan dokumen ini...">{{ $suratType->deskripsi ?? '' }}</textarea>
                 <div class="hv-form-row">
                     <div class="hv-form-group">
                         <label class="hv-label">Berlaku untuk Organisasi</label>
@@ -354,21 +354,21 @@
 
                 <div class="hv-form-row">
                     <div class="hv-form-group">
-                        <label class="hv-label">Number Counter Reset</label>
+                        <label class="hv-label">Reset Penghitung Nomor</label>
                         <select name="nomor_reset" class="hv-input">
-                            <option value="yearly" {{ (isset($suratType) && $suratType->nomor_reset == 'yearly') ? 'selected' : '' }}>Every Year</option>
-                            <option value="monthly" {{ (isset($suratType) && $suratType->nomor_reset == 'monthly') ? 'selected' : '' }}>Every Month</option>
-                            <option value="never" {{ (isset($suratType) && $suratType->nomor_reset == 'never') ? 'selected' : '' }}>Never</option>
+                            <option value="yearly" {{ (isset($suratType) && $suratType->nomor_reset == 'yearly') ? 'selected' : '' }}>Setiap Tahun</option>
+                            <option value="monthly" {{ (isset($suratType) && $suratType->nomor_reset == 'monthly') ? 'selected' : '' }}>Setiap Bulan</option>
+                            <option value="never" {{ (isset($suratType) && $suratType->nomor_reset == 'never') ? 'selected' : '' }}>Tidak Pernah</option>
                         </select>
                     </div>
                     <div class="hv-form-group">
-                        <label class="hv-label">Active Status</label>
+                        <label class="hv-label">Status Aktif</label>
                         <div style="display: flex; align-items: center; gap: 12px; height: 46px;">
                             <label class="hv-toggle">
                                 <input type="checkbox" name="is_active" value="1" {{ (!isset($suratType) || $suratType->is_active) ? 'checked' : '' }}>
                                 <span class="hv-toggle-slider"></span>
                             </label>
-                            <span style="font-size: 14px; color: #4B5563;">Active & Available</span>
+                            <span style="font-size: 14px; color: #4B5563;">Aktif & Tersedia</span>
                         </div>
                     </div>
                 </div>
@@ -378,10 +378,10 @@
             <div class="hv-section-card">
                 <h2 class="hv-section-title">
                     <i data-lucide="hash" style="width: 20px; height: 20px;"></i>
-                    Document Number Format
+                    Format Nomor Dokumen
                 </h2>
                 
-                <p class="hv-label" style="color: #9CA3AF; margin-bottom: 16px;">Click the components below to add them to the format:</p>
+                <p class="hv-label" style="color: #9CA3AF; margin-bottom: 16px;">Klik komponen di bawah ini untuk menambahkannya ke format:</p>
                 
                 <div class="hv-component-pool">
                     <div class="hv-pill hv-pill-tool" onclick="addFormatItem('NOMOR_URUT')">
@@ -417,7 +417,7 @@
             <div class="hv-section-card">
                 <h2 class="hv-section-title">
                     <i data-lucide="git-branch" style="width: 20px; height: 20px;"></i>
-                    Approval Workflow
+                    Alur Kerja Persetujuan
                 </h2>
                 
                 <div class="hv-step-list" id="approver_container">
@@ -426,32 +426,32 @@
                 
                 <button type="button" class="hv-btn-add-step" onclick="addApproverStep()">
                     <i data-lucide="plus" style="display: inline; vertical-align: middle; width: 14px; height: 14px;"></i>
-                    Add Approval Step
+                    Tambah Langkah Persetujuan
                 </button>
             </div>
 
             <button type="submit" class="hv-btn-submit">
-                {{ isset($suratType) ? 'Update Document Type' : 'Save Document Type' }}
+                {{ isset($suratType) ? 'Perbarui Tipe Dokumen' : 'Simpan Tipe Dokumen' }}
             </button>
         </div>
 
         <div class="hv-form-right">
             <div class="hv-preview-card">
-                <p class="hv-preview-title">Live Preview</p>
+                <p class="hv-preview-title">Pratinjau Langsung</p>
                 <div class="hv-card-preview">
                     <div class="hv-p-card">
                         <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-                            <h2 class="hv-p-nama" id="p_nama">Document Name</h2>
-                            <span class="hv-p-kode" id="p_kode">CODE</span>
+                            <h2 class="hv-p-nama" id="p_nama">Nama Dokumen</h2>
+                            <span class="hv-p-kode" id="p_kode">KODE</span>
                         </div>
-                        <p class="hv-p-desc" id="p_desc">Document description will appear here as you type...</p>
+                        <p class="hv-p-desc" id="p_desc">Deskripsi dokumen akan muncul di sini saat Anda mengetik...</p>
                         
-                        <div class="hv-p-label">Approval Workflow</div>
+                        <div class="hv-p-label">Alur Kerja Persetujuan</div>
                         <div class="hv-p-chain" id="p_chain">
                             {{-- preview steps --}}
                         </div>
                         
-                        <div class="hv-p-label">Example Number</div>
+                        <div class="hv-p-label">Contoh Nomor</div>
                         <div class="hv-p-nomor" id="p_nomor">001/KODE/V/2026</div>
                     </div>
                 </div>
@@ -709,9 +709,9 @@
                 
                 s.innerHTML = `
                     <div style="display:flex; flex-direction:column; align-items:center;">
-                        <span>${displayText || 'Approver'}</span>
+                        <span>${displayText || 'Penyetuju'}</span>
                         <span style="font-size:8px; font-weight:normal; background: ${step.is_signer !== false ? '#E0F2FE' : '#F3F4F6'}; color: ${step.is_signer !== false ? '#0284C7' : '#6B7280'}; padding: 1px 4px; border-radius: 4px; margin-top: 2px;">
-                            ${step.is_signer !== false ? 'Approve + TTD' : 'Approve Only'}
+                            ${step.is_signer !== false ? 'Setujui + TTD' : 'Hanya Setujui'}
                         </span>
                     </div>
                 `;
@@ -758,3 +758,4 @@
     updatePreview();
 </script>
 @endpush
+

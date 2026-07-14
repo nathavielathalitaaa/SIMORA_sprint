@@ -5,7 +5,7 @@
 {{-- Header --}}
 <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
     <div>
-        <h1 class="text-3xl font-playfair font-bold text-[#1A2B24]">Template Surat Turunan</h1>
+        <h1 class="text-3xl font-sans font-bold text-[#1A2B24]">Template Surat Turunan</h1>
         <p class="text-[13px] font-light text-[#6B7280] mt-1">
             Kelola teks default untuk setiap jenis surat turunan yang bisa digenerate dari surat induk.
         </p>
@@ -13,7 +13,7 @@
 </div>
 
 {{-- Info banner placeholder --}}
-<div class="mb-6 flex items-start gap-3 p-4 rounded-2xl border border-blue-100 bg-blue-50/60">
+<div class="mb-6 flex items-start gap-3 p-4 rounded-[28px] border border-blue-100 bg-blue-50/60">
     <i data-lucide="info" class="w-4 h-4 text-blue-500 mt-0.5 shrink-0"></i>
     <div class="text-xs text-blue-700 leading-relaxed">
         <span class="font-semibold">Placeholder token</span> — gunakan
@@ -35,12 +35,12 @@
         {{-- Card header --}}
         <div class="flex items-start justify-between p-6 pb-4">
             <div class="flex items-start gap-3">
-                <div class="w-10 h-10 rounded-xl bg-[#E8F5EE] flex items-center justify-center shrink-0">
+                <div class="w-10 h-10 rounded-2xl bg-[var(--color-bg-light)] flex items-center justify-center shrink-0">
                     <i data-lucide="file-text" class="w-5 h-5 text-[#2E7D5E]"></i>
                 </div>
                 <div>
-                    <h2 class="text-base font-playfair font-bold text-[#1A2B24]">{{ $tpl->nama }}</h2>
-                    <span class="inline-block mt-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wide bg-[#E8F5EE] text-[#2E7D5E]">
+                    <h2 class="text-base font-sans font-bold text-[#1A2B24]">{{ $tpl->nama }}</h2>
+                    <span class="inline-block mt-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wide bg-[var(--color-bg-light)] text-[#2E7D5E]">
                         {{ $tpl->kode }}
                     </span>
                 </div>
@@ -62,16 +62,16 @@
         {{-- Preview konten --}}
         <div class="px-6 pb-4 flex-1">
             <p class="text-xs text-gray-400 font-medium uppercase tracking-widest mb-2">Preview Isi</p>
-            <div class="bg-gray-50 rounded-xl p-3 font-mono text-[11px] text-gray-500 leading-relaxed whitespace-pre-wrap break-words"
+            <div class="bg-gray-50 rounded-2xl p-3 font-mono text-[11px] text-gray-500 leading-relaxed whitespace-pre-wrap break-words"
                  style="max-height:120px; overflow:hidden;">{{ $preview }}</div>
         </div>
 
         {{-- Footer actions --}}
         <div class="px-6 pb-5 pt-2 flex items-center gap-3 border-t border-gray-50">
             <a href="{{ route('surat-turunan-template.edit', $tpl->id) }}"
-               class="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-[#4F6560] text-white rounded-full text-[13px] font-medium hover:bg-[#3d504c] transition">
+               class="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-[var(--color-primary)] text-white rounded-full text-[13px] font-medium hover:bg-[var(--color-primary-dark)] transition">
                 <i data-lucide="edit-3" class="w-3.5 h-3.5"></i>
-                Edit Template
+                Ubah Template
             </a>
             <span class="text-[11px] text-gray-300">
                 Diperbarui {{ $tpl->updated_at->diffForHumans() }}
@@ -124,3 +124,4 @@ async function toggleTemplate(id, btn) {
 }
 </script>
 @endpush
+

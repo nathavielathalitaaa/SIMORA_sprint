@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Logged Out | Sinergi Hotel & Villa</title>
+    <title>Keluar | SIMORA SMK Telkom Sidoarjo</title>
     
     {{-- Fonts --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     {{-- Lucide Icons --}}
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
@@ -22,7 +22,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #F6F6F6 0%, #E3EFE8 40%, #80BB9B 100%);
+            background: linear-gradient(135deg, #F6F6F6 0%, #F5F5F7 40%, var(--color-primary) 100%);
             background-attachment: fixed;
             padding: 24px;
         }
@@ -57,8 +57,8 @@
         .icon-circle {
             width: 80px;
             height: 80px;
-            background: #E8F5EE;
-            color: #4F6560;
+            background: var(--color-bg-light);
+            color: var(--color-text);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -68,10 +68,10 @@
         }
 
         h1 {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Poppins', sans-serif;
             font-size: 32px;
             font-weight: 700;
-            color: #1A2B24;
+            color: #111111;
             margin-bottom: 12px;
         }
 
@@ -86,7 +86,7 @@
         .btn-signin {
             display: inline-block;
             width: 100%;
-            background: #4F6560;
+            background: var(--color-text);
             color: white;
             text-decoration: none;
             padding: 16px 24px;
@@ -94,13 +94,13 @@
             font-size: 15px;
             font-weight: 500;
             transition: all 0.2s;
-            box-shadow: 0 4px 12px rgba(79, 101, 96, 0.15);
+            box-shadow: 0 4px 12px rgba(230,33,41,0.10);
         }
 
         .btn-signin:hover {
-            background: #3d504c;
+            background: #E62129;
             transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(79, 101, 96, 0.2);
+            box-shadow: 0 6px 16px rgba(230,33,41,0.20);
         }
 
         .footer-text {
@@ -116,22 +116,22 @@
 
     <div class="logout-card">
         <div class="logo-box">
-            <img src="{{ URL::to('assets/images/logo-sinergi.png') }}" alt="Sinergi Hotel & Villa">
+            <img src="{{ URL::to('assets/images/logo-sinergi.png') }}" alt="SIMORA SMK Telkom Sidoarjo">
         </div>
 
         <div class="icon-circle">
             <i data-lucide="log-out" style="width: 32px; height: 32px;"></i>
         </div>
 
-        <h1>Logged Out</h1>
-        <p>Thank you for using the Sinergi HRIS.<br>You have been safely signed out of your account.</p>
+        <h1>Telah Keluar</h1>
+        <p>Terima kasih telah menggunakan Sinergi HRIS.<br>Anda telah keluar dari akun Anda dengan aman.</p>
 
         <a href="{{ route('login') }}" class="btn-signin">
-            Return to Sign In
+            Kembali Ke Halaman Masuk
         </a>
 
         <div class="footer-text">
-            Sinergi Hotel & Villa &middot; HRIS System
+            SIMORA SMK Telkom Sidoarjo &middot; HRIS System
         </div>
     </div>
 

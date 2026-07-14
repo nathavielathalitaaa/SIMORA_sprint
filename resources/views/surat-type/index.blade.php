@@ -3,7 +3,7 @@
 @section('content')
 <style>
     .hv-page-title {
-        font-family: 'Playfair Display', serif;
+        font-family: 'Poppins', sans-serif;
         font-size: 32px;
         color: #1A2B24;
         margin-bottom: 4px;
@@ -38,14 +38,14 @@
         margin-bottom: 16px;
     }
     .hv-surat-nama {
-        font-family: 'Playfair Display', serif;
+        font-family: 'Poppins', sans-serif;
         font-size: 18px;
         font-weight: 700;
         color: #1A2B24;
         margin: 0;
     }
     .hv-surat-kode {
-        background: #E8F5EE;
+        background: var(--color-bg-light);
         color: #2E7D5E;
         padding: 4px 12px;
         border-radius: 999px;
@@ -77,7 +77,7 @@
         margin-bottom: 20px;
     }
     .hv-approver-pill {
-        background: #E8F5EE;
+        background: var(--color-bg-light);
         color: #0F6E56;
         padding: 4px 12px;
         border-radius: 999px;
@@ -103,7 +103,7 @@
         color: #1A2B24;
     }
     .hv-nomor-preview {
-        background: #F9FAFB;
+        background: #F5F5F7;
         border: 1px dashed #D1D5DB;
         border-radius: 8px;
         padding: 8px 12px;
@@ -120,7 +120,7 @@
     }
     .hv-btn-edit {
         flex: 1;
-        background: #4F6560;
+        background: var(--color-text);
         color: white;
         border: none;
         padding: 10px;
@@ -160,7 +160,7 @@
         align-items: flex-end;
     }
     .hv-btn-add {
-        background: #4F6560;
+        background: var(--color-text);
         color: white;
         padding: 12px 24px;
         border-radius: 999px;
@@ -181,12 +181,12 @@
 
 <div class="mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
     <div>
-        <h1 class="text-3xl font-playfair font-bold text-[#1A2B24]">Manage Document Types</h1>
-        <p class="text-[13px] font-light text-[#6B7280] mt-1">Configure document types and approval workflows for your organization.</p>
+        <h1 class="text-3xl font-sans font-bold text-[#1A2B24]">Kelola Tipe Dokumen</h1>
+        <p class="text-[13px] font-light text-[#6B7280] mt-1">Konfigurasikan tipe dokumen dan alur kerja persetujuan untuk organisasi Anda.</p>
     </div>
     <a href="{{ route('surat-type.create') }}" class="hv-btn-add" style="margin-bottom: 0;">
         <i data-lucide="plus" style="width: 18px; height: 18px;"></i>
-        Add Document Type
+        Tambah Tipe Dokumen
     </a>
 </div>
 
@@ -198,22 +198,22 @@
                 <h2 class="hv-surat-nama">{{ $type->nama }}</h2>
                 <div class="mt-1 flex gap-2">
                     @if($type->organisasi_tipe === 'osis')
-                        <span class="px-2 py-0.5 rounded text-[10px] font-semibold uppercase" style="background:#E8F5EE; color:#2E7D5E;">OSIS</span>
+                        <span class="px-2 py-0.5 rounded text-[10px] font-semibold uppercase" style="background:var(--color-bg-light); color:#2E7D5E;">OSIS</span>
                     @elseif($type->organisasi_tipe === 'mpk')
                         <span class="px-2 py-0.5 rounded text-[10px] font-semibold uppercase" style="background:#E0F2FE; color:#0369A1;">MPK</span>
                     @elseif($type->organisasi_tipe === 'sub_organ')
                         <span class="px-2 py-0.5 rounded text-[10px] font-semibold uppercase" style="background:#FEF3C7; color:#B45309;">Sub Organ</span>
                     @else
-                        <span class="px-2 py-0.5 rounded text-[10px] font-semibold uppercase" style="background:#F1F5F9; color:#475569;">Generic</span>
+                        <span class="px-2 py-0.5 rounded text-[10px] font-semibold uppercase" style="background:#F1F5F9; color:#475569;">Generik</span>
                     @endif
                 </div>
             </div>
             <span class="hv-surat-kode">{{ $type->kode }}</span>
         </div>
         
-        <p class="hv-surat-desc">{{ $type->deskripsi ?: 'No description available.' }}</p>
+        <p class="hv-surat-desc">{{ $type->deskripsi ?: 'Tidak ada deskripsi yang tersedia.' }}</p>
 
-        <div class="hv-section-label">Approval Workflow</div>
+        <div class="hv-section-label">Alur Kerja Persetujuan</div>
         <div class="hv-approver-chain">
             @forelse($type->approvers as $index => $approver)
                 <span class="hv-approver-pill">{{ $approver->jabatan_label }}</span>
@@ -221,20 +221,20 @@
                     <i data-lucide="arrow-right" class="hv-chain-arrow" style="width: 14px; height: 14px;"></i>
                 @endif
             @empty
-                <span class="text-[12px] text-gray-400 italic">Not configured</span>
+                <span class="text-[12px] text-gray-400 italic">Belum dikonfigurasi</span>
             @endforelse
         </div>
 
         <div class="hv-stats-row">
             <div class="hv-stat-item">
-                <b>{{ $type->surats_count }}</b> Documents
+                <b>{{ $type->surats_count }}</b> Dokumen
             </div>
             <div class="hv-stat-item">
-                <b>{{ $type->surats()->where('status', 'approved_owner')->count() }}</b> Approved
+                <b>{{ $type->surats()->where('status', 'approved_owner')->count() }}</b> Disetujui
             </div>
         </div>
 
-        <div class="hv-section-label">DISPLAYED NUMBERING</div>
+        <div class="hv-section-label">TAMPILAN FORMAT NOMOR</div>
         <div class="hv-nomor-preview">
             @php
                 $now = now();
@@ -256,8 +256,8 @@
         </div>
 
         <div class="hv-card-actions">
-            <a href="{{ route('surat-type.edit', $type->id) }}" class="hv-btn-edit">Edit Document Type</a>
-            <form action="{{ route('surat-type.destroy', $type->id) }}" method="POST" onsubmit="return confirm('Delete this document type? This will also delete all associated documents.')">
+            <a href="{{ route('surat-type.edit', $type->id) }}" class="hv-btn-edit">Ubah Tipe Dokumen</a>
+            <form action="{{ route('surat-type.destroy', $type->id) }}" method="POST" onsubmit="return confirm('Hapus tipe dokumen ini? Ini juga akan menghapus semua dokumen yang terkait.')">
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="hv-btn-delete" title="Delete">
@@ -270,3 +270,4 @@
 </div>
 
 @endsection
+
