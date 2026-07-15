@@ -405,13 +405,15 @@
     color: #000000 !important;
 }
 
-/* Logout icon */
+/* Logout icon - same styling as other nav items */
 .hv-sidebar-logout {
-    color: rgba(255,255,255,0.8) !important;
+    color: rgba(255,255,255,0.9) !important;
+    background: transparent !important;
 }
-.hv-sidebar-logout:hover {
-    background: rgba(0, 0, 0, 0.1) !important;
-    color: #ffffff !important;
+.hv-sidebar-logout:hover,
+.hv-sidebar-logout.active {
+    color: #000000 !important;
+    background: transparent !important;
 }
 
 
@@ -476,6 +478,33 @@
 }
 .hv-sidebar i {
     pointer-events: none; 
+}
+
+/* Suppress any tooltips on sidebar */
+.hv-sidebar a {
+    position: relative;
+    z-index: 1;
+}
+.hv-sidebar a::after {
+    display: none !important;
+}
+.hv-sidebar [data-tooltip] {
+    /* Prevent tippy.js tooltips if present */
+}
+.hv-sidebar [data-tippy-root] {
+    display: none !important;
+}
+
+/* Completely disable tooltips on sidebar elements */
+.hv-sidebar a[title],
+.hv-sidebar a[data-tooltip],
+.hv-sidebar a[data-tippy-content] {
+    pointer-events: auto !important;
+}
+.hv-sidebar a[title]::before,
+.hv-sidebar a[title]::after {
+    display: none !important;
+    content: none !important;
 }
 </style>
 
@@ -617,6 +646,25 @@
   <script>
     lucide.createIcons();
     document.addEventListener('DOMContentLoaded', function() {
+      // Completely prevent tooltips on sidebar by disabling tippy.js for these elements
+      const sidebarLinks = document.querySelectorAll('.hv-sidebar a');
+      sidebarLinks.forEach(link => {
+        // Remove all tooltip-related attributes
+        link.removeAttribute('title');
+        link.removeAttribute('data-tooltip');
+        link.removeAttribute('data-tippy-content');
+        link.removeAttribute('data-tooltip-content');
+        link.removeAttribute('data-tooltip-trigger');
+        
+        // Destroy any existing tippy instances
+        if (link._tippy) {
+          link._tippy.destroy();
+        }
+        
+        // Prevent future tooltip initialization
+        link.setAttribute('data-tippy-ignore', 'true');
+      });
+
       // Mobile Menu
       const btn = document.getElementById('mobile-menu-btn');
       const sidebar = document.getElementById('hv-sidebar');

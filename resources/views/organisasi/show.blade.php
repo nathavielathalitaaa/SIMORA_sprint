@@ -182,7 +182,7 @@
 <style>
 /* ── Breadcrumb ── */
 .breadcrumb-back {
-    color: #6B7280;
+    color: var(--color-text-muted);
     font-size: 13px;
     display: inline-flex;
     align-items: center;
@@ -191,7 +191,7 @@
     font-weight: 500;
     transition: color .2s;
 }
-.breadcrumb-back:hover { color: #111111; }
+.breadcrumb-back:hover { color: var(--color-text); }
 
 /* ── Page Header ── */
 .content-header { margin-bottom: 2rem; }
@@ -199,14 +199,14 @@
     font-family: 'Poppins', sans-serif;
     font-size: 28px;
     font-weight: 700;
-    color: #111111;
+    color: var(--color-text);
     display: flex;
     align-items: center;
     gap: 12px;
     flex-wrap: wrap;
     margin: 8px 0 4px;
 }
-.page-subtitle { color: #6B7280; font-size: 13px; margin: 0; }
+.page-subtitle { color: var(--color-text-muted); font-size: 13px; margin: 0; }
 
 /* ── Layout Grid ── */
 .show-grid {
@@ -214,26 +214,26 @@
     grid-template-columns: 1fr 340px;
     gap: 24px;
     align-items: start;
+    max-width: 1400px;
 }
 @media(max-width:768px){ .show-grid { grid-template-columns: 1fr; } }
 
 /* ── Cards ── */
 .show-card {
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(24px);
-    border-radius: 24px;
-    border: 1px solid rgba(255,255,255,0.4);
-    box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05);
+    background: var(--color-surface);
+    border-radius: var(--radius-card);
+    border: none;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
     overflow: hidden;
 }
 .show-card-header {
     padding: 20px 24px;
-    border-bottom: 1px solid rgba(0,0,0,0.05);
+    border-bottom: 1px solid var(--color-border);
 }
 .show-card-title {
     font-size: 15px;
     font-weight: 600;
-    color: #111111;
+    color: var(--color-text);
     display: flex;
     align-items: center;
     gap: 8px;
@@ -246,16 +246,16 @@
 .data-table th {
     text-align: left;
     padding: 8px 12px;
-    color: #6B7280;
+    color: var(--color-text-muted);
     font-weight: 600;
     font-size: 11px;
     text-transform: uppercase;
     letter-spacing: .05em;
-    border-bottom: 1px solid rgba(0,0,0,0.06);
+    border-bottom: 1px solid var(--color-border);
 }
-.data-table td { padding: 10px 12px; border-bottom: 1px solid rgba(0,0,0,0.04); color: #111111; }
+.data-table td { padding: 10px 12px; border-bottom: 1px solid var(--color-border); color: var(--color-text); }
 .data-table tr:last-child td { border-bottom: none; }
-.data-table tr:hover td { background: rgba(230,33,41,0.04); }
+.data-table tr:hover td { background: var(--color-bg-light); }
 
 /* ── Member Cell ── */
 .member-cell { display: flex; align-items: center; gap: 10px; }
@@ -263,7 +263,7 @@
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    background: rgba(230, 33, 41, 0.1);
+    background: var(--color-bg-light);
     color: var(--color-text);
     display: flex;
     align-items: center;
@@ -272,18 +272,18 @@
     font-size: 12px;
     flex-shrink: 0;
 }
-.text-muted { color: #6B7280; }
+.text-muted { color: var(--color-text-muted); }
 
 /* ── Org Badges ── */
 .org-badge { display:inline-block; padding: 4px 12px; border-radius: 999px; font-size: 11px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; }
-.org-badge--osis     { background: bg-emerald-50; color: #059669; }
+.org-badge--osis     { background: var(--color-bg-light); color: var(--color-primary); }
 .org-badge--mpk      { background: #E0F2FE; color: #0369A1; }
 .org-badge--sub_organ{ background: #FEF3C7; color: #B45309; }
 
 /* ── Jabatan Badges ── */
 .badge-jabatan { display: inline-block; padding: 3px 10px; border-radius: 6px; font-size: 11px; font-weight: 600; }
 .jabatan-bph        { background: #FEF3C7; color: #B45309; }
-.jabatan-ketua      { background: bg-emerald-50; color: #059669; }
+.jabatan-ketua      { background: var(--color-bg-light); color: #059669; }
 .jabatan-pembina    { background: #E0F2FE; color: #0369A1; }
 .jabatan-pengawas   { background: #FCE7F3; color: #9D174D; }
 .jabatan-anggota    { background: #F3F4F6; color: #374151; }
@@ -292,20 +292,21 @@
 
 /* ── Form elements ── */
 .form-group { margin-bottom: 16px; }
-.form-label { font-size: 12px; font-weight: 600; color: #374151; display: block; margin-bottom: 6px; }
+.form-label { font-size: 12px; font-weight: 600; color: var(--color-text-muted); display: block; margin-bottom: 6px; }
 .form-select, .form-input {
     width: 100%;
-    background: rgba(255,255,255,0.7);
-    border: 1px solid rgba(0,0,0,0.12);
-    border-radius: 10px;
+    background: var(--color-bg-light);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-input);
     padding: 10px 14px;
-    color: #1A2B24;
+    color: var(--color-text);
     font-size: 13px;
     transition: border-color .2s, box-shadow .2s;
+    font-family: 'Poppins', sans-serif;
 }
 .form-select:focus, .form-input:focus {
     outline: none;
-    border-color: var(--color-text);
+    border-color: var(--color-primary);
     box-shadow: 0 0 0 3px rgba(230,33,41,0.12);
 }
 .form-select-sm { padding: 6px 10px; font-size: 12px; }
@@ -344,16 +345,16 @@
     margin-bottom: 12px;
 }
 .komisi-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
-.komisi-name { font-weight: 600; font-size: 13px; color: #1A2B24; }
-.komisi-count { font-size: 11px; color: #6B7280; background: rgba(0,0,0,0.05); padding: 2px 8px; border-radius: 999px; }
+.komisi-name { font-weight: 600; font-size: 13px; color: var(--color-text); }
+.komisi-count { font-size: 11px; color: var(--color-text-muted); background: var(--color-bg-light); padding: 2px 8px; border-radius: 999px; }
 .komisi-members { margin-bottom: 10px; }
-.komisi-member-row { display: flex; justify-content: space-between; align-items: center; padding: 4px 0; border-bottom: 1px solid rgba(0,0,0,0.04); }
+.komisi-member-row { display: flex; justify-content: space-between; align-items: center; padding: 4px 0; border-bottom: 1px solid var(--color-border); }
 .komisi-member-row:last-child { border-bottom: none; }
-.komisi-member-name { font-size: 12px; color: #374151; }
+.komisi-member-name { font-size: 12px; color: var(--color-text); }
 .btn-link-danger { background: none; border: none; color: #DC2626; cursor: pointer; font-size: 13px; padding: 2px 4px; opacity: .7; transition: opacity .2s; }
 .btn-link-danger:hover { opacity: 1; }
 .komisi-add-form { display: flex; gap: 8px; align-items: center; margin-top: 8px; }
-.new-komisi-form { margin-top: 20px; padding-top: 20px; border-top: 1px dashed rgba(0,0,0,0.1); }
+.new-komisi-form { margin-top: 20px; padding-top: 20px; border-top: 1px dashed var(--color-border); }
 </style>
 @endsection
 
