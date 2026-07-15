@@ -7,6 +7,7 @@
     <meta content="Sistem Informasi Persuratan OSIS SIMORA" name="description">
     <meta content="SIMORA SMK Telkom Sidoarjo" name="author">
     <!-- app favicon -->
+    <link rel="icon" type="image/svg+xml" href="{{ URL::to('assets/images/logo-tab.svg') }}">
     <link rel="shortcut icon" href="{{ URL::to('assets/images/favicon.ico') }}">
     <!-- layout config js -->
     <script src="{{ URL::to('assets/js/layout.js') }}"></script>

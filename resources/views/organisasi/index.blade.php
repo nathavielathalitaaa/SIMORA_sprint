@@ -217,3 +217,5 @@
 .empty-state { grid-column:1/-1; text-align:center; padding:48px; background: rgba(255, 255, 255, 0.5); border-radius: 20px; border: 1px dashed rgba(0,0,0,0.08); color:#6B7280; font-size: 14px; }
 .org-empty { color:#9CA3AF; font-size:13px; padding:8px 0; italic; }
 </style>
+@endsection
+

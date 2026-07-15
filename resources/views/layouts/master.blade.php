@@ -11,6 +11,7 @@
     <meta content="BPH OSIS SKOMDA" name="author">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- app favicon -->
+    <link rel="icon" type="image/svg+xml" href="{{ URL::to('assets/images/logo-tab.svg') }}">
     <link rel="shortcut icon" href="{{ URL::to('assets/images/favicon.ico') }}">
     <!-- layout config js -->
     <script src="{{ URL::to('assets/js/layout.js') }}"></script>
@@ -355,8 +356,8 @@
     left: 0;
     right: 20px;
     height: 44px; /* default */
-    background: #F5F5F7;
-    border-radius: 0 30px 30px 0;
+    background: #FFFFFF;
+    border-radius: 0 9999px 9999px 0;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), height 0.25s;
     z-index: 0;

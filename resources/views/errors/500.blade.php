@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>500 — Server Error · SIMORA</title>
+    <link rel="icon" type="image/svg+xml" href="{{ URL::to('assets/images/logo-tab.svg') }}">
     <link rel="shortcut icon" href="{{ URL::to('assets/images/favicon.ico') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -87,7 +88,7 @@
 </head>
 <body>
     <div class="card">
-        <img src="{{ URL::to('assets/images/logo-sinergi.png') }}" alt="SIMORA SMK Telkom Sidoarjo" class="logo">
+        <img src="{{ URL::to('assets/images/SIMORA.png') }}" alt="SIMORA SMK Telkom Sidoarjo" class="logo">
         <div class="error-num">5<span>0</span>0</div>
         <div class="divider"></div>
         <h1 class="error-title">Terjadi Kesalahan Server</h1>

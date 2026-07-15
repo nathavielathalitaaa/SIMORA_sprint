@@ -152,7 +152,7 @@ class PdfStampService
         $pdf->AddPage('P', 'A4');
 
         // ── Render Header & Kop Surat ───────────────────────────────────
-        $logoPath = public_path('assets/images/logo-sinergi.png');
+        $logoPath = public_path('assets/images/SIMORA.png');
         
         if (file_exists($logoPath)) {
             $pdf->Image($logoPath, 85, 10, 40);

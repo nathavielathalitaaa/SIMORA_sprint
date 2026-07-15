@@ -5,7 +5,7 @@
     .hv-page-title {
         font-family: 'Poppins', sans-serif;
         font-size: 32px;
-        color: #1A2B24;
+        color: #111111;
         margin-bottom: 4px;
     }
     .hv-page-subtitle {
@@ -34,14 +34,14 @@
         font-family: 'Poppins', sans-serif;
         font-size: 20px;
         font-weight: 700;
-        color: #1A2B24;
+        color: #111111;
         margin-bottom: 24px;
         display: flex;
         align-items: center;
         gap: 12px;
     }
     .hv-section-title i {
-        color: var(--color-text);
+        color: var(--color-primary);
     }
     .hv-label {
         font-family: 'Poppins', sans-serif;
@@ -64,9 +64,9 @@
     }
     .hv-input:focus {
         outline: none;
-        border-color: var(--color-text);
+        border-color: var(--color-primary);
         background: white;
-        box-shadow: 0 0 0 4px rgba(79, 101, 96, 0.1);
+        box-shadow: 0 0 0 4px rgba(230, 33, 41, 0.12);
     }
     .hv-textarea {
         min-height: 100px;
@@ -126,8 +126,8 @@
     }
     .hv-format-item {
         background: var(--color-bg-light);
-        color: #2E7D5E;
-        border: 1px solid #A7F3D0;
+        color: var(--color-primary);
+        border: 1px solid rgba(230, 33, 41, 0.2);
         padding: 6px 12px;
         border-radius: 8px;
         display: flex;
@@ -174,7 +174,7 @@
     .hv-step-number {
         width: 24px;
         height: 24px;
-        background: var(--color-text);
+        background: var(--color-primary);
         color: white;
         border-radius: 50%;
         display: flex;
@@ -187,8 +187,8 @@
         width: 100%;
         padding: 12px;
         background: transparent;
-        border: 1px dashed var(--color-text);
-        color: var(--color-text);
+        border: 1px dashed var(--color-primary);
+        color: var(--color-primary);
         border-radius: 12px;
         font-size: 13px;
         font-weight: 600;
@@ -196,7 +196,7 @@
         transition: all 0.2s;
     }
     .hv-btn-add-step:hover {
-        background: rgba(79, 101, 96, 0.05);
+        background: var(--color-bg-light);
     }
 
     /* Preview Card */
@@ -257,14 +257,14 @@
         border-radius: 50%;
     }
     input:checked + .hv-toggle-slider {
-        background-color: var(--color-text);
+        background-color: var(--color-primary);
     }
     input:checked + .hv-toggle-slider:before {
         transform: translateX(20px);
     }
 
     .hv-btn-submit {
-        background: var(--color-text);
+        background: var(--color-primary);
         color: white;
         padding: 16px 32px;
         border-radius: 999px;
@@ -277,15 +277,15 @@
         margin-top: 16px;
     }
     .hv-btn-submit:hover {
-        background: #3D4F4A;
+        background: var(--color-primary-dark);
         transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(79, 101, 96, 0.2);
+        box-shadow: 0 4px 12px rgba(230, 33, 41, 0.2);
     }
 
     /* Card Index Style for Preview */
     .hv-p-card { border-radius: 20px; padding: 24px; background: white; border: 1px solid #f0f0f0; }
-    .hv-p-nama { font-family: 'Poppins', sans-serif; font-size: 18px; font-weight: 700; color: #1A2B24; margin-bottom: 4px; }
-    .hv-p-kode { background: var(--color-bg-light); color: #2E7D5E; padding: 2px 10px; border-radius: 999px; font-size: 10px; font-weight: 600; text-transform: uppercase; }
+    .hv-p-nama { font-family: 'Poppins', sans-serif; font-size: 18px; font-weight: 700; color: #111111; margin-bottom: 4px; }
+    .hv-p-kode { background: var(--color-bg-light); color: var(--color-primary); padding: 2px 10px; border-radius: 999px; font-size: 10px; font-weight: 600; text-transform: uppercase; }
     .hv-p-desc { font-size: 12px; color: #6B7280; margin: 12px 0; }
     .hv-p-label { font-size: 9px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: #9CA3AF; margin-bottom: 6px; }
     .hv-p-chain { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-bottom: 16px; }
@@ -294,7 +294,7 @@
 </style>
 
 <div class="mb-8">
-    <h1 class="text-3xl font-sans font-bold text-[#1A2B24]">{{ isset($suratType) ? 'Ubah Tipe Dokumen' : 'Tambah Tipe Dokumen' }}</h1>
+    <h1 class="text-3xl font-sans font-bold text-[#111111]">{{ isset($suratType) ? 'Ubah Tipe Dokumen' : 'Tambah Tipe Dokumen' }}</h1>
     <p class="text-[13px] font-light text-[#6B7280] mt-1">Tentukan format nomor dan alur kerja persetujuan untuk dokumen Anda.</p>
 </div>
 

@@ -20,9 +20,64 @@ class HomeController extends Controller
      * Dashboard utama SIMORA.
      * Menampilkan data berbeda berdasarkan role user.
      */
-    public function index()
+    public function index(Request $request)
     {
         $user = auth()->user();
+
+        // ── Filter visibilitas berdasarkan role (sama seperti SuratController) ──
+        $query = Surat::with(['user', 'approvals', 'suratType', 'organisasi']);
+        if ($user->hasAnyRole(['admin', 'super-admin'])) {
+            // Admin lihat semua
+        } elseif ($user->hasAnyRole(['pengawas_pusat', 'kepala_sekolah'])) {
+            $roleName = $user->hasRole('pengawas_pusat') ? 'pengawas_pusat' : 'kepala_sekolah';
+            $query->where(function($q) use ($user, $roleName) {
+                $q->where('user_id', $user->id)
+                  ->orWhereHas('approvals', fn($sq) =>
+                      $sq->where('target_mode', 'global')->where('jabatan', $roleName)
+                  );
+            });
+        } else {
+            $userOrganisasis = Organisasi::whereHas('members', fn($q) => $q->where('user_id', $user->id))->get();
+            $organisasiIds = $userOrganisasis->pluck('id');
+            $isMpk = $userOrganisasis->where('tipe', 'mpk')->isNotEmpty();
+            $isOsis = $userOrganisasis->where('tipe', 'osis')->isNotEmpty();
+
+            $query->where(function($q) use ($user, $organisasiIds, $isMpk, $isOsis) {
+                $q->where('user_id', $user->id);
+                if ($organisasiIds->isNotEmpty()) {
+                    $q->orWhereIn('organisasi_id', $organisasiIds);
+                }
+                $q->orWhereHas('approvals', function($sq) use ($user, $isMpk, $isOsis) {
+                    $sq->where('assigned_user_id', $user->id)
+                       ->orWhere('approver_id', $user->id);
+                    if ($isMpk) {
+                        $sq->orWhere('target_mode', 'fixed_mpk');
+                    }
+                    if ($isOsis) {
+                        $sq->orWhere('target_mode', 'fixed_osis');
+                    }
+                });
+            });
+        }
+
+        // hitung stats berdasarkan query filtered tersebut
+        $telahDiajukanCount = (clone $query)->count();
+        $sedangDiprosesCount = (clone $query)->whereIn('status', ['submitted', 'pending_admin', 'revised'])->count();
+        $telahDisetujuiCount = (clone $query)->where('status', 'approved_owner')->count();
+
+        // apply search
+        $search = $request->input('search');
+        if ($search) {
+            $query->where(function($q) use ($search) {
+                $q->where('perihal', 'like', '%' . $search . '%')
+                  ->orWhere('nomor_surat', 'like', '%' . $search . '%')
+                  ->orWhereHas('user', function($sq) use ($search) {
+                      $sq->where('name', 'like', '%' . $search . '%');
+                  });
+            });
+        }
+
+        $surats = $query->latest()->paginate(10);
 
         $kegiatanBerjalanCount = Surat::where('status_pelaksanaan', 'berjalan')->count();
         $lpjPendingCount = \App\Models\LaporanPertanggungjawaban::where('status', 'submitted')->count();
@@ -42,6 +97,10 @@ class HomeController extends Controller
             'kegiatanBerjalanCount' => $kegiatanBerjalanCount,
             'lpjPendingCount'       => $lpjPendingCount,
             'lpjRevisiCount'        => $lpjRevisiCount,
+            'telahDiajukanCount'    => $telahDiajukanCount,
+            'sedangDiprosesCount'   => $sedangDiprosesCount,
+            'telahDisetujuiCount'   => $telahDisetujuiCount,
+            'surats'                => $surats,
         ];
 
         // ── Admin / Super Admin: statistik sistem ───────────────────────

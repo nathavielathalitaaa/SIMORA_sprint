@@ -19,6 +19,7 @@ use App\Models\ApprovalStep;
 use App\Http\Requests\Surat\StoreSuratRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class SuratController extends Controller
 {
@@ -41,7 +42,7 @@ class SuratController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function index()
+    public function index(Request $request)
     {
         $user  = Auth::user();
         $query = Surat::with(['user', 'approvals', 'suratType', 'organisasi']);
@@ -89,7 +90,53 @@ class SuratController extends Controller
             });
         }
 
-        $surats = $query->latest()->paginate(15);
+        // ── Filter tambahan: Persetujuan Saya (waiting) ──────────────────
+        $filter = $request->input('filter');
+        if ($filter === 'waiting') {
+            $query->where('status', 'submitted');
+            $query->whereHas('approvals', function($q) use ($user) {
+                $q->where('status', 'waiting')
+                  ->where(function($sq) use ($user) {
+                      $sq->where('assigned_user_id', $user->id);
+                      
+                      $userOrganisasis = Organisasi::whereHas('members', fn($mq) => $mq->where('user_id', $user->id))->get();
+                      $organisasiIds = $userOrganisasis->pluck('id');
+                      $isMpk = $userOrganisasis->where('tipe', 'mpk')->isNotEmpty();
+                      $isOsis = $userOrganisasis->where('tipe', 'osis')->isNotEmpty();
+                      
+                      $sq->orWhere(function($ssq) use ($user, $organisasiIds, $isMpk, $isOsis) {
+                          $ssq->whereNull('assigned_user_id');
+                          
+                          $jabatans = $user->organisasiMembers()->pluck('jabatan')->filter()->unique();
+                          if ($jabatans->isNotEmpty()) {
+                              $ssq->whereIn('jabatan', $jabatans);
+                          }
+                          
+                          $ssq->where(function($sssq) use ($user, $isMpk, $isOsis) {
+                              $sssq->where('target_mode', 'submitter');
+                              if ($isMpk) $sssq->orWhere('target_mode', 'fixed_mpk');
+                              if ($isOsis) $sssq->orWhere('target_mode', 'fixed_osis');
+                              if ($user->hasRole('pengawas_pusat')) $sssq->orWhere('target_mode', 'global')->where('jabatan', 'pengawas_pusat');
+                              if ($user->hasRole('kepala_sekolah')) $sssq->orWhere('target_mode', 'global')->where('jabatan', 'kepala_sekolah');
+                          });
+                      });
+                  });
+            });
+        }
+
+        // ── Filter tambahan: Pencarian kata kunci ────────────────────────
+        $search = $request->input('search');
+        if ($search) {
+            $query->where(function($q) use ($search) {
+                $q->where('perihal', 'like', '%' . $search . '%')
+                  ->orWhere('nomor_surat', 'like', '%' . $search . '%')
+                  ->orWhereHas('user', function($sq) use ($search) {
+                      $sq->where('name', 'like', '%' . $search . '%');
+                  });
+            });
+        }
+
+        $surats = $query->latest()->paginate(15)->withQueryString();
 
         return view('surat.index', compact('surats'));
     }
@@ -701,31 +748,44 @@ class SuratController extends Controller
             ]);
             flash()->warning('Surat ditolak dan dikembalikan ke pembuat.');
         } else {
-            // Disposisi Awal
-            $request->validate([
-                'nomor_surat' => 'required|string|max:50'
-            ]);
+            // ── Disposisi Awal ──────────────────────────────────────
+            // Nomor surat digenerate otomatis oleh SuratNumberService
+            // berdasarkan nomor_format + counter di SuratType.
+            // Seluruh operasi (generate + update surat + init approval)
+            // dibungkus dalam satu DB transaction agar counter tidak
+            // nyangkut jika salah satu langkah gagal.
 
-            $surat->update([
-                'nomor_surat' => $request->nomor_surat,
-                'status'      => 'submitted',
-                'catatan_revisi' => null
-            ]);
-
-            // Inisialisasi Alur Approval
-            $this->approval->initFromSuratType($surat);
-
-            // Kirim Notifikasi ke Approver Pertama
-            $firstStep = $surat->approvals()->where('status', 'waiting')->first();
-            if ($firstStep) {
-                $this->notifService->sendToJabatan(
-                    $firstStep->jabatan,
-                    'Permintaan Approval Surat Baru',
-                    "Surat ({$surat->nomor_surat}) telah diverifikasi admin dan menunggu persetujuan Anda.",
-                    route('surat.show', $surat->id)
-                );
+            if (!$surat->suratType) {
+                flash()->error('Jenis surat tidak ditemukan. Tidak dapat membuat nomor surat otomatis.');
+                return back();
             }
-            flash()->success('Surat diverifikasi dan diteruskan ke alur persetujuan (Disposisi Awal).');
+
+            DB::transaction(function () use ($surat) {
+                // Generate nomor (lockForUpdate ada di dalam generate())
+                $nomorSurat = $this->numberService->generate($surat->suratType);
+
+                $surat->update([
+                    'nomor_surat'    => $nomorSurat,
+                    'status'         => 'submitted',
+                    'catatan_revisi' => null,
+                ]);
+
+                // Inisialisasi Alur Approval
+                $this->approval->initFromSuratType($surat);
+
+                // Kirim Notifikasi ke Approver Pertama
+                $firstStep = $surat->approvals()->where('status', 'waiting')->first();
+                if ($firstStep) {
+                    $this->notifService->sendToJabatan(
+                        $firstStep->jabatan,
+                        'Permintaan Approval Surat Baru',
+                        "Surat ({$surat->nomor_surat}) telah diverifikasi admin dan menunggu persetujuan Anda.",
+                        route('surat.show', $surat->id)
+                    );
+                }
+            });
+
+            flash()->success('Surat diverifikasi, nomor surat diberikan otomatis, dan diteruskan ke alur persetujuan.');
         }
 
         return redirect()->route('surat.inbox_admin');

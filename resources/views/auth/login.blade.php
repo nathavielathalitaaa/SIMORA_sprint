@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Masuk — SIMORA</title>
+    <link rel="icon" type="image/svg+xml" href="{{ URL::to('assets/images/logo-tab.svg') }}">
+    <link rel="shortcut icon" href="{{ URL::to('assets/images/favicon.ico') }}">
 
     {{-- Fonts --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -442,7 +444,9 @@
         <div class="left-panel">
             <div class="ring-bottom-left"></div>
 
-            <div class="brand-tag">SIMORA</div>
+            <div class="brand-tag">
+                <img src="{{ asset('assets/images/SIMORA.png') }}" alt="Logo SIMORA" style="height: 36px; width: auto; object-fit: contain; margin: 0 auto; display: block;">
+            </div>
 
             <div class="left-brand">
                 <h1>Selamat<br>Datang</h1>

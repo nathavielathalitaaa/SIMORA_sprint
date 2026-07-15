@@ -4,19 +4,13 @@
 <div class="hv-sidebar" id="hv-sidebar">
     {{-- ── Logo Area ── --}}
     <div class="px-[30px] pb-8 pt-2">
-        <h2 class="text-white text-3xl font-bold tracking-widest">SIMORA</h2>
+        <a href="{{ route('home') }}" class="block">
+            <img src="{{ asset('assets/images/SIMORA.png') }}" alt="Logo SIMORA" class="h-9 w-auto object-contain">
+        </a>
     </div>
 
     {{-- ── top nav icons ── --}}
     <div class="hv-sidebar-nav">
-
-        {{-- profile --}}
-        <a href="{{ route('profile.show') }}"
-           class="{{ request()->routeIs('profile.show') ? 'active' : '' }}"
-           title="Profil Saya">
-            <i data-lucide="user-circle"></i>
-            <span>Profil Saya</span>
-        </a>
 
         {{-- dashboard --}}
         <a href="{{ route('home') }}"
@@ -26,12 +20,28 @@
             <span>Dashboard</span>
         </a>
 
-        {{-- surat ── --}}
+        {{-- ajukan surat --}}
+        <a href="{{ route('surat.create') }}"
+           class="{{ request()->routeIs('surat.create') ? 'active' : '' }}"
+           title="Ajukan Surat Baru">
+            <i data-lucide="plus-circle"></i>
+            <span>Ajukan surat</span>
+        </a>
+
+        {{-- persetujuan --}}
+        <a href="{{ route('surat.index', ['filter' => 'waiting']) }}"
+           class="{{ request()->routeIs('surat.index') && request('filter') === 'waiting' ? 'active' : '' }}"
+           title="Persetujuan Surat">
+            <i data-lucide="check-square"></i>
+            <span>Persetujuan</span>
+        </a>
+
+        {{-- daftar surat --}}
         <a href="{{ route('surat.index') }}"
-           class="{{ request()->routeIs('surat.index') || request()->routeIs('surat.create') || request()->routeIs('surat.show') ? 'active' : '' }}"
-           title="Surat Saya & Approval">
-            <i data-lucide="mail"></i>
-            <span>Surat Saya</span>
+           class="{{ request()->routeIs('surat.index') && request('filter') !== 'waiting' || request()->routeIs('surat.show') || request()->routeIs('surat.edit') ? 'active' : '' }}"
+           title="Daftar Surat">
+            <i data-lucide="file-text"></i>
+            <span>Daftar surat</span>
         </a>
 
         {{-- Pelaksanaan & LPJ ── --}}
@@ -42,22 +52,20 @@
             <span>Pelaksanaan</span>
         </a>
 
-        {{-- Verifikasi LPJ (Admin/Guru) ── --}}
-        @if(auth()->user()->hasAnyRole(['admin', 'super-admin', 'guru']))
-        <a href="{{ route('lpj.verifikasi.index') }}"
-           class="{{ request()->routeIs('lpj.verifikasi.index') ? 'active' : '' }}"
-           title="Verifikasi LPJ">
-            <i data-lucide="check-square"></i>
-            <span>Verifikasi LPJ</span>
-        </a>
-        @endif
-
         {{-- Database Arsip LPJ ── --}}
         <a href="{{ route('arsip.index') }}"
            class="{{ request()->routeIs('arsip.index') || request()->routeIs('lpj.show') ? 'active' : '' }}"
            title="Database Arsip LPJ">
             <i data-lucide="archive"></i>
             <span>Arsip LPJ</span>
+        </a>
+
+        {{-- profile --}}
+        <a href="{{ route('profile.show') }}"
+           class="{{ request()->routeIs('profile.show') ? 'active' : '' }}"
+           title="Profil Saya">
+            <i data-lucide="user-circle"></i>
+            <span>Profil Saya</span>
         </a>
 
         {{-- inbox admin (admin only) --}}

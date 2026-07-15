@@ -34,7 +34,11 @@
     white-space: nowrap !important;
     width: auto !important;
     color: #ffffff !important;
-    background-color: var(--color-text) !important;
+    background-color: var(--color-primary) !important;
+    border-radius: 16px !important;
+  }
+  .custom-header-btn a:hover {
+    background-color: var(--color-primary-dark) !important;
   }
 </style>
 

@@ -5,7 +5,7 @@
     .hv-page-title {
         font-family: 'Poppins', sans-serif;
         font-size: 32px;
-        color: #1A2B24;
+        color: #111111;
         margin-bottom: 4px;
     }
     .hv-page-subtitle {
@@ -41,12 +41,12 @@
         font-family: 'Poppins', sans-serif;
         font-size: 18px;
         font-weight: 700;
-        color: #1A2B24;
+        color: #111111;
         margin: 0;
     }
     .hv-surat-kode {
         background: var(--color-bg-light);
-        color: #2E7D5E;
+        color: var(--color-primary);
         padding: 4px 12px;
         border-radius: 999px;
         font-size: 11px;
@@ -77,8 +77,8 @@
         margin-bottom: 20px;
     }
     .hv-approver-pill {
-        background: var(--color-bg-light);
-        color: #0F6E56;
+        background: #F3F4F6;
+        color: #374151;
         padding: 4px 12px;
         border-radius: 999px;
         font-size: 11px;
@@ -100,7 +100,7 @@
         color: #4B5563;
     }
     .hv-stat-item b {
-        color: #1A2B24;
+        color: #111111;
     }
     .hv-nomor-preview {
         background: #F5F5F7;
@@ -120,8 +120,8 @@
     }
     .hv-btn-edit {
         flex: 1;
-        background: var(--color-text);
-        color: white;
+        background: var(--color-primary);
+        color: white !important;
         border: none;
         padding: 10px;
         border-radius: 999px;
@@ -131,8 +131,8 @@
         transition: all 0.2s;
     }
     .hv-btn-edit:hover {
-        background: #3D4F4A;
-        color: white;
+        background: var(--color-primary-dark);
+        color: white !important;
     }
     .hv-btn-delete {
         width: 40px;
@@ -160,8 +160,8 @@
         align-items: flex-end;
     }
     .hv-btn-add {
-        background: var(--color-text);
-        color: white;
+        background: var(--color-primary);
+        color: white !important;
         padding: 12px 24px;
         border-radius: 999px;
         font-size: 14px;
@@ -173,15 +173,15 @@
         margin-bottom: 32px;
     }
     .hv-btn-add:hover {
-        background: #3D4F4A;
-        color: white;
+        background: var(--color-primary-dark);
+        color: white !important;
         transform: translateY(-2px);
     }
 </style>
 
 <div class="mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
     <div>
-        <h1 class="text-3xl font-sans font-bold text-[#1A2B24]">Kelola Tipe Dokumen</h1>
+        <h1 class="text-3xl font-sans font-bold text-[#111111]">Kelola Tipe Dokumen</h1>
         <p class="text-[13px] font-light text-[#6B7280] mt-1">Konfigurasikan tipe dokumen dan alur kerja persetujuan untuk organisasi Anda.</p>
     </div>
     <a href="{{ route('surat-type.create') }}" class="hv-btn-add" style="margin-bottom: 0;">

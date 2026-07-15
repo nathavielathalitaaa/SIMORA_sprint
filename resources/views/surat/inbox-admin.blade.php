@@ -34,7 +34,11 @@
     white-space: nowrap !important;
     width: auto !important;
     color: #ffffff !important;
-    background-color: var(--color-text) !important;
+    background-color: var(--color-primary) !important;
+    border-radius: 16px !important;
+  }
+  .custom-header-btn a:hover {
+    background-color: var(--color-primary-dark) !important;
   }
 </style>
 
@@ -125,7 +129,7 @@
                     </a>
 
                     <button type="button"
-                        onclick="quickVerify('{{ route('surat.verifikasi_admin', $surat->id) }}')"
+                        onclick="quickVerify('{{ route('surat.verifikasi_admin', $surat->id) }}', '{{ $surat->suratType ? app(\App\Services\SuratNumberService::class)->previewNext($surat->suratType) : '(format belum dikonfigurasi)' }}', '{{ addslashes($surat->suratType?->nama ?? ucfirst(str_replace('_',' ',$surat->jenis_surat))) }}')"
                         class="px-4 py-2 bg-[var(--color-primary)] text-white rounded-2xl text-sm font-medium hover:bg-[var(--color-primary-dark)] transition shadow-sm flex items-center justify-center">
                         <i data-lucide="check-circle" class="w-4 h-4 mr-1"></i> Disposisi
                     </button>
@@ -167,27 +171,44 @@
 <div id="modalVerifikasi" class="fixed inset-0 z-50 hidden items-center justify-center"
      style="background:rgba(0,0,0,.4);">
     <div class="bg-white rounded-[28px] shadow-xl w-full max-w-md mx-4 p-6 overflow-y-auto max-h-[90vh]">
-        <h6 class="text-base font-bold text-slate-900 mb-4">Verifikasi & Disposisi Awal</h6>
+
+        <div class="flex items-center gap-3 mb-5">
+            <div class="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center shrink-0">
+                <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-600"></i>
+            </div>
+            <div>
+                <h6 class="text-base font-bold text-slate-900">Verifikasi & Disposisi Awal</h6>
+                <p id="modalJenisSurat" class="text-xs text-slate-400 mt-0.5"></p>
+            </div>
+        </div>
+
         <form id="formVerifikasi" method="POST">
             @csrf
             <input type="hidden" name="action" value="approve">
-            <div class="mb-4">
-                <label class="block text-xs font-semibold text-slate-600 mb-1">
-                    Registrasi Nomor Surat <span class="text-red-500">*</span>
-                </label>
-                <input type="text" name="nomor_surat" 
-                    class="w-full px-3 py-2 rounded-lg border border-slate-200 text-sm focus:border-custom-500 focus:ring-1 focus:ring-custom-100"
-                    placeholder="Masukkan Nomor Surat Resmi" required>
-                <p class="text-xs text-slate-400 mt-1">Masukkan format nomor surat yang telah disetujui</p>
+
+            {{-- Preview nomor — read-only, tidak ada input --}}
+            <div class="mb-5 p-4 rounded-2xl bg-slate-50 border border-slate-200">
+                <p class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2">
+                    Nomor yang akan diberikan
+                </p>
+                <p id="modalPreviewNomor"
+                   class="text-lg font-mono font-bold text-slate-800 tracking-wide break-all">
+                    —
+                </p>
+                <p class="text-[11px] text-slate-400 mt-2 leading-relaxed">
+                    Nomor ini digenerate otomatis berdasarkan format dan counter jenis surat.
+                    Tidak dapat diubah manual.
+                </p>
             </div>
-            <div class="flex gap-3 justify-end">
+
+            <div class="flex gap-3 justify-end pt-1">
                 <button type="button" onclick="closeModals()"
-                    class="px-4 py-2 border border-slate-200 text-slate-600 rounded-lg text-sm font-semibold">
+                    class="px-4 py-2.5 border border-slate-200 text-slate-600 rounded-xl text-sm font-semibold hover:bg-slate-50 transition">
                     Batal
                 </button>
                 <button type="submit"
-                    class="px-4 py-2 bg-custom-500 text-white rounded-lg text-sm font-bold">
-                    <i data-lucide="check-circle" class="w-4 h-4 inline mr-1"></i>
+                    class="px-5 py-2.5 bg-[var(--color-primary)] text-white rounded-xl text-sm font-bold hover:bg-[var(--color-primary-dark)] transition flex items-center gap-2 shadow-sm">
+                    <i data-lucide="check-circle" class="w-4 h-4"></i>
                     Verifikasi & Teruskan
                 </button>
             </div>
@@ -227,9 +248,16 @@
 
 @push('scripts')
 <script>
-    function quickVerify(url) {
+    function quickVerify(url, previewNomor, jenisSurat) {
         const form = document.getElementById('formVerifikasi');
         form.action = url;
+
+        // Tampilkan preview nomor dan jenis surat di modal
+        const elNomor = document.getElementById('modalPreviewNomor');
+        const elJenis = document.getElementById('modalJenisSurat');
+        if (elNomor) elNomor.textContent = previewNomor || '—';
+        if (elJenis) elJenis.textContent  = jenisSurat  || '';
+
         document.getElementById('modalVerifikasi').classList.remove('hidden');
         document.getElementById('modalVerifikasi').classList.add('flex');
     }

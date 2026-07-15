@@ -567,49 +567,32 @@
 @push('modals')
 {{-- ── Modal: Approve Letter ── --}}
 <div id="modalApprove" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/40 backdrop-blur-sm px-4">
-    <div class="bg-white w-full max-w-[480px] rounded-[32px] overflow-hidden shadow-2xl animate-in fade-in zoom-in duration-200">
-        <div class="p-8 pt-10 text-center">
-            <div class="w-20 h-20 bg-emerald-50 rounded-full flex items-center justify-center mx-auto mb-6">
-                <i data-lucide="shield-check" class="w-10 h-10 text-emerald-600"></i>
-            </div>
-            <h3 class="text-2xl font-sans font-bold text-[#111111] mb-2">Setujui Dokumen</h3>
-            @if($waitingStep && $waitingStep->is_signer)
-                <p class="text-sm text-gray-500 px-6">Silakan masukkan 6 digit PIN Anda untuk mengonfirmasi tanda tangan digital Anda dan menyetujui dokumen ini.</p>
-            @else
-                <p class="text-sm text-gray-500 px-6">Konfirmasi persetujuan Anda untuk langkah ini.</p>
-            @endif
+    <div class="bg-white w-full max-w-[420px] rounded-[32px] p-8 shadow-2xl animate-in fade-in zoom-in duration-200 relative">
+        <button type="button" onclick="closeModals()" class="absolute right-6 top-6 text-gray-400 hover:text-gray-600 transition">
+            <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+
+        <div class="text-center mb-8">
+            <h3 class="text-2xl font-sans font-bold text-[#111111]">Security Pin</h3>
         </div>
 
-        <form action="{{ route('surat.approve', $surat->id) }}" method="POST" class="p-8 pt-0">
+        <form action="{{ route('surat.approve', $surat->id) }}" method="POST" class="space-y-6">
             @csrf
-            <div class="space-y-5">
-                <div>
-                    <label class="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Catatan (Opsional)</label>
-                    <textarea name="catatan" rows="2" 
-                        class="hivi-input"
-                        placeholder="Tambahkan komentar tambahan..."></textarea>
-                </div>
-                @if($waitingStep && $waitingStep->is_signer)
-                <div>
-                    <label class="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">PIN Keamanan <span class="text-red-500">*</span></label>
-                    <div class="relative">
-                        <i data-lucide="lock" class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400"></i>
-                        <input type="password" name="pin" maxlength="6" required
-                            class="hivi-input"
-                            placeholder="••••••">
-                    </div>
-                </div>
-                @endif
+            <div>
+                <label class="block text-sm font-semibold text-gray-800 mb-2 pl-1">Notes</label>
+                <input type="text" name="catatan" class="w-full px-5 py-3.5 bg-[#E5E7EB] text-[#111111] rounded-full text-sm font-medium border-0 outline-none focus:ring-2 focus:ring-red-400 placeholder-gray-500" placeholder="Tambahkan catatan...">
             </div>
 
-            <div class="mt-8 flex flex-col gap-3">
-                <button type="submit" 
-                    class="w-full py-4 bg-[var(--color-primary)] text-white rounded-[28px] text-sm font-bold shadow-lg shadow-emerald-100 hover:bg-[var(--color-primary-dark)] transition flex items-center justify-center gap-2">
-                    <i data-lucide="check" class="w-5 h-5"></i> Konfirmasi Persetujuan
-                </button>
-                <button type="button" onclick="closeModals()"
-                    class="w-full py-4 bg-white text-gray-500 rounded-[28px] text-sm font-bold hover:bg-gray-50 transition">
-                    Batal
+            @if($waitingStep && $waitingStep->is_signer)
+            <div>
+                <label class="block text-sm font-semibold text-gray-800 mb-2 pl-1">Password</label>
+                <input type="password" name="pin" maxlength="6" required class="w-full px-5 py-3.5 bg-[#E5E7EB] text-[#111111] rounded-full text-sm font-medium border-0 outline-none focus:ring-2 focus:ring-red-400 placeholder-gray-500" placeholder="••••••">
+            </div>
+            @endif
+
+            <div class="pt-4">
+                <button type="submit" class="w-full py-4 bg-[#E62129] text-white rounded-full text-sm font-bold shadow-md hover:bg-[#C91A20] transition flex items-center justify-center">
+                    Konfirmasi
                 </button>
             </div>
         </form>

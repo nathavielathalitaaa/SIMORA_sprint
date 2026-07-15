@@ -18,6 +18,7 @@ class SuratType extends Model
         'nomor_format',
         'nomor_counter',
         'nomor_reset',
+        'nomor_counter_reset_at',
         'is_active',
         'created_by',
     ];
@@ -26,6 +27,7 @@ class SuratType extends Model
         'nomor_format'              => 'array',
         'is_active'                 => 'boolean',
         'requires_kegiatan_detail'  => 'boolean',
+        'nomor_counter_reset_at'    => 'date',
     ];
 
     public function approvers()
