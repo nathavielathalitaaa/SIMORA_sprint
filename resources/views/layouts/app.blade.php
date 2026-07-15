@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id" class="light scroll-smooth group" data-layout="vertical" data-sidebar="light" data-sidebar-size="lg" data-mode="light" data-topbar="light" data-skin="default" data-navbar="sticky" data-content="fluid" dir="ltr">
+<html lang="id" class="light scroll-smooth group" data-layout="vertical" data-sidebar="dark" data-sidebar-size="lg" data-mode="light" data-topbar="light" data-skin="default" data-navbar="sticky" data-content="fluid" dir="ltr">
 <head>
     <meta charset="utf-8">
     <title>Masuk | SIMORA SMK Telkom Sidoarjo - Sistem Manajemen Persuratan</title>
@@ -13,8 +13,8 @@
     <script src="{{ URL::to('assets/js/layout.js') }}"></script>
     <!-- SIMORA SMK Telkom Sidoarjo css -->
     <link rel="stylesheet" href="{{ URL::to('assets/css/starcode2.css') }}">
-    
-</head>
+    <link rel="stylesheet" href="{{ URL::to('assets/css/app.css') }}">
+    </head>
 
 <body class="flex items-center justify-center min-h-screen py-16 lg:py-10 bg-slate-50 dark:bg-zink-800 dark:text-zink-100 font-public">
     <div class="relative">

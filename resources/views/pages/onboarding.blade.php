@@ -16,6 +16,19 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
+        :root {
+            --color-primary: #E62129;
+            --color-primary-dark: #C91A20;
+            --color-surface: #FFFFFF;
+            --color-bg-light: #F5F5F7;
+            --color-text: #111111;
+            --color-text-muted: #6B7280;
+            --color-border: #E5E7EB;
+            --radius-card: 28px;
+            --radius-input: 9999px;
+            --radius-pill: 9999px;
+        }
+
         body {
             font-family: 'Poppins', sans-serif;
             height: 100vh;

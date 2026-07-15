@@ -16,7 +16,7 @@
     <!-- layout config js -->
     <script src="{{ URL::to('assets/js/layout.js') }}"></script>
     <!-- SIMORA SMK Telkom Sidoarjo css -->
-    <link rel="stylesheet" href="{{ URL::to('assets/css/starcode2.css') }}">
+    <link rel="stylesheet" href="{{ URL::to('assets/css/app.css') }}">
     <script src="https://cdn.tailwindcss.com"></script>
 <script>
   tailwind.config = {
