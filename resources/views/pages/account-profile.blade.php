@@ -376,7 +376,7 @@
           <div class="sng-box-danger mb-4 flex items-center gap-2">
             <i data-lucide="alert-circle" class="w-4 h-4"></i> Belum ada tanda tangan
           </div>
-        @endifif
+        @endif
         <div x-show="showUpload" x-transition>
           <form action="{{ route('profile.signature.upload', $user->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
@@ -398,7 +398,7 @@
           </form>
         </div>
  
-        <p class="text-center mt-3" style="font-size:10.5px;color:#9CA3AF;">Format yang didukung: PNG, JPG. Ukuran maks: 2MB</p>p>
+        <p class="text-center mt-3" style="font-size:10.5px;color:#9CA3AF;">Format yang didukung: PNG, JPG. Ukuran maks: 2MB</p>
       </div>
       @endunless
 

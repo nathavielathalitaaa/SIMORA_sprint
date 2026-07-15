@@ -370,6 +370,7 @@
                 <a href="{{ route('activity.log') }}" class="hv-recent-viewall">Lihat semua</a>
             </div>
             <p class="hv-recent-sub">Log aktivitas sistem</p>
+            @if(isset($recentActivities) && $recentActivities->count())
             <div class="hv-recent-list">
                 @foreach($recentActivities as $log)
                 <div class="hv-recent-item">
