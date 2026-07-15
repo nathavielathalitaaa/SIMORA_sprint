@@ -34,7 +34,7 @@
     white-space: nowrap !important;
     width: auto !important;
     color: #ffffff !important;
-    background-color: var(--color-text) !important;
+    background-color: var(--color-primary) !important;
   }
 </style>
 
@@ -48,12 +48,12 @@
     </div>
 
     @if ($message = Session::get('success'))
-        <div class="mb-4 px-4 py-3 relative text-base text-green-800 bg-green-50 rounded-lg" role="alert">
+        <div class="mb-4 px-4 py-3 relative text-base text-green-800 bg-green-50 rounded-[28px]" role="alert">
             {{ $message }}
         </div>
     @endif
     @if ($message = Session::get('error'))
-        <div class="mb-4 px-4 py-3 relative text-base text-red-800 bg-red-50 rounded-lg" role="alert">
+        <div class="mb-4 px-4 py-3 relative text-base text-red-800 bg-red-50 rounded-[28px]" role="alert">
             {{ $message }}
         </div>
     @endif
@@ -63,7 +63,7 @@
         <div class="skeleton-wrapper w-full">
             <div class="space-y-4">
                 @for($i=0; $i<4; $i++)
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between bg-white rounded-[28px] shadow-sm border border-gray-100 px-6 py-5 gap-4">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between bg-white rounded-[28px] shadow-[0_10px_40px_rgba(0,0,0,0.06)] border border-gray-100 px-6 py-5 gap-4">
                     <div class="flex items-center gap-4 w-full">
                         <div class="skeleton w-12 h-12 rounded-full flex-shrink-0"></div>
                         <div class="flex-grow space-y-2">
@@ -90,15 +90,15 @@
             <!-- left content (keep data same) -->
             <div class="flex items-center gap-4">
                 <!-- avatar -->
-                <div class="w-12 h-12 rounded-full bg-[var(--color-primary)]/30 flex items-center justify-center font-semibold text-[var(--color-text)] text-lg flex-shrink-0">
+                <div class="w-12 h-12 rounded-full bg-[var(--color-bg-light)] flex items-center justify-center font-semibold text-[var(--color-text)] text-lg flex-shrink-0">
                     {{ strtoupper(substr($surat->user->name ?? 'U',0,1)) }}
                 </div>
 
                 <div>
-                    <p class="font-semibold text-gray-800 text-base">
+                    <p class="font-semibold text-[var(--color-text)] text-base">
                         {{ $surat->user->name ?? 'Unknown' }}
                     </p>
-                    <p class="text-sm text-gray-500 mt-0.5">
+                    <p class="text-sm text-[var(--color-text-muted)] mt-0.5">
                         {{ $surat->suratType ? $surat->suratType->nama : ucfirst(str_replace('_', ' ', $surat->jenis_surat)) }} 
                         @if($surat->organisasi)
                             &bull; <span class="text-[var(--color-text)] font-medium">{{ $surat->organisasi->nama }}</span>
@@ -106,7 +106,7 @@
                         <br>
                         <span class="text-xs">Menunggu Nomor Surat</span>
                     </p>
-                    <p class="text-xs text-gray-400 mt-1">
+                    <p class="text-xs text-[var(--color-text-muted)] mt-1">
                         Diajukan pada: {{ $surat->created_at->format('d M Y H:i') }}
                     </p>
                 </div>
@@ -115,12 +115,12 @@
             <!-- right actions -->
             <div class="flex flex-col sm:items-end gap-3 sm:gap-2 border-t sm:border-0 pt-3 sm:pt-0 border-gray-100">
                 <div>
-                    <span class="px-3 py-1 rounded-full text-xs font-medium bg-amber-100 text-amber-700">Perlu Verifikasi</span>
+                    <span class="px-3 py-1 rounded-full text-xs font-medium bg-[var(--color-bg-light)] text-[var(--color-primary)]">Perlu Verifikasi</span>
                 </div>
 
                 <div class="surat-actions flex flex-col sm:flex-row gap-2 w-full sm:w-auto mt-2 sm:mt-0">
                     <a href="{{ route('surat.show', $surat->id) }}"
-                       class="px-4 py-2 rounded-2xl border border-gray-300 bg-white text-gray-700 text-sm font-medium hover:bg-gray-50 transition flex items-center justify-center">
+                       class="px-4 py-2 rounded-2xl border border-[var(--color-border)] bg-white text-[var(--color-text)] text-sm font-medium hover:bg-[var(--color-bg-light)] transition flex items-center justify-center">
                         Lihat Dokumen
                     </a>
 
@@ -139,12 +139,12 @@
         </div>
 
     @empty
-        <div class="bg-white rounded-[28px] border border-gray-100 shadow-sm p-16 text-center">
-            <div class="w-16 h-16 bg-[var(--color-primary)]/10 rounded-[28px] flex items-center justify-center mx-auto mb-4">
+        <div class="bg-white rounded-[28px] border border-gray-100 shadow-[0_10px_40px_rgba(0,0,0,0.06)] p-16 text-center">
+            <div class="w-16 h-16 bg-[var(--color-bg-light)] rounded-[28px] flex items-center justify-center mx-auto mb-4">
                 <i data-lucide="file-text" class="w-8 h-8 text-[var(--color-primary)]"></i>
             </div>
-            <h3 class="text-lg font-semibold text-gray-800 mb-2">Belum Ada Surat</h3>
-            <p class="text-sm text-gray-500 mb-6">Ajukan surat baru untuk memulai alur persetujuan.</p>
+            <h3 class="text-lg font-semibold text-[var(--color-text)] mb-2">Belum Ada Surat</h3>
+            <p class="text-sm text-[var(--color-text-muted)] mb-6">Ajukan surat baru untuk memulai alur persetujuan.</p>
             @can('create', App\Models\Surat::class)
             <a href="{{ route('surat.create') }}" class="inline-flex items-center gap-2 px-5 py-2.5 bg-[var(--color-primary)] text-white rounded-2xl text-sm font-semibold hover:bg-[var(--color-primary-dark)] transition shadow-sm">
                 <i data-lucide="plus" class="w-4 h-4"></i> Ajukan Surat Pertama

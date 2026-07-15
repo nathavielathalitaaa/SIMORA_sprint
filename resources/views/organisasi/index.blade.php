@@ -150,14 +150,13 @@
 </div>
 
 <style>
-.org-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(320px, 420px)); gap:24px; }
+.org-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(320px, 1fr)); gap:24px; width: 100%; }
 
 .org-card {
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(24px);
-    border-radius: 24px;
-    border: 1px solid rgba(255,255,255,0.4);
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    background: var(--color-surface);
+    border-radius: var(--radius-card);
+    border: none;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -165,25 +164,25 @@
 }
 .org-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.06);
 }
 .org-card-header { padding:24px 24px 16px; }
-.org-card-title { font-family: 'Poppins', sans-serif; font-size: 20px; font-weight: 700; color: #111111; margin: 0 0 8px; }
-.org-card-desc { color:#6B7280; font-size:13px; line-height: 1.5; margin:0; }
-.org-stat { display:flex; align-items:center; gap:6px; font-size:12px; color:#6B7280; font-weight: 400; }
+.org-card-title { font-family: 'Poppins', sans-serif; font-size: 20px; font-weight: 700; color: var(--color-text); margin: 0 0 8px; }
+.org-card-desc { color:var(--color-text-muted); font-size:13px; line-height: 1.5; margin:0; }
+.org-stat { display:flex; align-items:center; gap:6px; font-size:12px; color:var(--color-text-muted); font-weight: 400; }
 .org-card-body { padding:0 24px 20px; flex-grow: 1; }
-.org-card-footer { padding:16px 24px 24px; border-top:1px solid rgba(0,0,0,0.05); }
+.org-card-footer { padding:16px 24px 24px; border-top:1px solid var(--color-border); }
 
 .org-badge { display:inline-block; padding:4px 12px; border-radius:999px; font-size:11px; font-weight:600; letter-spacing:.05em; text-transform: uppercase; }
-.org-badge--osis { background:bg-emerald-50; color:#059669; }
+.org-badge--osis { background:var(--color-bg-light); color:var(--color-primary); }
 .org-badge--mpk  { background:#E0F2FE; color:#0369A1; }
 .org-badge--sub  { background:#FEF3C7; color:#B45309; }
 
-.org-member-row { display:flex; align-items:center; gap:12px; padding:10px 0; border-bottom:1px solid rgba(0,0,0,0.05); }
+.org-member-row { display:flex; align-items:center; gap:12px; padding:10px 0; border-bottom:1px solid var(--color-border); }
 .org-member-row:last-child { border-bottom:none; }
-.org-member-avatar { width:32px; height:32px; border-radius:50%; background:rgba(230, 33, 41, 0.08); color:var(--color-text); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:13px; flex-shrink:0; }
+.org-member-avatar { width:32px; height:32px; border-radius:50%; background:var(--color-bg-light); color:var(--color-text); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:13px; flex-shrink:0; }
 .org-member-info { display:flex; flex-direction:column; }
-.org-member-name { font-size:13px; font-weight:500; color: #111111; }
+.org-member-name { font-size:13px; font-weight:500; color: var(--color-text); }
 .org-member-jabatan { font-size:11px; font-weight: 500; }
 .jabatan-bph { color:#B45309; }
 .jabatan-ketua { color:#059669; }
@@ -194,26 +193,25 @@
 .org-komisi-label { font-size:12px; font-weight: 600; color:#4B5563; margin:0 0 8px; display:flex; align-items:center; gap:6px; }
 .tag-komisi { display:inline-block; background:rgba(3,105,161,0.08); color:#0369A1; border-radius:6px; padding:2px 8px; font-size:12px; font-weight: 500; }
 
-.sub-organ-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px, 340px)); gap:20px; }
+.sub-organ-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px, 1fr)); gap:20px; width: 100%; }
 .sub-organ-card {
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(24px);
-    border-radius: 20px;
+    background: var(--color-surface);
+    border-radius: var(--radius-card);
     padding: 20px;
-    border: 1px solid rgba(255,255,255,0.4);
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    border: none;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
     transition: all 0.3s ease;
     display: flex;
     flex-direction: column;
 }
 .sub-organ-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.06);
 }
-.sub-organ-title { font-family: 'Poppins', sans-serif; font-size:16px; font-weight:700; color: #111111; margin: 0 0 4px; }
-.sub-organ-desc { font-size:13px; color:#6B7280; margin:0; line-height: 1.5; }
-.sub-organ-footer { border-top:1px solid rgba(0,0,0,0.05); padding-top:12px; margin-top: auto; }
+.sub-organ-title { font-family: 'Poppins', sans-serif; font-size:16px; font-weight:700; color: var(--color-text); margin: 0 0 4px; }
+.sub-organ-desc { font-size:13px; color:var(--color-text-muted); margin:0; line-height: 1.5; }
+.sub-organ-footer { border-top:1px solid var(--color-border); padding-top:12px; margin-top: auto; }
 
-.empty-state { grid-column:1/-1; text-align:center; padding:48px; background: rgba(255, 255, 255, 0.5); border-radius: 20px; border: 1px dashed rgba(0,0,0,0.08); color:#6B7280; font-size: 14px; }
-.org-empty { color:#9CA3AF; font-size:13px; padding:8px 0; italic; }
+.empty-state { grid-column:1/-1; text-align:center; padding:48px; background: var(--color-bg-light); border-radius: var(--radius-card); border: 1px dashed var(--color-border); color:var(--color-text-muted); font-size: 14px; }
+.org-empty { color:var(--color-text-muted); font-size:13px; padding:8px 0; font-style: italic; }
 </style>
