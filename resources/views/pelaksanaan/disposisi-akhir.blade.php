@@ -27,7 +27,7 @@
                     <div class="flex items-start justify-between gap-3">
                         <div class="flex items-start gap-3">
                             <div class="w-10 h-10 rounded-2xl bg-[var(--color-bg-light)] flex items-center justify-center shrink-0">
-                                <i data-lucide="award" class="w-5 h-5 text-[#E62129]"></i>
+                                <i data-lucide="award" class="w-5 h-5 text-[var(--color-primary)]"></i>
                             </div>
                             <div>
                                 <h3 class="text-base font-sans font-bold text-[#111111]">{{ $detail->nama_kegiatan ?? $surat->perihal }}</h3>
@@ -85,7 +85,7 @@
                         <div>
                             <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1.5">Tugaskan / Reassign PIC</label>
                             <select name="pic_user_id" required
-                                    class="w-full bg-white border border-gray-200 rounded-2xl py-2.5 px-3 text-xs text-gray-700 focus:ring-1 focus:ring-[#E62129] focus:border-[#E62129] outline-none transition">
+                                    class="w-full bg-white border border-gray-200 rounded-2xl py-2.5 px-3 text-xs text-gray-700 focus:ring-1 focus:ring-[var(--color-primary)] focus:border-[var(--color-primary)] outline-none transition">
                                 <option value="" disabled selected>Pilih PIC Kegiatan...</option>
                                 @foreach($members as $member)
                                     @if($member->user)

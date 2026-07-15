@@ -106,7 +106,7 @@
                         $first = $parts[0] ?? '';
                         $last = $parts[1] ?? '';
                         $initials = strtoupper(substr($first,0,1) . substr($last,0,1));
-                        $colors = ['var(--color-primary)','var(--color-text)','#E62129','#E62129'];
+                        $colors = ['var(--color-primary)','var(--color-text)','var(--color-primary)','var(--color-primary)'];
                         $bgColor = $colors[$loop->index % count($colors)];
                     @endphp
 
@@ -492,7 +492,8 @@
 
     <style>
         .custom-scrollbar::-webkit-scrollbar {
-            height: 8px; width: 6px;
+            height: 8px;
+            width: 6px;
         }
         .custom-scrollbar::-webkit-scrollbar-track {
             background: rgba(0,0,0,0.02);

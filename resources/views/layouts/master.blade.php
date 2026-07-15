@@ -39,6 +39,22 @@
      ============================================ -->
 <style>
   /* =============================================
+     CSS VARIABLES (Design Tokens)
+     ============================================= */
+  :root {
+    --color-primary: #E62129;
+    --color-primary-dark: #C91A20;
+    --color-text: #111111;
+    --color-text-muted: #6B7280;
+    --color-surface: #FFFFFF;
+    --color-border: #E5E7EB;
+    --color-bg-light: #FFF1F2;
+    --radius-card: 28px;
+    --radius-pill: 9999px;
+    --radius-input: 9999px;
+  }
+
+  /* =============================================
      RESET & BASE
   ============================================= */
   * {

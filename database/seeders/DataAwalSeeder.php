@@ -42,18 +42,25 @@ class DataAwalSeeder extends Seeder
         $kepalaSekolahRole  = DB::table('roles')->where('name', 'kepala_sekolah')->first();
         $superAdminRole     = DB::table('roles')->where('name', 'super-admin')->first();
 
-        // ── Buat User Admin ─────────────────────────────────────────────
+        // ── Buat User Admin (Super Admin) ───────────────────────────────
         $adminId = DB::table('users')->insertGetId([
             'user_id'    => 'ADMIN-001',
             'name'       => 'Admin SIMORA',
             'email'      => 'admin@smktelkom-sdj.sch.id',
             'password'   => Hash::make('password'),
             'status'     => 'aktif',
-            'role_name'  => 'admin',
+            'role_name'  => 'super-admin',
             'must_change_password' => false,
             'created_at' => now(),
             'updated_at' => now(),
         ]);
+        // Berikan role super-admin agar memiliki akses penuh
+        DB::table('model_has_roles')->insert([
+            'role_id'    => $superAdminRole->id,
+            'model_type' => 'App\\Models\\User',
+            'model_id'   => $adminId,
+        ]);
+        // Juga pertahankan role admin untuk kompatibilitas
         DB::table('model_has_roles')->insert([
             'role_id'    => $adminRole->id,
             'model_type' => 'App\\Models\\User',

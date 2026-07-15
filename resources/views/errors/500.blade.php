@@ -34,7 +34,7 @@
             pointer-events: none;
         }
         .card {
-            background: #FFFFFF; border-radius: 28px; padding: 52px 48px;
+            background: var(--color-surface); border-radius: var(--radius-card); padding: 52px 48px;
             max-width: 480px; width: 100%;
             box-shadow: 0 4px 32px rgba(0,0,0,0.08);
             text-align: center; position: relative; z-index: 1;
@@ -55,33 +55,33 @@
         .error-title {
             font-family: 'Poppins', sans-serif;
             font-size: 22px; font-weight: 700;
-            color: #111111; margin-bottom: 10px;
+            color: var(--color-text); margin-bottom: 10px;
         }
         .error-desc {
             font-size: 13px; font-weight: 300;
-            color: #6B7280; line-height: 1.7; margin-bottom: 32px;
+            color: var(--color-text-muted); line-height: 1.7; margin-bottom: 32px;
         }
         .btn-group { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
         .btn-primary {
             display: inline-flex; align-items: center; gap: 7px;
-            background: var(--color-text); color: #FFFFFF; border: none;
-            border-radius: 999px; padding: 11px 24px;
+            background: var(--color-text); color: var(--color-surface); border: none;
+            border-radius: var(--radius-pill); padding: 11px 24px;
             font-family: 'Poppins', sans-serif; font-size: 13px;
             font-weight: 500; text-decoration: none; cursor: pointer;
             transition: background 0.2s;
         }
-        .btn-primary:hover { background: #E62129; color: #FFFFFF; }
+        .btn-primary:hover { background: var(--color-primary); color: var(--color-surface); }
         .btn-outline {
             display: inline-flex; align-items: center; gap: 7px;
             background: transparent; color: var(--color-text);
-            border: 1px solid #D1D5DB; border-radius: 999px;
+            border: 1px solid var(--color-border); border-radius: var(--radius-pill);
             padding: 10px 24px; font-family: 'Poppins', sans-serif;
             font-size: 13px; font-weight: 400; text-decoration: none;
             cursor: pointer; transition: all 0.2s;
         }
         .btn-outline:hover { border-color: var(--color-text); color: var(--color-text); }
         .btn-icon { width: 15px; height: 15px; stroke-width: 1.8; }
-        .footer-note { margin-top: 28px; font-size: 11px; color: #9CA3AF; font-weight: 300; }
+        .footer-note { margin-top: 28px; font-size: 11px; color: var(--color-text-muted); font-weight: 300; }
         @media (max-width: 480px) { .card { padding: 40px 28px; } .error-num { font-size: 72px; } }
     </style>
 </head>

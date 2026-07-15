@@ -450,13 +450,13 @@
 
             <div class="illustration-cluster">
                 <a href="" class="logo-badge badge-mpk">
-                    <img src="https://placehold.co/140x140/ffffff/E62129?text=MPK" alt="Logo MPK">
+                    <img src="{{ asset('assets/images/MPK.jpg') }}" alt="Logo MPK">
                 </a>
                 <a href="" class="logo-badge badge-osis">
-                    <img src="https://placehold.co/120x120/ffffff/E62129?text=OSIS" alt="Logo OSIS">
+                    <img src="{{ asset('assets/images/OSIS.jpg') }}" alt="Logo OSIS">
                 </a>
                 <a href="" class="logo-badge badge-sangtasih">
-                    <img src="https://placehold.co/90x90/ffffff/E62129?text=SMK" alt="Logo Sangtasih">
+                    <img src="{{ asset('assets/images/ambalan.jpg') }}" alt="Logo Sangtasih">
                 </a>
                 
                 {{-- Titik putih --}}

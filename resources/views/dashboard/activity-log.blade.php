@@ -111,7 +111,7 @@
         transition: background 0.2s;
         white-space: nowrap;
     }
-    .al-btn-filter:hover { background: #E62129; }
+    .al-btn-filter:hover { background: var(--color-primary); }
     .al-btn-reset {
         padding: 9px 16px;
         background: transparent;
@@ -198,7 +198,7 @@
         font-size: 11px;
         font-weight: 600;
     }
-    .al-badge-login    { background: #FFF1F2; color: #E62129; }
+    .al-badge-login    { background: var(--color-bg-light); color: var(--color-primary); }
     .al-badge-logout   { background: #F1F5F9; color: #475569; }
     .al-badge-create   { background: #EFF6FF; color: #1D4ED8; }
     .al-badge-update   { background: #FFFBEB; color: #92400E; }

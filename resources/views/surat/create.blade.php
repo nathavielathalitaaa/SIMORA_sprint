@@ -14,7 +14,7 @@
         </div>
 
         {{-- Card --}}
-        <div style="background: #ffffff; border-radius: 24px; padding: 36px; border: 1px solid #f3f4f6; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+        <div style="background: var(--color-surface); border-radius: var(--radius-card); padding: 36px; border: 1px solid var(--color-border); box-shadow: 0 4px 20px rgba(0,0,0,0.03);">
 
             @if ($errors->any())
                 <div class="mb-6 p-4 rounded-2xl" style="background:rgba(239,68,68,0.08);border-left:3px solid #ef4444;">
@@ -126,8 +126,8 @@
                         <div id="kegiatan-detail-section" style="display:none;">
                             <div style="background:#f0fdf4; border:1px solid #bbf7d0; border-radius:16px; padding:20px 24px;">
                                 <div class="flex items-center gap-2 mb-4">
-                                    <i data-lucide="calendar-range" style="width:16px;height:16px;color:#E62129;"></i>
-                                    <h3 style="font-family:'Poppins',sans-serif;font-weight:600;font-size:13px;color:#E62129;margin:0;">
+                                    <i data-lucide="calendar-range" style="width:16px;height:16px;color:var(--color-primary);"></i>
+                                    <h3 style="font-family:'Poppins',sans-serif;font-weight:600;font-size:13px;color:var(--color-primary);margin:0;">
                                         Detail Kegiatan
                                     </h3>
                                     <span style="font-size:11px;color:#4ade80;margin-left:4px;">(digunakan untuk generate surat turunan)</span>

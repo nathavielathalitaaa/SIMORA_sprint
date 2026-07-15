@@ -98,7 +98,7 @@
         }
 
         .btn-signin:hover {
-            background: #E62129;
+            background: var(--color-primary);
             transform: translateY(-2px);
             box-shadow: 0 6px 16px rgba(230,33,41,0.20);
         }

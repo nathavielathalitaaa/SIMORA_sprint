@@ -2,7 +2,7 @@
 @section('content')
         <div class="flex items-center justify-between mb-8">
             <div>
-                <h1 class="text-3xl font-sans font-semibold text-[#111111]">Ubah Data Anggota/Staf</h1>
+                <h1 class="text-3xl font-sans font-semibold text-[var(--color-text)]">Ubah Data Anggota/Staf</h1>
                 <p class="text-sm text-gray-500 mt-1">Perbarui informasi lengkap untuk {{ $user->name }}</p>
             </div>
             <a href="{{ route('hr/employee/list') }}" class="px-5 py-2.5 rounded-2xl border border-gray-200 bg-white/50 hover:bg-white text-sm font-medium text-gray-600 transition shadow-sm backdrop-blur">
@@ -36,11 +36,11 @@
                             <p class="text-xs font-bold uppercase tracking-widest text-[var(--color-text)]/60 mb-4">Status Akun</p>
                             <div class="space-y-4">
                                 <div>
-                                    <label class="block text-sm font-medium text-[#111111] mb-1">ID Staf</label>
+                                    <label class="block text-sm font-medium text-[var(--color-text)] mb-1">ID Staf</label>
                                     <input type="text" value="{{ $user->user_id }}" class="hivi-input" readonly>
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-medium text-[#111111] mb-1">Peran</label>
+                                    <label class="block text-sm font-medium text-[var(--color-text)] mb-1">Peran</label>
                                     <select name="role_name" class="hivi-input">
                                         @foreach($roleName as $role)
                                             <option value="{{ $role->role_type }}" {{ $user->role_name == $role->role_type ? 'selected' : '' }}>{{ $role->role_type }}</option>
@@ -48,7 +48,7 @@
                                     </select>
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-medium text-[#111111] mb-1">Status Keaktifan</label>
+                                    <label class="block text-sm font-medium text-[var(--color-text)] mb-1">Status Keaktifan</label>
                                     <select name="status" class="hivi-input">
                                         @foreach($statusUser as $status)
                                             <option value="{{ $status->type_name }}" {{ $user->status == $status->type_name ? 'selected' : '' }}>{{ $status->type_name }}</option>
@@ -65,23 +65,23 @@
                             <p class="text-xs font-bold uppercase tracking-widest text-[var(--color-text)]/60 mb-4 border-b pb-2">Informasi Pekerjaan / Jabatan</p>
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <div class="sm:col-span-2">
-                                    <label class="block text-sm font-medium text-[#111111] mb-1">Nama Lengkap</label>
+                                    <label class="block text-sm font-medium text-[var(--color-text)] mb-1">Nama Lengkap</label>
                                     <input type="text" name="name" value="{{ $user->name }}" class="hivi-input" required>
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-medium text-[#111111] mb-1">Email Kerja</label>
+                                    <label class="block text-sm font-medium text-[var(--color-text)] mb-1">Email Kerja</label>
                                     <input type="email" name="email" value="{{ $user->email }}" class="hivi-input" required>
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-medium text-[#111111] mb-1">Nomor Telepon</label>
+                                    <label class="block text-sm font-medium text-[var(--color-text)] mb-1">Nomor Telepon</label>
                                     <input type="tel" name="phone_number" value="{{ $user->phone_number }}" class="hivi-input">
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-medium text-[#111111] mb-1">Bidang</label>
+                                    <label class="block text-sm font-medium text-[var(--color-text)] mb-1">Bidang</label>
                                     <input type="text" name="department" value="{{ $user->department }}" class="hivi-input">
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-medium text-[#111111] mb-1">Jabatan</label>
+                                    <label class="block text-sm font-medium text-[var(--color-text)] mb-1">Jabatan</label>
                                     <select name="position" class="hivi-input">
                                         <option value="">-- Pilih Jabatan --</option>
                                         @foreach($position as $pos)
@@ -90,7 +90,7 @@
                                     </select>
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-medium text-[#111111] mb-1">Peran Persetujuan</label>
+                                    <label class="block text-sm font-medium text-[var(--color-text)] mb-1">Peran Persetujuan</label>
                                     <select name="jabatan" class="hivi-input">
                                         <option value="">-- Tidak Ada --</option>
                                         <option value="hod" {{ $user->profile?->jabatan == 'hod' ? 'selected' : '' }}>Head of Department</option>
@@ -101,11 +101,11 @@
                                     </select>
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-medium text-[#111111] mb-1">Tanggal Bergabung</label>
+                                    <label class="block text-sm font-medium text-[var(--color-text)] mb-1">Tanggal Bergabung</label>
                                     <input type="date" name="join_date" value="{{ $user->join_date ? \Carbon\Carbon::parse($user->join_date)->format('Y-m-d') : '' }}" class="hivi-input">
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-medium text-[#111111] mb-1">Pendidikan Terakhir</label>
+                                    <label class="block text-sm font-medium text-[var(--color-text)] mb-1">Pendidikan Terakhir</label>
                                     <select name="pendidikan_terakhir" class="hivi-input">
                                         <option value="">-- Pilih --</option>
                                         @foreach(['SD','SMP','SMA/SMK','D3','S1','S2','S3'] as $edu)
@@ -120,19 +120,19 @@
                             <p class="text-xs font-bold uppercase tracking-widest text-[var(--color-text)]/60 mb-4 border-b pb-2">Data Kependudukan (KTP)</p>
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <div>
-                                    <label class="block text-sm font-medium text-[#111111] mb-1">Nomor Induk Kependudukan (NIK)</label>
+                                    <label class="block text-sm font-medium text-[var(--color-text)] mb-1">Nomor Induk Kependudukan (NIK)</label>
                                     <input type="text" name="nik" value="{{ $user->profile?->nik }}" class="hivi-input" maxlength="16">
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-medium text-[#111111] mb-1">Nomor Kartu Keluarga (KK)</label>
+                                    <label class="block text-sm font-medium text-[var(--color-text)] mb-1">Nomor Kartu Keluarga (KK)</label>
                                     <input type="text" name="no_kk" value="{{ $user->profile?->no_kk }}" class="hivi-input">
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-medium text-[#111111] mb-1">Nomor NPWP</label>
+                                    <label class="block text-sm font-medium text-[var(--color-text)] mb-1">Nomor NPWP</label>
                                     <input type="text" name="npwp" value="{{ $user->profile?->npwp }}" class="hivi-input">
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-medium text-[#111111] mb-1">Status Pernikahan</label>
+                                    <label class="block text-sm font-medium text-[var(--color-text)] mb-1">Status Pernikahan</label>
                                     <select name="status_pernikahan" class="hivi-input">
                                         <option value="belum_menikah" {{ $user->profile?->status_pernikahan == 'belum_menikah' ? 'selected' : '' }}>Belum Menikah</option>
                                         <option value="menikah" {{ $user->profile?->status_pernikahan == 'menikah' ? 'selected' : '' }}>Menikah</option>
@@ -146,15 +146,15 @@
                             <p class="text-xs font-bold uppercase tracking-widest text-[var(--color-text)]/60 mb-4 border-b pb-2">Alamat Lengkap</p>
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <div class="sm:col-span-2">
-                                    <label class="block text-sm font-medium text-[#111111] mb-1">Alamat</label>
+                                    <label class="block text-sm font-medium text-[var(--color-text)] mb-1">Alamat</label>
                                     <textarea name="alamat" rows="2" class="hivi-input">{{ $user->profile?->alamat }}</textarea>
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-medium text-[#111111] mb-1">Kota</label>
+                                    <label class="block text-sm font-medium text-[var(--color-text)] mb-1">Kota</label>
                                     <input type="text" name="kota" value="{{ $user->profile?->kota }}" class="hivi-input">
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-medium text-[#111111] mb-1">Provinsi</label>
+                                    <label class="block text-sm font-medium text-[var(--color-text)] mb-1">Provinsi</label>
                                     <input type="text" name="provinsi" value="{{ $user->profile?->provinsi }}" class="hivi-input">
                                 </div>
                             </div>

@@ -3,16 +3,16 @@
 @section('content')
 <style>
     .monitor-card {
-        background: rgba(255, 255, 255, 0.7);
-        backdrop-filter: blur(20px);
-        border: 1px solid rgba(255, 255, 255, 0.4);
-        border-radius: 24px;
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-card);
         padding: 30px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.03);
     }
     .monitor-title {
         font-family: 'Poppins', sans-serif;
         font-size: 24px;
-        color: #1A2B24;
+        color: var(--color-text);
         margin-bottom: 20px;
     }
     .stat-value {
@@ -23,19 +23,19 @@
     }
     .stat-label {
         font-size: 14px;
-        color: #6B7280;
+        color: var(--color-text-muted);
         text-transform: uppercase;
         letter-spacing: 1px;
     }
     .info-list dt {
         font-size: 12px;
-        color: #9CA3AF;
+        color: var(--color-text-muted);
         text-transform: uppercase;
         margin-bottom: 4px;
     }
     .info-list dd {
         font-size: 16px;
-        color: #1A2B24;
+        color: var(--color-text);
         font-weight: 500;
         margin-bottom: 20px;
     }
@@ -45,8 +45,8 @@
 <div class="mb-10">
     <div class="flex justify-between items-center">
         <div>
-            <h1 class="text-4xl font-sans font-bold text-[#1A2B24]">Monitor Kesehatan Sistem</h1>
-            <p class="text-gray-500 mt-2">Memantau sumber daya server, penyimpanan, dan integritas log audit.</p>
+            <h1 class="text-4xl font-sans font-bold text-[var(--color-text)]">Monitor Kesehatan Sistem</h1>
+            <p class="text-[var(--color-text-muted)] mt-2">Memantau sumber daya server, penyimpanan, dan integritas log audit.</p>
         </div>
     </div>
 </div>
@@ -59,15 +59,15 @@
         <div class="stat-value">{{ number_format($logCount) }}</div>
         <p class="text-sm text-gray-500 mt-2">+{{ $logsThisMonth }} entri bulan ini</p>
         
-        <div class="mt-6 p-4 bg-[#F0F7F3] rounded-2xl border border-[#D1E7DD]">
-            <p class="text-[11px] font-semibold text-[#2E7D5E] uppercase tracking-wider mb-2">Arsip Offline</p>
+        <div class="mt-6 p-4 bg-[var(--color-bg-light)] rounded-2xl border border-[var(--color-border)]">
+            <p class="text-[11px] font-semibold text-[var(--color-primary)] uppercase tracking-wider mb-2">Arsip Offline</p>
             <div class="flex justify-between items-center">
-                <span class="text-sm text-gray-600">Total File</span>
-                <span class="text-sm font-bold text-[#1A2B24]">{{ $totalArchives }} CSVs</span>
+                <span class="text-sm text-[var(--color-text-muted)]">Total File</span>
+                <span class="text-sm font-bold text-[var(--color-text)]">{{ $totalArchives }} CSVs</span>
             </div>
             <div class="flex justify-between items-center mt-1">
-                <span class="text-sm text-gray-600">Ukuran Arsip</span>
-                <span class="text-sm font-bold text-[#1A2B24]">{{ $archiveSize }}</span>
+                <span class="text-sm text-[var(--color-text-muted)]">Ukuran Arsip</span>
+                <span class="text-sm font-bold text-[var(--color-text)]">{{ $archiveSize }}</span>
             </div>
         </div>
 
@@ -84,16 +84,16 @@
         <p class="text-sm text-gray-500 mt-2">{{ $totalFiles }} file disimpan di /public/surat</p>
         
         <div class="mt-6 flex gap-2">
-            <a href="{{ route('system/monitor/archive-manager') }}" class="px-4 py-2 bg-[#F0F7F3] text-[#2E7D5E] hover:bg-[#E3EFE8] rounded-2xl text-xs font-semibold transition border border-[#D1E7DD] flex items-center gap-2">
+            <a href="{{ route('system/monitor/archive-manager') }}" class="px-4 py-2 bg-[var(--color-bg-light)] text-[var(--color-primary)] hover:bg-[var(--color-border)] rounded-2xl text-xs font-semibold transition border border-[var(--color-border)] flex items-center gap-2">
                 <i data-lucide="archive" class="w-3.5 h-3.5"></i> Arsipkan Dokumen
             </a>
         </div>
 
-        <div class="mt-4 pt-4 border-t border-gray-100">
-            <div class="w-full bg-gray-100 rounded-full h-2">
+        <div class="mt-4 pt-4 border-t border-[var(--color-border)]">
+            <div class="w-full bg-[var(--color-border)] rounded-full h-2">
                 <div class="bg-[var(--color-primary)] h-2 rounded-full" style="width: 15%"></div>
             </div>
-            <p class="text-[10px] text-gray-400 mt-2">Kapasitas penyimpanan aman yang tersisa (Estimasi 85%)</p>
+            <p class="text-[10px] text-[var(--color-text-muted)] mt-2">Kapasitas penyimpanan aman yang tersisa (Estimasi 85%)</p>
         </div>
     </div>
 

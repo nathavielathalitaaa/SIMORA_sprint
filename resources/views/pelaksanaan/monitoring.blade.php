@@ -26,8 +26,8 @@
                     {{-- Column 1: Info Kegiatan & Progress --}}
                     <div class="space-y-6">
                         <div>
-                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-[var(--color-bg-light)] text-[#E62129] mb-3">
-                                <span class="w-1.5 h-1.5 rounded-full bg-[#E62129]"></span>
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-[var(--color-bg-light)] text-[var(--color-primary)] mb-3">
+                                <span class="w-1.5 h-1.5 rounded-full bg-[var(--color-primary)]"></span>
                                 {{ ucfirst($surat->status_pelaksanaan) }}
                             </span>
                             <h2 class="text-2xl font-sans font-bold text-[#111111]">{{ $detail->nama_kegiatan ?? $surat->perihal }}</h2>
@@ -57,10 +57,10 @@
                         <div class="space-y-2">
                             <div class="flex justify-between items-center text-xs font-bold">
                                 <span class="text-gray-400 uppercase tracking-widest">Progress Pelaksanaan</span>
-                                <span class="text-[#E62129]">{{ $currentProgress }}%</span>
+                                <span class="text-[var(--color-primary)]">{{ $currentProgress }}%</span>
                             </div>
                             <div class="w-full bg-gray-150 h-3.5 rounded-full overflow-hidden">
-                                <div class="bg-[#E62129] h-full rounded-full transition-all duration-500" style="width: {{ $currentProgress }}%"></div>
+                                <div class="h-full rounded-full transition-all duration-500" style="width: {{ $currentProgress }}%; background: var(--color-primary);"></div>
                             </div>
                         </div>
                     </div>
@@ -76,7 +76,7 @@
                                     <div class="flex items-center gap-3">
                                         <input type="range" name="persentase" min="0" max="100" value="{{ $currentProgress }}"
                                                id="slider-{{ $surat->id }}"
-                                               class="w-full h-1.5 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#E62129]"
+                                               class="w-full h-1.5 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[var(--color-primary)]"
                                                oninput="document.getElementById('badge-{{ $surat->id }}').textContent = this.value + '%'">
                                         <span id="badge-{{ $surat->id }}" class="bg-white border border-gray-200 px-3 py-1.5 rounded-2xl text-xs font-bold text-gray-700 shrink-0 shadow-sm">
                                             {{ $currentProgress }}%
@@ -87,7 +87,7 @@
                                 <div>
                                     <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1.5">Catatan Progress</label>
                                     <textarea name="catatan" rows="2" placeholder="Tulis perkembangan pelaksanaan kegiatan..." required
-                                              class="w-full bg-white border border-gray-250 rounded-2xl py-3 px-4 text-xs focus:ring-1 focus:ring-[#E62129] focus:border-[#E62129] transition outline-none resize-none"></textarea>
+                                              class="w-full bg-white border border-gray-250 rounded-2xl py-3 px-4 text-xs focus:ring-1 focus:ring-[var(--color-primary)] focus:border-[var(--color-primary)] transition outline-none resize-none"></textarea>
                                 </div>
 
                                 <button type="submit"
@@ -100,7 +100,7 @@
                         {{-- Mark Selesai Action --}}
                         <div class="pt-4 border-t border-gray-150">
                             <button type="button"
-                                    onclick="openSelesaiModal('{{ route('pelaksanaan.selesai', $surat->id) }}', '{{ $detail->nama_kegiatan ?? $surat->perihal }}')"
+                                    onclick="openSelesaiModal('{{ route('pelaksanaan.selesai', $surat->id) }}', '{{ addslashes($detail->nama_kegiatan ?? $surat->perihal) }}')"
                                     class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-emerald-600 text-white rounded-2xl text-xs font-bold hover:bg-emerald-700 transition shadow-sm">
                                 <i data-lucide="check-circle" class="w-4 h-4"></i> Tandai Kegiatan Selesai
                             </button>
@@ -137,7 +137,7 @@
         @empty
             <div class="bg-white rounded-[28px] border border-gray-100 shadow-[0_10px_40px_rgba(0,0,0,0.06)] p-16 text-center">
                 <div class="w-16 h-16 bg-[var(--color-bg-light)] rounded-[28px] flex items-center justify-center mx-auto mb-4">
-                    <i data-lucide="check-circle" class="w-8 h-8 text-[#E62129]"></i>
+                    <i data-lucide="check-circle" class="w-8 h-8 text-[var(--color-primary)]"></i>
                 </div>
                 <h3 class="text-lg font-bold text-gray-800 mb-1">Tidak Ada Kegiatan Aktif</h3>
                 <p class="text-sm text-gray-500">Anda tidak terdaftar sebagai PIC untuk kegiatan aktif apapun saat ini.</p>

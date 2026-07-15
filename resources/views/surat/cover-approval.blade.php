@@ -27,12 +27,12 @@
     text-transform: uppercase;
     letter-spacing: 1px;
   }
-  .header p { font-size: 12px; color: #555; }
+  .header p { font-size: 12px; color: var(--color-text-muted); }
 
   /* Info grid */
   .info-table { width: 100%; margin-bottom: 24px; border-collapse: collapse; }
   .info-table td { padding: 4px 0; font-size: 12px; }
-  .info-table td:first-child { width: 160px; color: #666; font-weight: bold; }
+  .info-table td:first-child { width: 160px; color: var(--color-text-muted); font-weight: bold; }
 
   /* TTD Section */
   .ttd-section { margin-top: 32px; }
@@ -40,7 +40,7 @@
     font-size: 13px;
     font-weight: bold;
     color: var(--color-text);
-    border-bottom: 1px solid #e5e7eb;
+    border-bottom: 1px solid var(--color-border);
     padding-bottom: 8px;
     margin-bottom: 20px;
     text-transform: uppercase;
@@ -53,14 +53,14 @@
     text-align: center;
     vertical-align: top;
     padding: 0 12px;
-    border-right: 1px solid #f0f0f0;
+    border-right: 1px solid var(--color-border);
   }
   .ttd-table td:last-child { border-right: none; }
 
   .ttd-label {
     font-size: 11px;
     font-weight: bold;
-    color: #555;
+    color: var(--color-text-muted);
     margin-bottom: 10px;
     text-transform: uppercase;
   }

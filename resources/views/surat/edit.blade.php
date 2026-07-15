@@ -13,7 +13,7 @@
         </a>
     </div>
 
-    <div class="max-w-2xl bg-white rounded-3xl p-9 border border-gray-100 shadow-sm">
+    <div class="max-w-2xl bg-white rounded-[28px] p-9 border border-gray-100 shadow-sm">
 
         {{-- Catatan Revisi --}}
         <div class="mb-6 p-5 rounded-[28px] border" style="background:rgba(251,191,36,0.08);border-color:rgba(251,191,36,0.3);">

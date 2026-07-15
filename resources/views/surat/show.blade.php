@@ -107,7 +107,7 @@
                             <p class="text-gray-400 italic flex items-center gap-1"><i data-lucide="archive" class="w-3 h-3"></i> File Archived</p>
                         @elseif($surat->file_pdf)
                             @can('download', $surat)
-                                <a href="{{ route('surat.download', ['surat' => $surat->id, 'type' => 'original']) }}" class="inline-flex items-center gap-2 text-[var(--color-text)] hover:text-[#E62129] font-medium hover:underline">
+                                <a href="{{ route('surat.download', ['surat' => $surat->id, 'type' => 'original']) }}" class="inline-flex items-center gap-2 text-[var(--color-text)] hover:text-[var(--color-primary)] font-medium hover:underline">
                                     <i data-lucide="file-text" class="w-4 h-4"></i> Lihat Dokumen Asli
                                 </a>
                             @else
@@ -159,7 +159,7 @@
                             $c = $colors[$jabatan] ?? 'var(--color-text)';
                         @endphp
                         <div style="position:absolute;left:{{ $coord['x'] }}%;top:{{ $coord['y'] }}%;transform:translate(-50%,-50%);z-index:10;">
-                            <div style="background:var(--color-bg-light);color:#E62129;font-size:5px;font-weight:700;padding:2px 6px;border-radius:999px;white-space:nowrap;box-shadow:0 1px 3px rgba(0,0,0,0.1);">
+                            <div style="background:var(--color-bg-light);color:var(--color-primary);font-size:5px;font-weight:700;padding:2px 6px;border-radius:999px;white-space:nowrap;box-shadow:0 1px 3px rgba(0,0,0,0.1);">
                                 {{ strtoupper($jabatan ?? 'Approver') }}
                             </div>
                         </div>
@@ -172,7 +172,7 @@
                             @php $c = $colors[$jabatan] ?? 'var(--color-text)'; @endphp
                             <div class="flex items-center gap-2">
                                 <div style="width:8px;height:8px;border-radius:50%;background:var(--color-primary);flex-shrink:0;"></div>
-                                <span class="text-xs font-poppins px-2 py-0.5 bg-[var(--color-bg-light)] text-[#E62129] rounded-full">{{ strtoupper($jabatan ?? 'Approver') }}</span>
+                                <span class="text-xs font-poppins px-2 py-0.5 bg-[var(--color-bg-light)] text-[var(--color-primary)] rounded-full">{{ strtoupper($jabatan ?? 'Approver') }}</span>
                                 <span class="text-[10px] text-gray-400 ml-auto">X: {{ number_format($coord['x'],1) }}% Y: {{ number_format($coord['y'],1) }}% (Hal {{ $coord['page'] ?? 1 }})</span>
                             </div>
                             @endforeach
